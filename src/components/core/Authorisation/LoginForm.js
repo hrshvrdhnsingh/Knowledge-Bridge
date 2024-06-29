@@ -1,0 +1,54 @@
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import './auth.css'
+import { login } from '../../../services/operations/authAPI'
+
+const LoginForm = () => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    })
+
+    const [showPassword, setShowPassword] = useState(false)
+
+    const { email, password } = formData
+
+    const changeHandler = (e) => {
+        setFormData((prevData) => ({
+        ...prevData,
+        [e.target.name]: e.target.value,
+        }))
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        dispatch(login(email, password, navigate))
+    }
+    return (
+        <form onSubmit={submitHandler} className=' w-10/12 flex flex-col gap-4 justify-center mt-8 h-[40vh] p-2'>
+            <label className='flex flex-col gap-2 h-[35%]'>
+                <p className='text-richblack-400 text-xl font-semibold'>Email Address <sup className="text-pink-600">*</sup></p>
+                <input placeholder='Enter your email address' required type="text" name="email" value={email} onChange={changeHandler} autoComplete='off'
+                    className='cursor-text w-11/12 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2'
+                />
+            </label>
+            <label className='flex flex-col gap-2 h-[35%]'>
+                <div className='flex justify-between items-center'>
+                    <p className='text-richblack-400 text-xl font-semibold'>Password <sup className="text-pink-600">*</sup></p>
+                    <span onClick={() => setShowPassword((prev) => !prev)} className='cursor-pointer text-cyan-500 italic'>Show Password</span>
+                </div>
+                <input required placeholder='Enter password' name='password' value={password} type={showPassword ? "text" : "password"} onChange={changeHandler}
+                    className='border cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2'
+                />
+            </label>
+            <button type="submit" className="border h-[20%] w-[95%] rounded-xl text-2xl bg-yellow-300 text-black flex items-center justify-center font-medium hover:scale-95 cursor-pointer hover:bg-yellow-400 duration-300">
+                Login
+            </button>
+        </form>
+    )
+}
+
+export default LoginForm
