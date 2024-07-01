@@ -1,7 +1,7 @@
 {
-  "name": "edtech",
+  "name": "edtech-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend side of Knowledge Bridge.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
