@@ -5,7 +5,7 @@ const AddCourse = () => {
     return (
         <div>
             <Sidebar />
-            <div className="mt-[13vh]   w-8/12 ml-72 flex  gap-6">
+            <div className="mt-[13vh] w-8/12 ml-72 flex gap-6">
                 <div className="w-7/12">
                     <h1 className="text-2xl font-bold text-white p-2">Add Course</h1>
                     <div>

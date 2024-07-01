@@ -3,10 +3,12 @@ import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router-dom";
 
 const EnrolledCourses = () => {
     const { token } = useSelector((state) => state.auth);
     const [enrolledCourses, setEnrolledCourses] = useState(null);
+    const navigate = useNavigate();
 
     const getEnrolledCourses = async () => {
         try {
@@ -43,9 +45,10 @@ const EnrolledCourses = () => {
                             <div className="h-max flex flex-col gap-8 mt-8">
                                 {enrolledCourses?.map((course, i) => {
                                     return (
-                                        <div className="w-full flex items-center bg-opacity-25 bg-richblack-700 rounded-xl p-2" key={i}>
+                                        <div className="w-full flex items-center bg-opacity-25 bg-richblack-700 rounded-xl p-2" key={i} onClick={() => {
+                                        navigate(`/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`)}}>
                                             <div className="flex w-6/12 gap-4 items-center p-1">
-                                                <div className="w-8/12 h-[300px]">
+                                                <div className="w-8/12 h-[150px]">
                                                     <img
                                                         className="h-full w-full object-cover rounded-2xl"
                                                         src={course.thumbnail}
@@ -63,7 +66,7 @@ const EnrolledCourses = () => {
                                             <div className="flex w-4/12 text-zinc-400 justify-center items-center flex-col gap-4">
                                                 <p>Progress : {course.progressPercentage || 0}%</p>
                                                 <ProgressBar
-                                                    className="bg-whitew-8/12 rounded-xl"
+                                                    className="bg-white-8/12 rounded-xl w-8/12"
                                                     completed={course.progressPercentage || 0}
                                                     height="4px"
                                                     isLabelVisible={false}

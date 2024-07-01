@@ -19,7 +19,7 @@ const Cart = () => {
                 {total === 0 ? (
                     <div>Your cart is empty.</div>
                 ) : (
-                    <div className="flex w-full">
+                    <div className="flex w-full flex-col gap-16">
                         <RenderCartCourses />
                         <RenderTotalAmount />
                     </div>

@@ -27,6 +27,8 @@ import AddCourse from './components/core/Dashboard.js/AddCourse/index'
 import Catalog from './pages/Catalog';
 import Intro from './components/core/Catalog/intro'
 import CourseDetails from './pages/CourseDetails';
+import ViewCourse from './pages/ViewCourse';
+import VideoDetails from './components/core/ViewCourse/VideoDetails';
 
 function App() {
     const dispatch = useDispatch()
@@ -58,6 +60,7 @@ function App() {
                         <>
                             <Route path="dashboard/enrolled-courses" element={<PrivateRoute><EnrolledCourses /></PrivateRoute>} />
                             <Route path="dashboard/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+                            
                         </>
                     )
                 }
@@ -72,6 +75,12 @@ function App() {
                         </>
                     )
                 }
+                {/**For watching course-lectures */}
+                <Route element={<PrivateRoute><ViewCourse /></PrivateRoute>}>
+                    {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+                        <Route path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId" element={<VideoDetails />} />
+                    )}
+                </Route>
                 <Route path="*" element={<Error />} />
             </Routes>    
         </div>

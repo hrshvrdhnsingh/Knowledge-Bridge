@@ -50,7 +50,7 @@ const RenderCartCourses = () => {
                             <p className="text-xl">Rs {course?.price}</p>
                             <button
                                 onClick={() => dispatch(removeFromCart(course._id))}
-                                className="cursor-pointer text-2xl "
+                                className="cursor-pointer text-2xl p-2 bg-red-500 bg-opacity-70 rounded-xl"
                             >
                                 <RiDeleteBin6Line />
                             </button>

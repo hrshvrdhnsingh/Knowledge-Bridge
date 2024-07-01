@@ -110,7 +110,6 @@ const CourseDetails = () => {
         </div>
         )
     }
-    console.log("Instructor -> ",instructor)
     return (
         <div className='flex flex-col w-screen min-h-screen items-center gap-8'>
             <div className='light-bg relative flex flex-col justify-center px-40 h-[70vh] w-full gap-8 overflow-visible'>

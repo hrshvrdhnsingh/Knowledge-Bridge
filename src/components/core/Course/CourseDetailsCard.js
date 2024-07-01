@@ -53,7 +53,7 @@ const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
                 <p className="text-3xl text-white font-bold py-1">Rs. {CurrentPrice}</p>
                 <div className="flex flex-col gap-4 w-full font-bold text-xl ">
                     <button className="bg-yellow-400 flex p-2 rounded-xl hover:scale-[99%] items-center cursor-pointer justify-center transition-[1s]" onClick={
-                        user && course?.studentsEnrolled.includes(user?._id)? () => () => navigate("/dashboard/enrolled-courses") : handleBuyCourse
+                        user && course?.studentsEnrolled.includes(user?._id)? () => navigate("/dashboard/enrolled-courses") : handleBuyCourse
                     }>
                         {user && course?.studentsEnrolled.includes(user?._id)?"Go to Course":"Buy Now"}
                     </button>

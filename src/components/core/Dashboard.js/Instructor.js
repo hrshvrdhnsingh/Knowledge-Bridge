@@ -44,8 +44,8 @@ const Instructor = () => {
         <div className="w-screen h-screen flex justify-center">
             <Sidebar />
             <div className="mt-[13vh] w-7/12 ml-36 flex flex-col gap-6 h-max">
-                <div className="p-3 overflow-hidden">
-                    <h1 className="font-bold text-4xl p-3 text-white">
+                <div className="py-3 overflow-hidden">
+                    <h1 className="font-bold text-4xl py-3 text-white">
                         <HighLightText text={`Hi ${user?.firstName} 👋`}></HighLightText>
                     </h1>
                     <p className="font-medium text-white text-base">Let's start something new.</p>
@@ -54,9 +54,9 @@ const Instructor = () => {
                     <div className="spinner"></div>
                 ) : courses?.length > 0 ? (
                     <div>
-                        <div className="flex my-4 text-white justify-evenly">
+                        <div className="flex my-4 text-white h-max gap-4 justify-evenly">
                             {totalAmount > 0 || totalStudents > 0 ? (
-                                <InstructorChart courses={instructorData} />
+                                <InstructorChart courses={instructorData} className="border"/>
                             ) : (
                                 <div className="">
                                     <p className="font-bold">Visualize</p>
@@ -66,7 +66,7 @@ const Instructor = () => {
                                 </div>
                             )}
                             {/**total statistics */}
-                            <div className="flex flex-col rounded-2xl">
+                            <div className="flex flex-col rounded-2xl w-4/12">
                                 <p className="text-lg font-bold">Statistics</p>
                                 <div className="mt-4">
                                     <div>
@@ -94,13 +94,11 @@ const Instructor = () => {
                             </div>
                             <div className="flex gap-4 p-4">
                                 {courses?.slice(0, 3).map((course) => (
-                                    <div key={course._id} className="w-[32%] flex flex-col items-center justify-center bg-zinc-600 rounded-2xl">
-                                        <img
-                                            src={course.thumbnail}
-                                            alt={course.courseName}
-                                            className="w-full rounded-2xl object-cover"
-                                        />
-                                        <div className="w-full flex items-center flex-col justify-center">
+                                    <div key={course._id} className="w-[32%] flex flex-col h-[32vh] items-center justify-center bg-zinc-600 rounded-2xl">
+                                        <div className="h-[80%] w-full">
+                                            <img src={course.thumbnail} alt={course.courseName} className="w-full rounded-2xl h-full object-cover"/>
+                                        </div>
+                                        <div className="w-full flex items-center flex-col justify-center mt-auto">
                                             <p className="font-medium text-slate-900">{course.courseName}</p>
                                             <div className="flex items-center text-slate-800 gap-3">
                                                 <p>{course.studentsEnrolled?.length} students</p>

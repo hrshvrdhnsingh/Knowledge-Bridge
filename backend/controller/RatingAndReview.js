@@ -1,5 +1,5 @@
 const RatingAndReview = require('../model/RatingModel');
-const Course = require('../model/CourseProgressModel');
+const Course = require('../model/CourseModel');
 const mongoose = require("mongoose");
 
 //*************************************Create a Rating************************************************************/
@@ -7,11 +7,11 @@ exports.createRating = async (req, res) => {
     try{
         const userId = req.user.id;
         const {rating, review, courseId} = req.body;
+        console.log("req.body ->", req.body)
         //Getting the corresponding courseDeails to check whether the user is alrady enrolled or not
-        const courseDetails = await Course.findOne({
-            _id: courseId,
-            studentsEnrolled: {$elemMatch: {$eq: userId}},
-        })
+        const courseDetails = await Course.findOne(
+            { _id: courseId, studentsEnrolled: { $elemMatch: { $eq: userId } } }
+        );
         if(!courseDetails) {
             return res.status(503).json({
                 success: false,
@@ -85,7 +85,7 @@ exports.getAverageRating = async (req, res) => {
             message: 'Fetch of average rating was succesful.',
             averageRating: result[0].averageRating
         });
-    }
+    } 
     catch(err) {
         return res.status(400).json({
             success: false,
