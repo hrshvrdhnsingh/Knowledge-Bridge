@@ -15,6 +15,7 @@ import { BuyCourse } from "../services/operations/studentFeaturesAPI"
 import GetAvgRating from "../utils/avgRating"
 import Error from "./Error"
 import HighLightText from "../components/core/Homepage/HighLightText"
+import { AiOutlineConsoleSql } from "react-icons/ai"
 
 const CourseDetails = () => {
     const { user } = useSelector((state) => state.profile)
@@ -43,14 +44,20 @@ const CourseDetails = () => {
         })()
     }, [courseId])
 
-    console.log("response: ", response)
+    console.log("response:---::: ", response?.data?.courseDetails[0]?.ratingAndReviews)
 
     // Calculating Avg Review count
     const [avgReviewCount, setAvgReviewCount] = useState(0)
     useEffect(() => {
-        const count = GetAvgRating(response?.data?.courseDetails.ratingAndReviews)
-        setAvgReviewCount(count)
-    }, [response])
+        const getRating = async () => {
+            const count = GetAvgRating(response?.data?.courseDetails[0]?.ratingAndReviews)
+            setAvgReviewCount(count);
+            console.log("Count - >", count)
+            console.log(typeof(response?.data?.courseDetails[0]?.ratingAndReviews))
+        }
+        console.log("..........");
+        getRating();
+    }, [response?.data]);
     // console.log("avgReviewCount: ", avgReviewCount)
 
     // // Collapse all
@@ -91,6 +98,7 @@ const CourseDetails = () => {
         courseContent,ratingAndReviews,instructor,studentsEnrolled,createdAt,
     } = response?.data?.courseDetails[0]
 
+    console.log("rating at course details -> ", ratingAndReviews)
     const handleBuyCourse = () => {
         if (token) {
             BuyCourse(token, [courseId], user, navigate, dispatch)

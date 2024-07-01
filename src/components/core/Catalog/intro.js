@@ -30,7 +30,7 @@ const Intro = () => {
                 <h1 className="text-5xl p-3 font-bold bg-gradient-to-r from-[#f093fb] to-[#f5576c] text-transparent bg-clip-text">
                     Categories
                 </h1>
-                <div className="code-sectionh-max w-max p-4 flex flex-col gap-4 ">
+                <div className="code-section h-max w-max p-4 flex flex-col gap-4 ">
                     {subLinks?.map((subLink, i) => (
                         <Link
                             key={i}

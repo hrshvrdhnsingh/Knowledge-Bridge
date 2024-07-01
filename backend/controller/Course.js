@@ -282,10 +282,13 @@ exports.getFullCourseDetails = async (req, res) => {
         const courseDetails = await Course.find({_id: courseId}).populate({
             path: "instructor", //Populate the instructor field and the profile details that lies in the 
             populate: { path: "additionalDetails"} //additionalDetails part of it.
-        }).populate("category").populate("ratingAndReviews").populate({
+        }).populate("category").populate({
             path: "courseContent", //Populate the courseContent part and the subSection that refers to it
             populate:{ path: "subSection"}
-        }).exec();
+        }).populate("ratingAndReviews").exec();
+        
+        console.log("course details -------> ", courseDetails)
+        
         if(!courseDetails) {
             return res.status(400).json({
                 success: false,

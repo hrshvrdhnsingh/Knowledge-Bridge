@@ -9,13 +9,18 @@ import RatingStars from "../../common/RatingStars";
 
 const CourseCard = ({ course, Height }) => {
     const [avgReviewCount, setAvgReviewCount] = useState(0);
+    console.log("Course for call to average ->", course)
     useEffect(() => {
-        const count = GetAvgRating(course.ratingAndReviews);
-        setAvgReviewCount(count);
-    }, [course]);
+        const getRating = async () => {
+            const count = GetAvgRating(course.ratingAndReviews);
+            setAvgReviewCount(count);
+        }
+        console.log("..........");
+        getRating();
+    }, [course.ratingAndReviews]);
 
     return (
-        <Link to={`/courses/${course._id}`} className={`w-[49%] bg-richblack-700 bg-opacity-35 rounded-2xl h-[70vh] ${Height ? Height : "h-[70vh]"}`}>
+        <Link to={`/courses/${course._id}`} className={`w-[49%] bg-richblack-700 bg-opacity-35 rounded-2xl ${Height ? Height : "h-[70vh]"}`}>
             <div className="w-full h-full flex flex-col gap-2 p-2 ">
                 <div className="w-full h-[80%]">
                     <img

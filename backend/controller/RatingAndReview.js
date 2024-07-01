@@ -34,24 +34,27 @@ exports.createRating = async (req, res) => {
         const ratingReview = await RatingAndReview.create({
             rating, review, user: userId, course: courseId
         });
+        console.log("Created Rating ->", ratingReview)
+        console.log(typeof(courseId))
         //Update the course with the rating
-        const updatedCourseDetails = await Course.findByIdAndUpdate({courseId},
+        const updatedCourseDetails = await Course.findByIdAndUpdate(courseId,
             {
                 $push: {ratingAndReviews: ratingReview._id}
-            },{new: true}
-        );
-        console.log('Upadated Course Details : ', updatedCourseDetails);
+            },
+            {new: true}
+        ).populate("ratingAndReviews");
+        console.log('Updated Course Details :-----------------> ', updatedCourseDetails);
         //Return success response
         return res.status(200).json({
             success: true,
             message: 'Rating and Review successfully created',
-            RatingAndReview
+            ratingReview
         })
     }
     catch(err) {
         return res.status(400).json({
             success: false,
-            message: 'Something went wrong while trying to create a Rating.',
+            message: 'Something went wrong while trying to create a Review.',
             description: err.message
         });
     }
