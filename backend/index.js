@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const PORT = 4000;
-
+const path = require('path');
 const userRoutes = require('./routes/User');
 const profileRoutes = require('./routes/Profile');
 const paymentRoutes = require('./routes/Payments');
@@ -52,5 +52,11 @@ app.get("/", (req, res) => {
         message: 'Server up and runnning ... '
     })
 })
+
+app.use(express.static(path.join(__dirname, '../build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
 
 cloudinaryConnect();
