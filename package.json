@@ -1,7 +1,6 @@
 {
-  "name": "knowledge-bridge-client",
-  "description": "This is the client side of the EdTech App",
-  "version": "0.1.0",
+  "name": "knowledge-bridge",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.2.0",
@@ -51,10 +50,12 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "serve -s build",
+    "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
+    "start-frontend": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "start-backend": "nodemon backend/index.js",
     "server": "cd backend && npm run dev",
     "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgGreen\" \"npm start\" \"npm run server\""
   },
