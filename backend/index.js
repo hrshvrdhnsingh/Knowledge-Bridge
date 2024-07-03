@@ -55,3 +55,5 @@ app.get("/", (req, res) => {
 });
 
 cloudinaryConnect();
+
+module.exports = app;
