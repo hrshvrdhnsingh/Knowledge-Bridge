@@ -20,6 +20,7 @@ const Intro = () => {
         }
         setLoading(false);
     };
+    console.log("Sub-Links : ", subLinks);
     useEffect(() => {
         fetchSubLinks();
     }, []);
