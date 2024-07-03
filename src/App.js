@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBar from './components/common/NavBar';
 import Login from './pages/Login';
@@ -19,7 +19,7 @@ import Settings from './components/core/Dashboard.js/Settings';
 import EnrolledCourses from './components/core/Dashboard.js/EnrolledCourses';
 import Cart from './components/core/Cart/index';
 import { ACCOUNT_TYPE } from './utils/constants';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import EditCourse from "./components/core/Dashboard.js/EditCourse.js/index"
 import Instructor from "./components/core/Dashboard.js/Instructor"
 import MyCourses from "./components/core/Dashboard.js/MyCourses"
@@ -31,8 +31,6 @@ import ViewCourse from './pages/ViewCourse';
 import VideoDetails from './components/core/ViewCourse/VideoDetails';
 
 function App() {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
     const { user } = useSelector((state) => state.profile) 
 
     return ( 
@@ -82,7 +80,7 @@ function App() {
                     )}
                 </Route>
                 <Route path="*" element={<Error />} />
-            </Routes>    
+            </Routes>   
         </div>
     );
 }

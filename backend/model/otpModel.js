@@ -12,20 +12,23 @@ const otpSchema = new mongoose.Schema({
 //During signup of the user, this will be needed to verify the user's email
 async function sendVerificationMail(email, otp) {
     try {
-        const mailResponse = await mailSender(email, "Verification email from ", emailTemplate(otp));
-        console.log("Email sent succesfully.", mailResponse.response);
+        const mailResponse = await mailSender(
+            email,
+            "Verification email from ",
+            emailTemplate(otp)
+        );
+        //     console.log("Email sent succesfully.", mailResponse.response);
     } catch (err) {
-        console.log("Error found while sending mail: ", err.message);
-        return ({
-            message: err.message
-        })    
+        //     console.log("Error found while sending mail: ", err.message);
+        return {
+            message: err.message,
+        };
     }
 }
 
 otpSchema.pre("save", async function (next) {
-    console.log("New document saved to dataBase.")
-    if(this.isNew) {
-        console.log(this.email, this.otp)
+    if (this.isNew) {
+        //     console.log(this.email, this.otp);
         await sendVerificationMail(this.email, this.otp); //Before document save, send the email.
         //The this part gives the email and otp from the document being saved.
     }

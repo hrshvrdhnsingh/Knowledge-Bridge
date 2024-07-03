@@ -10,10 +10,11 @@ import TimelineSection from '../components/core/Homepage/TimelineSection';
 import LearningLanguageSection from '../components/core/Homepage/LearningLanguage';
 import InstructorSection from '../components/core/Homepage/InstructorSection';
 import ExploreMore from '../components/core/Homepage/ExploreMore';
+import Footer from '../components/common/Footer';
 
 const Home = () => {
     return (
-        <div className='flex flex-col w-10/12 justify-center items-center mx-auto p-1'>
+        <div className='flex flex-col w-10/12 justify-center items-center mx-auto p-1 overflow-x-visible'>
             {/**********************************  Section 1 ************************************************/}
             <div className='flex flex-col w-11/12 justify-between items-center section-1 mt-28 p-1'>
                 <Link to="/signup">
@@ -33,7 +34,7 @@ const Home = () => {
                     <CTAButton active={false} linkto="/login">Book a Demo</CTAButton>
                 </div>
                 <div className='w-10/12 h-[32vw] bg-richblack-700 mt-12 p-2 flex justify-center items-center rounded-2xl'>
-                    <video muted autoPlay controls className='h-full rounded-2xl'>
+                    <video muted autoPlay loop controls className='h-full rounded-2xl'>
                         <source type="video/mp4" src={Banner} />
                     </video>
                 </div>
@@ -91,7 +92,7 @@ const Home = () => {
                         ctabtn2={
                             {
                                 btnText: 'Learn More',
-                                linkto: "/signup",
+                                linkto: "/login",
                                 active: false
                             }
                         }
@@ -106,7 +107,7 @@ const Home = () => {
                 <ExploreMore />
             </div>
             {/*******************************************Section-2******************************************/}
-            <div className='bghome flex flex-col section-2 w-10/12 '>
+            <div className='bghome flex flex-col section-2 w-10/12 ease-in-out transition-all duration-500'>
                 <div className='w-full mt-12 mb-48'>
                     <div className='w-full flex items-center gap-1'>
                         <div className='w-full flex flex-row gap-3 justify-center items-center mt-4'>
@@ -135,6 +136,7 @@ const Home = () => {
             <div className='section-3 w-10/12 flex flex-col items-center justify-between mt-28'>
                 <InstructorSection />
             </div>
+            <Footer />
         </div>
     )
     }

@@ -21,7 +21,7 @@ const Instructor = () => {
             try {
                 const instructorApiData = await getInstructorData(token);
                 const result = await fetchInstructorCourses(token);
-                console.log(instructorApiData);
+                //     console.log(instructorApiData);
                 if (instructorApiData?.length) {
                     setInstructorData(instructorApiData);
                 }
@@ -56,7 +56,7 @@ const Instructor = () => {
                     <div>
                         <div className="flex my-4 text-white h-max gap-4 justify-evenly">
                             {totalAmount > 0 || totalStudents > 0 ? (
-                                <InstructorChart courses={instructorData} className="border"/>
+                                <InstructorChart courses={instructorData} className="border" />
                             ) : (
                                 <div className="">
                                     <p className="font-bold">Visualize</p>
@@ -71,15 +71,21 @@ const Instructor = () => {
                                 <div className="mt-4">
                                     <div>
                                         <p className="text-lg">Total Courses</p>
-                                        <p className="text-2xl font-semibold p-1">{courses?.length}</p>
+                                        <p className="text-2xl font-semibold p-1">
+                                            {courses?.length}
+                                        </p>
                                     </div>
                                     <div>
                                         <p className="text-lg">Total students</p>
-                                        <p className="text-2xl font-semibold p-1">{totalStudents}</p>
+                                        <p className="text-2xl font-semibold p-1">
+                                            {totalStudents}
+                                        </p>
                                     </div>
                                     <div>
                                         <p className="text-lg">Your income</p>
-                                        <p className="text-2xl font-semibold p-1">Rs. {totalAmount}</p>
+                                        <p className="text-2xl font-semibold p-1">
+                                            Rs. {totalAmount}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -87,19 +93,30 @@ const Instructor = () => {
                         <div className="rounded-2xl bg-zinc-700">
                             {/* Render 3 courses */}
                             <div className="flex items-center justify-between px-3">
-                                <p className="flex items-center justify-between text-white text-2xl font-semibold p-1 p-1">Your courses</p>
+                                <p className="flex items-center justify-between text-white text-2xl font-semibold p-1">
+                                    Your courses
+                                </p>
                                 <Link to="/dashboard/my-courses">
                                     <p className="font-medium text-lg text-white">View all</p>
                                 </Link>
                             </div>
                             <div className="flex gap-4 p-4">
                                 {courses?.slice(0, 3).map((course) => (
-                                    <div key={course._id} className="w-[32%] flex flex-col h-[32vh] items-center justify-center bg-zinc-600 rounded-2xl">
+                                    <div
+                                        key={course._id}
+                                        className="w-[32%] flex flex-col h-[32vh] items-center justify-center bg-zinc-600 rounded-2xl"
+                                    >
                                         <div className="h-[80%] w-full">
-                                            <img src={course.thumbnail} alt={course.courseName} className="w-full rounded-2xl h-full object-cover"/>
+                                            <img
+                                                src={course.thumbnail}
+                                                alt={course.courseName}
+                                                className="w-full rounded-2xl h-full object-cover"
+                                            />
                                         </div>
                                         <div className="w-full flex items-center flex-col justify-center mt-auto">
-                                            <p className="font-medium text-slate-900">{course.courseName}</p>
+                                            <p className="font-medium text-slate-900">
+                                                {course.courseName}
+                                            </p>
                                             <div className="flex items-center text-slate-800 gap-3">
                                                 <p>{course.studentsEnrolled?.length} students</p>
                                                 <p className="font-medium">|</p>

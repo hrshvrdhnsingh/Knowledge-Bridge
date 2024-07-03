@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import HighLightText from '../components/core/Homepage/HighLightText'
 import AboutUs1 from '../assets/Images/aboutus1.avif';
 import AboutUs2 from '../assets/Images/aboutus2.avif';
@@ -7,6 +6,7 @@ import Founding from '../assets/Images/FoundingStory.avif';
 import './pages.css'
 import CTAButton from '../components/core/Homepage/Buttons';
 import ContactUsForm from '../components/core/ContactPage/ContactUsForm';
+import Footer from '../components/common/Footer';
 
 
 const AboutUs = () => {
@@ -100,6 +100,7 @@ const AboutUs = () => {
             </div>
             {/*Contact-us Form*/}
             <ContactUsForm heading={"Get in Touch"} description={"We'd love to here for you. Please fill out this form."}/>
+            <Footer />
         </div>
     )
 }

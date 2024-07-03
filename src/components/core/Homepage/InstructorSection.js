@@ -14,7 +14,7 @@ const InstructorSection = () => {
             <div className='flex flex-col justify-center items-center w-[45%] gap-1'>
                 <div className='font-bold text-white text-5xl p-3'>Become an <HighLightText text="Instructor" /></div>
                 <div className='text-richblack-200 text-lg'>Instructors from around the world teach at Mind Forge. We provide the tools and the skills to teach what you love.</div>
-                <CTAButton className='w-[100%] flex flex-row' linkto={"/signup"} active={true}>Start teaching now<FaArrowRight /></CTAButton>
+                <CTAButton className='w-max flex flex-row' linkto={"/signup"} active={true}><div>Start teaching now</div><p><FaArrowRight /></p></CTAButton>
             </div>
             
         </div>

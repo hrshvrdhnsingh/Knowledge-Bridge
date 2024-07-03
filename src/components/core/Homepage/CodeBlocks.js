@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import CTAButton from "./Buttons";
 import { FaArrowRight } from "react-icons/fa6";
 import { TypeAnimation } from "react-type-animation";

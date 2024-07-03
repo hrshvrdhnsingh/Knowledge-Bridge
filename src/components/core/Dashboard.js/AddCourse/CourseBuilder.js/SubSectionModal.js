@@ -99,8 +99,8 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
         const result = await createSubSection(formData, token);
         if (result) {
             // update the structure of course
-            console.log("Course ->", course);
-            console.log("result ->", result);
+            //     console.log("Course ->", course);
+            //     console.log("result ->", result);
             const updatedCourseContent = course.courseContent.map((section) =>
                 section._id === modalData ? result : section
             );

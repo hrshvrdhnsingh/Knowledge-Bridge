@@ -15,19 +15,20 @@ const EnrolledCourses = () => {
             const response = await getUserEnrolledCourses(token);
             setEnrolledCourses(response);
         } catch (err) {
-            console.log("Fetching enrolled courses : ", err);
+            //     console.log("Fetching enrolled courses : ", err);
         }
     };
 
     useEffect(() => {
         getEnrolledCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className="w-screen h-screen flex justify-center  ">
             <Sidebar />
             {!enrolledCourses ? (
-                <div>LOADING</div>
+                <div className="loader"></div>
             ) : (
                 <div className="mt-[13vh] w-9/12 ml-40 flex flex-col gap-6 h-max">
                     <h2 className="font-bold text-4xl p-3  text-white">Enrolled Courses</h2>
@@ -45,8 +46,15 @@ const EnrolledCourses = () => {
                             <div className="h-max flex flex-col gap-8 mt-8">
                                 {enrolledCourses?.map((course, i) => {
                                     return (
-                                        <div className="w-full flex items-center bg-opacity-25 bg-richblack-700 rounded-xl p-2" key={i} onClick={() => {
-                                        navigate(`/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`)}}>
+                                        <div
+                                            className="w-full flex items-center bg-opacity-25 bg-richblack-700 rounded-xl p-2"
+                                            key={i}
+                                            onClick={() => {
+                                                navigate(
+                                                    `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
+                                                );
+                                            }}
+                                        >
                                             <div className="flex w-6/12 gap-4 items-center p-1">
                                                 <div className="w-8/12 h-[150px]">
                                                     <img

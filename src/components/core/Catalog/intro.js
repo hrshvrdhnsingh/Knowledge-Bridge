@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { apiConnector } from "../../../services/apiConnector";
 import { categories } from "../../../services/apis";
@@ -12,15 +13,13 @@ const Intro = () => {
         setLoading(true);
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("Printing SubLinks result : ", result);
+            //     console.log("Printing SubLinks result : ", result);
             setSubLinks(result.data.allCategories);
         } catch (err) {
             console.log(err.message);
-            console.log("Could not fetch the category list.");
         }
         setLoading(false);
     };
-    console.log("Sub-Links : ", subLinks);
     useEffect(() => {
         fetchSubLinks();
     }, []);

@@ -1,6 +1,7 @@
 import React from 'react'
 import ContactUsForm from '../components/core/ContactPage/ContactUsForm'
 import './pages.css' 
+import Footer from '../components/common/Footer'
 
 const ContactUs = () => {
     return (
@@ -23,6 +24,7 @@ const ContactUs = () => {
                 </div>
             </div>
             <ContactUsForm heading={"Got an Idea? We've got the skills. Let's team up"} description={"Tell us more about yourself and what you're got in mind."}/>
+            <Footer />
         </div>
     )
 }

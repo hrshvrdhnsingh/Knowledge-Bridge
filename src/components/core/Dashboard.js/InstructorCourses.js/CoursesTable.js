@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table"
-import { setCourse, setEditCourse } from "../../../../slices/courseSlice"
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css"
 import { useState } from "react"
 import { FaCheck } from "react-icons/fa"
-import { FiEdit2 } from "react-icons/fi"
 import { HiClock } from "react-icons/hi"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { useNavigate } from "react-router-dom"
@@ -15,7 +13,6 @@ import ConfirmationModal from "../../../common/ConfirmationModal"
 import { MdEdit } from "react-icons/md"
 
 const CoursesTable = ({courses, setCourses}) => {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const { token } = useSelector((state) => state.auth)
     const [loading, setLoading] = useState(false)
@@ -66,22 +63,22 @@ const CoursesTable = ({courses, setCourses}) => {
                                                 }
                                             </p>
                                             <p className="text-sm text-richblack-100">Created : {formatDate(course.createdAt)}</p>
-                                            <p className="flex text-richblack-900">
+                                            <div className="flex text-richblack-900">
                                                 {
                                                     course.status === COURSE_STATUS.DRAFT ? (
                                                         <p className="flex justify-center items-center bg-red-300 p-1 rounded-xl">
                                                             <HiClock size={14} /> Drafted
                                                         </p>
                                                     ): (
-                                                        <p className="">
+                                                        <div className="">
                                                             <div className="flex items-center justify-center gap-1 bg-pink-500 bg-opacity-60 p-1 rounded-xl">
                                                                 <FaCheck size={12} /> Published
                                                             </div>
                                                             
-                                                        </p>
+                                                        </div>
                                                     )
                                                 }
-                                            </p>
+                                            </div>
                                         </div>
                                     </Td>
                                     <Td className="text-md font-medium text-richblack-100 w-1/12">2hr 30min</Td>

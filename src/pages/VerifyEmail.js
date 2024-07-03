@@ -19,6 +19,7 @@ const VerifyEmail = () => {
             navigate("/signup");
             toast.error("Sign-in first")
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
      
     const submitHandler = (e) => {

@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from '../Sidebar'
 import ChangeProfilePicture from './ChangeProfilePicture'
 import EditProfile from './EditProfile'
-import { UpdateModeEnum } from 'chart.js'
 import UpdatePassword from './UpdatePassword'
 import DeleteAccount from './DeleteAccount'
 

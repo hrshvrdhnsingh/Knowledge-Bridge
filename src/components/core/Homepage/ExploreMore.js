@@ -35,7 +35,7 @@ const ExploreMore = () => {
             <div className='w-full gap-16 flex flex-row items-center justify-center mt-12 p-8'>
                 {
                     courses.map( (element, index) => {
-                        return (<CourseCard key={element} cardData={element} currentCard={currentCard} setCurrentCard={setCurrentCard} />)
+                        return (<CourseCard key={index} cardData={element} currentCard={currentCard} setCurrentCard={setCurrentCard} />)
                     })
                 }
             </div>

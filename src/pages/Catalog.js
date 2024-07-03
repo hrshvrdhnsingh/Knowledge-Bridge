@@ -1,109 +1,118 @@
-import React, { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 //import Footer from "../components/Common/Footer"
-import CourseCard from "../components/core/Catalog/Course_Card"
-import CourseSlider from "../components/core/Catalog/Course_Slider"
-import { apiConnector } from "../services/apiConnector"
-import { categories } from "../services/apis"
-import { getCatalogPageData } from "../services/operations/pageAndComponentData"
-import Error from "./Error"
+import CourseCard from "../components/core/Catalog/Course_Card";
+import CourseSlider from "../components/core/Catalog/Course_Slider";
+import { apiConnector } from "../services/apiConnector";
+import { categories } from "../services/apis";
+import { getCatalogPageData } from "../services/operations/pageAndComponentData";
+import Footer from "../components/common/Footer";
 
 const Catalog = () => {
-    const { loading } = useSelector((state) => state.profile)
-    const { catalogName } = useParams()
-    const [active, setActive] = useState(1)
-    const [catalogPageData, setCatalogPageData] = useState(null)
-    const [categoryId, setCategoryId] = useState("")
+    const { loading } = useSelector((state) => state.profile);
+    const { catalogName } = useParams();
+    const [active, setActive] = useState(1);
+    const [catalogPageData, setCatalogPageData] = useState(null);
+    const [categoryId, setCategoryId] = useState("");
     // Fetch All Categories
-    useEffect(() => { (async () => {
-        try {
-            const getCategories = async() => {
-                const result = await apiConnector("GET", categories.CATEGORIES_API)
-                console.log("Result of categories -> ", result)
-                const category_id = result?.data?.allCategories?.filter(
-                    (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
-                )[0]._id
-                console.log("Result of ->", result)
-                console.log("Category_id -> ", category_id)
-                setCategoryId(category_id)
+    useEffect(() => {
+        (async () => {
+            try {
+                const getCategories = async () => {
+                    const result = await apiConnector("GET", categories.CATEGORIES_API);
+                    //     console.log("Result of categories -> ", result);
+                    const category_id = result?.data?.allCategories?.filter(
+                        (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
+                    )[0]._id;
+                    //     console.log("Result of ->", result);
+                    //     console.log("Category_id -> ", category_id);
+                    setCategoryId(category_id);
+                };
+                getCategories();
+            } catch (error) {
+                console.log("Could not fetch Categories.", error);
             }
-            getCategories();
-            
-        } catch (error) {
-            console.log("Could not fetch Categories.", error)
-        }
-        })()
+        })();
     }, [catalogName]);
 
     useEffect(() => {
-        console.log("Updated categoryId -> ", categoryId);
+        //     console.log("Updated categoryId -> ", categoryId);
     }, [categoryId]);
 
     useEffect(() => {
         const getCategoryDetails = async () => {
-            try{
+            try {
                 const result = await getCatalogPageData(categoryId);
                 setCatalogPageData(result);
-            }
-            catch(err) {
+            } catch (err) {
                 console.log(err);
             }
+        };
+        if (categoryId) {
+            getCategoryDetails();
         }
-        if(categoryId) {
-            getCategoryDetails()
-        }
-    }, [categoryId])
- 
+    }, [categoryId]);
+
     if (loading || !catalogPageData) {
         return (
-        <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-            <div className="spinner"></div>
-        </div>
-        )
+            <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
+                <div className="spinner"></div>
+            </div>
+        );
     }
     /* if (!loading && !catalogPageData.success) {
         return <Error />
     } */
-    console.log("CategoryPageData -> ", catalogPageData);
     return (
-        <div className='w-screen flex flex-col mt-[9vh] items-center gap-12'>
-            <div className='light-bg flex flex-col justify-center px-40 h-[35vh] w-full gap-8'>
-                <p className="text-zinc-500 italic text-base">{`Home / Catalog / `}<span className="font-semibold underline">{catalogPageData?.selectedCategory?.name}</span></p>
-                <p className="text-4xl font-bold py-2 text-zinc-400">{catalogPageData?.selectedCategory?.name}</p>
-                <p className='text-xl text-zinc-100'>{catalogPageData?.selectedCategory?.description}</p>
+        <div className="w-screen flex flex-col mt-[9vh] items-center gap-12">
+            <div className="light-bg flex flex-col justify-center px-40 h-[35vh] w-full gap-8">
+                <p className="text-zinc-500 italic text-base">
+                    {`Home / Catalog / `}
+                    <span className="font-semibold underline">
+                        {catalogPageData?.selectedCategory?.name}
+                    </span>
+                </p>
+                <p className="text-4xl font-bold py-2 text-zinc-400">
+                    {catalogPageData?.selectedCategory?.name}
+                </p>
+                <p className="text-xl text-zinc-100">
+                    {catalogPageData?.selectedCategory?.description}
+                </p>
             </div>
             {/* Section 1 -> Courses*/}
-            <div className='w-9/12 flex flex-col'>
+            <div className="w-9/12 flex flex-col">
                 <h1 className="text-white text-3xl font-bold py-2">Courses to get you started</h1>
                 <div className="flex gap-4 text-white text-xl">
                     <p>Most Popular</p>
                     <p>New</p>
                 </div>
                 <div className="w-full h-max">
-                    <CourseSlider Courses={catalogPageData?.selectedCategory?.course}/>
+                    <CourseSlider Courses={catalogPageData?.selectedCategory?.course} />
                 </div>
             </div>
             {/* Section 2 -> top Courses*/}
             <div className="w-9/12 flex flex-col">
-                <p className="text-white text-3xl font-bold py-2">Top Courses in {catalogPageData?.differentCategories?.name}</p>
+                <p className="text-white text-3xl font-bold py-2">
+                    Top Courses in {catalogPageData?.differentCategories?.name}
+                </p>
                 <div className="w-full h-max">
-                    <CourseSlider Courses={catalogPageData?.differentCategories?.course}/>
+                    <CourseSlider Courses={catalogPageData?.differentCategories?.course} />
                 </div>
             </div>
             {/* Section 3 -> Frequently bought*/}
             <div className="w-9/12 flex flex-col">
                 <p className="text-white text-3xl font-bold py-2">Frequently bought together</p>
-                <div className="flex w-full flex-wrap gap-4" >
-                    {
-                        catalogPageData?.mostSellingCourses?.slice(0,4).map((course, index) => (
-                            <CourseCard course={course} key={index} Height={""}/>
-                        ))
-                    }
+                <div className="flex w-full flex-wrap gap-4">
+                    {catalogPageData?.mostSellingCourses?.slice(0, 4).map((course, index) => (
+                        <CourseCard course={course} key={index} Height={""} />
+                    ))}
                 </div>
             </div>
+            <Footer />
         </div>
-    )
-}
+    );
+};
 
-export default Catalog
+export default Catalog;

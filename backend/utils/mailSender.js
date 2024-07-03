@@ -15,13 +15,11 @@ const mailSender = async (email, title, body) => {
             from: "",
             to: `${email}`,
             subject: `${title}`,
-            html: `${body}`
+            html: `${body}`,
         });
-        console.log(info);
+        //     console.log(info);
         return info;
-    } 
-    catch (err) {
-        console.log("Error ocurred.");
+    } catch (err) {
         console.log("Message : ", err.message);
         return err.message;
     }

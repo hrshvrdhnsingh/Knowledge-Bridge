@@ -6,8 +6,6 @@ import RenderTotalAmount from "./RenderTotalAmount";
 
 const Cart = () => {
     const { total, totalItems } = useSelector((state) => state.cart);
-
-    console.log("total and total items ->", total, totalItems)
     return (
         <div className="w-screen h-screen flex justify-center">
             <Sidebar />

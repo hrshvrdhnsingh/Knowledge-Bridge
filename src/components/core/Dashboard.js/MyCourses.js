@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-import { VscAdd } from "react-icons/vsc"
 import { useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"
 import { fetchInstructorCourses } from "../../../services/operations/courseDetailsAPI"
 import CoursesTable from "./InstructorCourses.js/CoursesTable"
 import Sidebar from './Sidebar'
@@ -9,7 +7,6 @@ import Buttons from '../Homepage/Buttons'
 
 const MyCourses = () => {
     const { token } = useSelector((state) => state.auth)
-    const navigate = useNavigate()
     const [courses, setCourses] = useState([])
 
     useEffect(() => {

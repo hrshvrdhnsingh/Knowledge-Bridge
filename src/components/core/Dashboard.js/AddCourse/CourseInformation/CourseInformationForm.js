@@ -13,7 +13,6 @@ import { COURSE_STATUS } from "../../../../../utils/constants";
 import Upload from "../Upload";
 import ChipInput from "./ChipInput";
 import RequirementsField from "./RequirementsField";
-import { CategoryScale } from "chart.js";
 
 const CourseInformationForm = () => {
     const {
@@ -34,7 +33,7 @@ const CourseInformationForm = () => {
             setLoading(true);
             const categories = await fetchCourseCategories();
             if (categories?.length > 0) {
-                console.log("categories", categories);
+                //     console.log("categories", categories);
                 setCourseCategories(categories);
             }
             setLoading(false);

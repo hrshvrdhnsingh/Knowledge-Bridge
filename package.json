@@ -3,6 +3,7 @@
   "description": "This is the client side of the EdTech App",
   "version": "0.1.0",
   "private": true,
+  "parser": "babel-eslint",
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.2.0",
     "@reduxjs/toolkit": "^1.9.5",
@@ -49,7 +50,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build", 
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -77,7 +78,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "autoprefixer": "^10.4.19",
+    "babel-eslint": "^10.1.0",
     "concurrently": "^8.2.0",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.38",

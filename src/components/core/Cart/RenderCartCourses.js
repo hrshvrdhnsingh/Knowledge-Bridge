@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
@@ -9,7 +10,6 @@ import GetAvgRating from "../../../utils/avgRating";
 const RenderCartCourses = () => {
     const { cart } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
-    console.log("cart ->", cart);
     const [avgReviewCount, setAvgReviewCount] = useState(0);
     if (cart.length === 0) {
         return <div>Not enrolled in any courses of yet.</div>;
@@ -22,7 +22,10 @@ const RenderCartCourses = () => {
         <div className="w-full flex-col flex gap-8">
             {cart?.map((course, i) => {
                 return (
-                    <div key={i} className="bg-richblack-500 p-2 bg-opacity-20 rounded-xl text-zinc-500 flex gap-8">
+                    <div
+                        key={i}
+                        className="bg-richblack-500 p-2 bg-opacity-20 rounded-xl text-zinc-500 flex gap-8"
+                    >
                         <div className="w-5/12 h-[300px] rounded-2xl">
                             <img
                                 src={course.thumbnail}

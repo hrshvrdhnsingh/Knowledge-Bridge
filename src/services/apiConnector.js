@@ -1,11 +1,11 @@
-import axios from 'axios';
-const axiosRetry = require('axios-retry').default
+import axios from "axios";
+const axiosRetry = require("axios-retry").default;
 
 export const axiosInstance = axios.create({
     timeout: 20000, // Set a timeout of 10 seconds
 });
 
-axiosRetry(axiosInstance, { 
+axiosRetry(axiosInstance, {
     retries: 5, // Number of retries
     retryDelay: (retryCount) => {
         console.log(`Retry attempt: ${retryCount}`);
@@ -13,11 +13,11 @@ axiosRetry(axiosInstance, {
     },
     retryCondition: (error) => {
         // Retry on network errors or 5xx status codes
-        return error.code === 'ECONNABORTED' || axiosRetry.isNetworkOrIdempotentRequestError(error);
-    }
+        return error.code === "ECONNABORTED" || axiosRetry.isNetworkOrIdempotentRequestError(error);
+    },
 });
 
-export const apiConnector = async (method, url, bodyData=null, headers={}, params=null) => {
+export const apiConnector = async (method, url, bodyData = null, headers = {}, params = null) => {
     try {
         const response = await axiosInstance({
             method: method,
@@ -27,17 +27,16 @@ export const apiConnector = async (method, url, bodyData=null, headers={}, param
             params: params,
         });
         return response;
-    } 
-    catch (error) {
+    } catch (error) {
         if (error.response) {
             // Server responded with a status other than 2xx
-            console.error('API call error: ', error.response.status, error.response.data);
+            console.error("API call error: ", error.response.status, error.response.data);
         } else if (error.request) {
             // Request was made but no response received
-            console.error('API call error: No response received', error.request);
+            console.error("API call error: No response received", error.request);
         } else {
             // Something happened in setting up the request
-            console.error('API call error: ', error.message);
+            console.error("API call error: ", error.message);
         }
         throw error;
     }
