@@ -44,7 +44,7 @@ const UpdatePassword = () => {
                                     <span className='cursor-pointer text-cyan-500 text-sm italic' onClick={() => setShowPassword((prev) => !prev)}>Show Password</span>
                                 </div>
                                 <input id='new-password' required type={showPassword ? "text" : "password"} placeholder="Enter new password" name='password' value={password} onChange={changeHandler}
-                                    className='cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2'
+                                    className='cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2' autoComplete='false'
                                 /> 
                             </label>
                             <label className='flex flex-col gap-2'>
@@ -53,7 +53,7 @@ const UpdatePassword = () => {
                                     <span className='cursor-pointer text-cyan-500 text-sm italic' onClick={() => setShowConfirmPassword((prev) => !prev)}>Show Password</span>
                                 </div>
                                 <input required type={showConfirmPassword ? "text" : "password"} placeholder="Confirm new password" name='confirmPassword' value={confirmPassword} onChange={changeHandler}
-                                    className='cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2'
+                                    className='cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2' autoComplete='false'
                                 /> 
                             </label>
                             <button type="submit" className='border py-2 w-[95%] rounded-xl text-2xl bg-yellow-300 text-black flex items-center justify-center font-medium hover:scale-95 cursor-pointer hover:bg-yellow-400 duration-300'>Reset Password</button>

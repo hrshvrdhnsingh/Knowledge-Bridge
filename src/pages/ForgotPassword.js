@@ -38,7 +38,7 @@ const ForgotPassword = () => {
                                     <label className='flex w-full gap-4 flex-col'>
                                         <p className="text-richblack-300 text-xl font-semibold flex justify-between items-center">Email Address <sup className='text-pink-600'>**</sup></p>
                                         <input required type='email' name='email' value={email} className='cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2'
-                                            onChange ={ (e) => setEmail(e.target.value)} placeholder='Enter your Email'
+                                            onChange ={ (e) => setEmail(e.target.value)} placeholder='Enter your Email' autoComplete='false'
                                         />
                                     </label>
                                 )

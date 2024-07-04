@@ -28,7 +28,7 @@ exports.resetPasswordToken = async (req, res) => {
             { new: true }
         );
 
-        const url = `https://knowledge-bridges.vercel.app/update-password/${token}`;
+        const url = `https://knowledge-bridge.vercel.app/update-password/${token}`;
         //     console.log(url);
         await mailsender(
             email,
