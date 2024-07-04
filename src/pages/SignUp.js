@@ -10,7 +10,7 @@ const SignUp = () => {
             description2="Education to future-proof your career."
             image={SignUpImage}
             formType="signup"
-            height="110%"
+            height="130%"
         />
     )
 }

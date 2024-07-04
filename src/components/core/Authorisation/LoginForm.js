@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './auth.css'
 import { login } from '../../../services/operations/authAPI'
 
@@ -28,7 +28,7 @@ const LoginForm = () => {
         dispatch(login(email, password, navigate))
     }
     return (
-        <form onSubmit={submitHandler} className=' w-10/12 flex flex-col gap-4 justify-center mt-8 h-[40vh] p-2'>
+        <form onSubmit={submitHandler} className=' w-10/12 flex flex-col gap-4 justify-center mt-8 h-[45vh] p-2'>
             <label className='flex flex-col gap-2 h-[35%]'>
                 <p className='text-richblack-400 text-xl font-semibold'>Email Address <sup className="text-pink-600">*</sup></p>
                 <input placeholder='Enter your email address' required type="text" name="email" value={email} onChange={changeHandler} autoComplete='off'
@@ -47,6 +47,7 @@ const LoginForm = () => {
             <button type="submit" className="border h-[20%] w-[95%] rounded-xl text-2xl bg-yellow-300 text-black flex items-center justify-center font-medium hover:scale-95 cursor-pointer hover:bg-yellow-400 duration-300">
                 Login
             </button>
+            <Link className='overflow-hidden cursor-pointer mt-4 text-cyan-500 italic p-2' to="/forgot-password">Forgot password</Link>
         </form>
     )
 }

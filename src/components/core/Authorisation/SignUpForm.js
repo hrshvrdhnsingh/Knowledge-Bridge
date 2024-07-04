@@ -89,9 +89,9 @@ const SignUpForm = () => {
         },
     ]
     return (
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-4 w-full h-max overflow-hidden" >
             <Tab tabData={tabData} field={accountType} setField={setAccountType} />
-            <form className='flex flex-col gap-2' onSubmit={submitHandler}>
+            <form className='flex flex-col gap-2 overflow-hidden' onSubmit={submitHandler}>
                 <div className="flex gap-2 w-[96%]">
                     <label className="flex flex-col w-[50%] gap-2">
                         <p className="text-richblack-400 text-xl p-1 flex items-center font-semibold overflow-hidden">First Name</p>

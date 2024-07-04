@@ -13,8 +13,8 @@ const Template = ({ title, description1, description2, image, formType, height }
             {
                 loading ? (<div className='spinner'></div>) :
                 (
-                    <div className={`outer-div flex w-8/12 justify-between w-${height}`}>
-                        <div className='w-11/12 flex flex-col p-2'>
+                    <div className={`outer-div flex w-8/12 justify-between h-max w-${height}`}>
+                        <div className='w-11/12 flex flex-col overflow-hidden h-max'>
                             <h1 className={`text-white  font-bold p-3 ${formType === "login" ? "text-5xl" : "text-3xl"}`}><HighLightText text={title} /></h1>
                             <p className='flex flex-col'>
                                 <span className='text-richblack-300 text-xl p-1'>{description1}</span>
