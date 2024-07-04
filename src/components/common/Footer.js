@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SvgLogo from '../../assets/Logo/Wisdombridgecrop.svg'
+import SvgLogo from '../../assets/Logo/kn-br.png'
 import { FaPhoneAlt, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { GoMail } from "react-icons/go";
 
