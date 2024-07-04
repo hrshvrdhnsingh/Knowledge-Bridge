@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const User = require("../model/UserModel");
 const mailsender = require("../utils/mailSender");
 const bcrypt = require("bcryptjs");

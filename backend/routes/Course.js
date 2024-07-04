@@ -22,7 +22,7 @@ const { createSection, updateSection, deleteSection } = require("../controller/S
 const { createSubSection, updateSubSection, deleteSubSection } = require("../controller/SubSection")
 
 // Rating Controllers Import
-const { createRating, getAverageRating, getAllRating } = require("../controller/RatingandReview")
+const { createRating, getAverageRating, getAllRating } = require("../controller/RatingAndReview")
 const { updateCourseProgress, getProgressPercentage } = require("../controller/courseProgress")
 // Importing Middlewares
 const { auth, isInstructor, isStudent, isAdmin } = require("../middleware/authorisation")
