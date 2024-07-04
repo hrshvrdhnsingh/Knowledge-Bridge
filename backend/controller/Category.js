@@ -113,7 +113,6 @@ exports.categoryPageDetails = async (req, res) => {
             })
             .exec();
         const allCourses = allCategories.flatMap((category) => category.course);
-        // Separate sorting statement
         const sortedCourses = allCourses.sort((a, b) => b.sold - a.sold);
         const mostSellingCourses = sortedCourses.slice(0, 10);
 
