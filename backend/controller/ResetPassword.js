@@ -1,6 +1,6 @@
 const User = require("../model/UserModel");
 const mailsender = require("../utils/mailSender");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
 //to add a toke in the USer schema such that it has a expiration, and can be used later to change the password.
