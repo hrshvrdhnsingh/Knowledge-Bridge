@@ -1,11 +1,4 @@
-exports.contactUsEmail = (
-    email,
-    firstname,
-    lastname,
-    message,
-    phoneNo,
-    countrycode
-  ) => {
+exports.contactUsEmail = (email, firstname, lastname, message, phoneNo, countrycode) => {
     return `<!DOCTYPE html>
     <html>
     
@@ -74,7 +67,7 @@ exports.contactUsEmail = (
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
+            <a href="https://knowledge-bridge.vercel.app"><img class="logo"
                     src="../../../src/assets/Logo/Wisdombridgecrop.svg" alt="StudyNotion Logo"></a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
@@ -93,5 +86,5 @@ exports.contactUsEmail = (
         </div>
     </body>
     
-    </html>`
-  }
+    </html>`;
+};

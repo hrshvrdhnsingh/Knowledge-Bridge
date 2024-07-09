@@ -16,11 +16,11 @@ const CodeBlocks = ({
     codeactive,
 }) => {
     return (
-        <div className={`flex relative ${position} mt-14 justify-between items-center gap-4 p-6`}>
+        <div className={`flex relative ${position} mt-14 sm:w-full justify-between items-center gap-4 sm:gap-8 p-6 sm:p-2`}>
             {/*Section-1*/}
-            <div className="w-[50%] flex flex-col text-white">
+            <div className="w-[50%] sm:w-[100%] flex flex-col text-white">
                 <div className="text-white font-semibold text-xl m-2">{heading}</div>
-                <div className="text-zinc-500 mb-3 text-lg">{subheading}</div>
+                <div className="text-zinc-500 mb-3 text-lg sm:text-base">{subheading}</div>
                 <div className="flex flex-row gap-4">
                     <CTAButton active={ctabtn1.active} linkto={ctabtn1.active}>
                         <div className="flex gap-2 items-center">
@@ -34,11 +34,11 @@ const CodeBlocks = ({
                 </div>
             </div>
             {/* Code Section*/}
-            <div className="code relative w-[50%] p-5 flex justify-center items-center rounded-sm">
+            <div className="code overflow-visible relative w-[50%] sm:w-[100%] sm:p-0 p-5 flex justify-center items-center rounded-sm">
                 <div className={`circle absolute ${backgroundGradient}`}></div>
                 <div className={`circle absolute ${backgroundGradient}`}></div>
-                <div className="flex flex-row w-full p-2 code-section mx-3">
-                    <div className="w-[10%] flex flex-col text-richblack-400 font-inter font-semibold pr-1 border-r-1">
+                <div className="flex flex-row w-full p-2 sm:p-1 code-section mx-3">
+                    <div className="w-[10%] flex sm:text-base flex-col text-richblack-400 font-inter font-semibold pr-1 border-r-1">
                         <p>1</p>
                         <p>2</p>
                         <p>3</p>
@@ -52,7 +52,7 @@ const CodeBlocks = ({
                         <p>11</p>
                     </div>
                     <div
-                        className={`w-[90%] flex flex-col gap-2 font-mono font-light ${codecolor}`}
+                        className={`w-[90%] sm:text-sm flex flex-col gap-2 font-mono font-light ${codecolor}`}
                     >
                         <TypeAnimation
                             sequence={[codeblock, 4000, ""]}

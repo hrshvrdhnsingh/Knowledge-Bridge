@@ -67,8 +67,8 @@ const Catalog = () => {
     } */
     return (
         <div className="w-screen flex flex-col mt-[9vh] items-center gap-12">
-            <div className="light-bg flex flex-col justify-center px-40 h-[35vh] w-full gap-8">
-                <p className="text-zinc-500 italic text-base">
+            <div className="light-bg flex flex-col justify-center sm:px-4 sm:gap-4 px-40 h-[35vh] w-full gap-8">
+                <p className="text-zinc-500 italic text-base sm:w-full">
                     {`Home / Catalog / `}
                     <span className="font-semibold underline">
                         {catalogPageData?.selectedCategory?.name}
@@ -77,23 +77,23 @@ const Catalog = () => {
                 <p className="text-4xl font-bold py-2 text-zinc-400">
                     {catalogPageData?.selectedCategory?.name}
                 </p>
-                <p className="text-xl text-zinc-100">
+                <p className="text-xl text-zinc-100 sm:text-base">
                     {catalogPageData?.selectedCategory?.description}
                 </p>
             </div>
             {/* Section 1 -> Courses*/}
-            <div className="w-9/12 flex flex-col">
+            <div className="w-9/12 flex flex-col sm:w-11/12">
                 <h1 className="text-white text-3xl font-bold py-2">Courses to get you started</h1>
-                <div className="flex gap-4 text-white text-xl">
+                {/* <div className="flex gap-4 text-white text-xl">
                     <p>Most Popular</p>
                     <p>New</p>
-                </div>
+                </div> */}
                 <div className="w-full h-max">
                     <CourseSlider Courses={catalogPageData?.selectedCategory?.course} />
                 </div>
             </div>
             {/* Section 2 -> top Courses*/}
-            <div className="w-9/12 flex flex-col">
+            <div className="w-9/12 flex flex-col sm:w-11/12">
                 <p className="text-white text-3xl font-bold py-2">
                     Top Courses in {catalogPageData?.differentCategories?.name}
                 </p>
@@ -102,9 +102,9 @@ const Catalog = () => {
                 </div>
             </div>
             {/* Section 3 -> Frequently bought*/}
-            <div className="w-9/12 flex flex-col">
+            <div className="w-9/12 flex flex-col sm:w-11/12">
                 <p className="text-white text-3xl font-bold py-2">Frequently bought together</p>
-                <div className="flex w-full flex-wrap gap-4">
+                <div className="flex w-full flex-wrap gap-4 sm:flex-col">
                     {catalogPageData?.mostSellingCourses?.slice(0, 4).map((course, index) => (
                         <CourseCard course={course} key={index} Height={""} />
                     ))}

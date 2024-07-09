@@ -125,6 +125,13 @@ module.exports = {
         },
         ...require('tailwindcss/colors'),
       },
+      screens: {
+        'md': {'max': '660px'},
+        // => @media (max-width: 767px) { ... }
+        'sm': {'max': '500px'},
+        // => @media (max-width: 639px) { ... }
+        'lg': '1024px',
+      },
     plugins: [],
   }
 }

@@ -122,31 +122,33 @@ const CourseDetails = () => {
     }
     return (
         <div className="flex flex-col w-screen min-h-screen items-center gap-8">
-            <div className="light-bg relative flex flex-col justify-center px-40 h-[70vh] w-full gap-8 overflow-visible">
-                <h1 className="text-5xl py-3 w-7/12">
-                    <HighLightText text={courseName} />
-                </h1>
-                <p className="text-xl text-white w-6/12">{courseDescription}</p>
-                <div className="text-md  text-zinc-400 text-lg flex flex-wrap items-center gap-2">
-                    <span className="text-yellow-25">{avgReviewCount}</span>
-                    <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
-                    <span>{`(${ratingAndReviews?.length} reviews)`} | </span>
-                    <span>{`${studentsEnrolled?.length} students enrolled`}</span>
-                </div>
-                <p className="text-zinc-500">
-                    Created by {`${instructor.firstName} ${instructor.lastName}`}
-                </p>
-                <div className="flex flex-wrap gap-5 text-lg text-zinc-400">
-                    <p className="flex items-center gap-2">
-                        {" "}
-                        <BiInfoCircle /> Created at {formatDate(createdAt)}
+            <div className="light-bg sm:h-max sm:flex-col-reverse mt-[9vh] sm:mt-[10vh] relative flex justify-start flex-col items-start px-40 sm:px-1 h-[70vh] w-full gap-8 overflow-visible">
+                <div className="w-full h-full flex flex-col sm:w-[100%] gap-8 justify-center sm:px-2 sm:gap-4">
+                    <h1 className="text-5xl py-3 w-7/12 sm:w-full sm:text-4xl">
+                        <HighLightText text={courseName} />
+                    </h1>
+                    <p className="text-xl text-white w-6/12 sm:w-full sm:text-base">{courseDescription}</p>
+                    <div className="sm:text-sm text-zinc-400 text-lg flex flex-wrap items-center gap-2">
+                        <span className="text-yellow-25">{avgReviewCount}</span>
+                        <RatingStars Review_Count={avgReviewCount} Star_Size={20} />
+                        <span>{`(${ratingAndReviews?.length} reviews)`} | </span>
+                        <span>{`${studentsEnrolled?.length} students enrolled`}</span>
+                    </div>
+                    <p className="text-zinc-500">
+                        Created by {`${instructor.firstName} ${instructor.lastName}`}
                     </p>
-                    <p className="flex items-center gap-2">
-                        {" "}
-                        <HiOutlineGlobeAlt /> English
-                    </p>
+                    <div className="flex flex-wrap gap-5 text-lg text-zinc-400 sm:text-sm">
+                        <p className="flex items-center gap-2">
+                            {" "}
+                            <BiInfoCircle /> Created at {formatDate(createdAt)}
+                        </p>
+                        <p className="flex items-center gap-2">
+                            {" "}
+                            <HiOutlineGlobeAlt /> English
+                        </p>
+                    </div>
                 </div>
-                <div className="lg:absolute lg:block top-[22%] left-[60%]">
+                <div className="lg:absolute sm:w-full sm:h-max sm:top-0 sm:left-0 sm:relative sm:block lg:block top-[22%] left-[55%]">
                     <CourseDetailsCard
                         course={response?.data?.courseDetails[0]}
                         setConfirmationModal={setConfirmationModal}
@@ -155,10 +157,10 @@ const CourseDetails = () => {
                 </div>
             </div>
             {/**What you will learn section */}
-            <div className="w-9/12">
+            <div className="w-9/12 sm:w-11/12">
                 <div className="place-self-start w-max">
                     <p className="text-4xl font-bold py-3 text-white">What you'll learn</p>
-                    <div className="text-zinc-400 text-xl px-12 w-10/12 ">
+                    <div className="text-zinc-400 text-xl px-12 w-10/12 sm:w-7/12 sm:px-2 sm:text-base">
                         <ReactMarkdown />
                         {whatYouWillLearn}
                     </div>

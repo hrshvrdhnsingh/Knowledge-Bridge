@@ -67,7 +67,7 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
       
       <body>
           <div class="container">
-              <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="../../../src/assets/Logo/Wisdombridgecrop.svg"
+              <a href="https://knowledge-bridge.vercel.app"><img class="logo" src="../../../src/assets/Logo/Wisdombridgecrop.svg"
                       alt="Knowledge Bridge Logo"></a>
               <div class="message">Course Payment Confirmation</div>
               <div class="body">
@@ -81,5 +81,5 @@ exports.paymentSuccessEmail = (name, amount, orderId, paymentId) => {
           </div>
       </body>
       
-      </html>`
-  }
+      </html>`;
+};

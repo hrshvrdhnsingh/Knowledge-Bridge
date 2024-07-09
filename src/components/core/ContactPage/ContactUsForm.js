@@ -39,12 +39,12 @@ const ContactUsForm = ({ heading, description }) => {
     }, [reset, isSubmitSuccessful]);
 
     return (
-        <div className="w-6/12 flex gap-4 flex-col justify-center items-center mt-48">
+        <div className="w-6/12 flex gap-4 sm:w-11/12 flex-col justify-center items-center mt-48">
             <h1 className="text-4xl p-2 font-bold text-white">{heading}</h1>
             <p className="text-zinc-500 text-lg">{description}</p>
             <form
                 onSubmit={handleSubmit(submitContactForm)}
-                className="w-10/12 flex flex-col justify-center"
+                className="w-10/12 sm:w-full flex flex-col justify-center"
             >
                 <div className="flex  w-full">
                     <div className="flex flex-col w-[48%] p-2 gap-2">

@@ -46,7 +46,7 @@ const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
     }
 
     return (
-        <div className="flex flex-col h-max p-2 w-[30vw] bg-richblack-600 bg-opacity-80 rounded-2xl">
+        <div className="flex flex-col h-max p-2 w-[30vw] sm:w-[100%] bg-richblack-600 bg-opacity-80 rounded-2xl">
             {/**Image-part */}
             <div className="w-full h-7/12"><img src={ThumbnailImage} alt="course-thumbnail" className="object-cover rounded-2xl h-full w-full" /></div>
             {/**Details part */}
@@ -64,7 +64,7 @@ const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
                 </div>
                 <div className="w-full text-center text-zinc-400"><p>30-Day Money-Back Guarantee</p></div>
                 <div className="">
-                    <p className="text-xl font-semibold text-zinc-600">This course includes :</p>
+                    <p className="text-xl font-semibold text-slate-500">This course includes :</p>
                     <div>
                         {course?.instructions?.map((item, index) => (
                             <p key={index} className="flex items-center text-cyan-400 font-medium">
