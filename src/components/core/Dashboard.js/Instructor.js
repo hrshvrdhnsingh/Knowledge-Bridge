@@ -69,7 +69,7 @@ const Instructor = () => {
                                 </div>
                             )}
                             {/**total statistics */}
-                            <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1300" className="flex flex-col rounded-2xl w-4/12 sm:w-11/12 sm:px-4">
+                            <div className="flex flex-col rounded-2xl w-4/12 sm:w-11/12 sm:px-4">
                                 <p className="text-2xl font-bold">Statistics</p>
                                 <div className="mt-4">
                                     <div className="sm:flex sm:gap-4 sm:items-center">
@@ -93,7 +93,7 @@ const Instructor = () => {
                                 </div>
                             </div>
                         </div>
-                        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1500" className="rounded-2xl bg-zinc-700">
+                        <div className="rounded-2xl bg-zinc-700">
                             {/* Render 3 courses */}
                             <div className="flex items-center justify-between px-3">
                                 <p className="flex items-center justify-between text-white text-2xl font-semibold p-1">
@@ -103,7 +103,7 @@ const Instructor = () => {
                                     <p className="font-medium text-lg text-white">View all</p>
                                 </Link>
                             </div>
-                            <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1800" className="flex gap-4 p-4 sm:flex-col sm:p-1 justify-center items-center">
+                            <div className="flex gap-4 p-4 sm:flex-col sm:p-1 justify-center items-center">
                                 {courses?.slice(0, 3).map((course) => (
                                     <div
                                         key={course._id}

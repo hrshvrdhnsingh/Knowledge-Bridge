@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HomePageExplore } from '../../../data/homepage-explore';
 import HighLightText from './HighLightText';
 import CourseCard from './CourseCard';
@@ -16,6 +16,11 @@ const ExploreMore = () => {
         setCourses(result[0].courses);
         setCurrentCard(result[0].courses[0].heading);
     }
+    useEffect(() => {
+        const result = HomePageExplore.filter((course) => course.tag === currentTab);
+        setCourses(result[0].courses);
+        setCurrentCard(result[0].courses[0].heading);
+    }, [currentTab]);
 
     return (
         <div className='flex flex-col w-full sm:text-base justify-center items-center mt-20 gap-2'>

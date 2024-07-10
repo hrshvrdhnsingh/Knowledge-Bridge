@@ -16,7 +16,7 @@ const RenderTotalAmount = () => {
         BuyCourse(token, courses, user, navigate, dispatch);
     };
     return (
-        <div className="bg-richblack-700 bg-opacity-50 rounded-xl h-max flex flex-col p-4 w-max">
+        <div className="bg-richblack-700 bg-opacity-50 rounded-xl h-max flex flex-col p-4 w-max sm:w-full">
             <p className="text-2xl p-2 text-zinc-300 font-semibold">Total : Rs {total}</p>
             <button
                 onClick={handleBuyCourse}

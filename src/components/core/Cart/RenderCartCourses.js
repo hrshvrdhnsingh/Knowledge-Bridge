@@ -24,19 +24,19 @@ const RenderCartCourses = () => {
                 return (
                     <div
                         key={i}
-                        className="bg-richblack-500 p-2 bg-opacity-20 rounded-xl text-zinc-500 flex gap-8"
+                        className="bg-richblack-500 sm:flex-col p-2 sm:gap-0 bg-opacity-20 rounded-xl text-zinc-500 flex gap-8"
                     >
-                        <div className="w-5/12 h-[300px] rounded-2xl">
+                        <div className="w-5/12 sm:w-full sm:h-[150px] h-[300px] rounded-2xl">
                             <img
                                 src={course.thumbnail}
                                 alt=""
                                 className="w-full h-full object-cover rounded-2xl"
                             />
                         </div>
-                        <div className="w-5/12 justify-center gap-3 flex-col flex">
-                            <p className="text-xl">{course?.courseName}</p>
-                            <p className="text-xl">Category - {course?.category?.name}</p>
-                            <div className="flex gap-2 items-center">
+                        <div className="w-5/12 sm:w-full justify-center gap-3 flex-col flex">
+                            <p className="text-xl text-zinc-400">{course?.courseName}</p>
+                            <p className="text-xl sm:text-lg">Category - {course?.category?.name}</p>
+                            <div className="flex gap-2 items-center sm:text-lg">
                                 <span>4.3</span>
                                 <ReactStars
                                     count={5}
@@ -49,8 +49,8 @@ const RenderCartCourses = () => {
                                 <span>{course?.ratingAndReviews?.length} Ratings</span>
                             </div>
                         </div>
-                        <div className="flex w-2/12 justify-center items-center gap-8">
-                            <p className="text-xl">Rs {course?.price}</p>
+                        <div className="flex w-2/12 sm:w-full sm:justify-between justify-center items-center gap-8">
+                            <p className="text-xl sm:text-lg">Rs {course?.price}</p>
                             <button
                                 onClick={() => dispatch(removeFromCart(course._id))}
                                 className="cursor-pointer text-2xl p-2 bg-red-500 bg-opacity-70 rounded-xl"

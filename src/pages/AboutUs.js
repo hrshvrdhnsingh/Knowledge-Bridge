@@ -70,31 +70,31 @@ const AboutUs = () => {
                 <div className='flex h-[50%] sm:flex-col sm:h-max sm:items-center sm:justify-center'>
                     <div className='w-[50%] sm:w-11/12 sm:rounded-xl flex flex-col p-3 gap-1 sm:mb-4' data-aos="zoom-in" data-aos-easing="ease-in-out">
                         <h1 className='text-white font-bold text-4xl sm:text-3xl p-4 sm:p-1'>World-class learning for <HighLightText text='Anyone'/>, from <HighLightText text='Anywhere' /></h1>
-                        <p className='text-lg font-semibold text-zinc-500'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.</p>
+                        <p className='text-lg font-semibold text-zinc-500 sm:text-base'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.</p>
                         <div className='w-[25%] sm:w-[40%]'><CTAButton className='w-' active={true} linkto={"/signup"}>Learn more</CTAButton></div>
                     </div>
-                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl flex-col flex justify-center p-4 gap-8 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
-                        <h3 className='text-white text-xl'>Curriculum Based on Industry Needs</h3>
-                        <p className='text-zinc-400'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
+                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl flex-col flex justify-center p-4 gap-8 sm:gap-2 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
+                        <h3 className='text-white text-xl sm:text-lg'>Curriculum Based on Industry Needs</h3>
+                        <p className='text-zinc-400 sm:text-sm'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
                     </div>
-                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl bg-richblack-800 flex-col flex justify-center p-4 gap-8' data-aos="zoom-in" data-aos-easing="ease-in-out">
-                        <h3 className='text-white text-xl'>Curriculum Based on Industry Needs</h3>
-                        <p className='text-zinc-400'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
+                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl bg-richblack-800 flex-col flex justify-center p-4 gap-8 sm:gap-2' data-aos="zoom-in" data-aos-easing="ease-in-out">
+                        <h3 className='text-white text-xl sm:text-lg'>Curriculum Based on Industry Needs</h3>
+                        <p className='text-zinc-400 sm:text-sm'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
                     </div>
                 </div>
                 <div className='flex h-[50%] sm:flex-col sm:items-center sm:justify-center'>
                     <div className='w-[25%] sm:opacity-0'></div>
-                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl flex-col flex justify-center p-4 gap-8 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
-                        <h3 className='text-white text-xl'>Certification</h3>
-                        <p className='text-zinc-400'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring.</p>
+                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl flex-col flex justify-center p-4 gap-8 sm:gap-2 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
+                        <h3 className='text-white text-xl sm:text-lg'>Certification</h3>
+                        <p className='text-zinc-400 sm:text-sm'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring.</p>
                     </div>
-                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl  bg-richblack-800 flex-col flex justify-center p-4 gap-8' data-aos="zoom-in" data-aos-easing="ease-in-out">
-                        <h3 className='text-white text-xl'>Curriculum Based on Industry Needs</h3>
-                        <p className='text-zinc-400'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
+                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl  bg-richblack-800 flex-col flex justify-center p-4 gap-8 sm:gap-2' data-aos="zoom-in" data-aos-easing="ease-in-out">
+                        <h3 className='text-white text-xl sm:text-lg '>Curriculum Based on Industry Needs</h3>
+                        <p className='text-zinc-400 sm:text-sm'>Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.</p>
                     </div>
-                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl  flex-col flex justify-center p-4 gap-8 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
-                        <h3 className='text-white text-xl'>Ready to work</h3>
-                        <p className='text-zinc-400'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring</p>
+                    <div className='w-[25%]  sm:w-11/12 sm:rounded-xl  flex-col flex justify-center p-4 gap-8 sm:gap-2 bg-richblack-600' data-aos="zoom-in" data-aos-easing="ease-in-out">
+                        <h3 className='text-white text-xl sm:text-lg'>Ready to work</h3>
+                        <p className='text-zinc-400 sm:text-sm'>Knowledge Bridge partners with more than 275+ leading universities and companies to bring</p>
                     </div>
                 </div>
             </div>

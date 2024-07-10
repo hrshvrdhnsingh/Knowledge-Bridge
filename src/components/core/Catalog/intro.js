@@ -24,8 +24,8 @@ const Intro = () => {
         fetchSubLinks();
     }, []);
     return (
-        <div className="w-screen flex flex-col mt-[9vh] items-center">
-            <div className="light-bg flex flex-col items-center justify-center px-40 h-[91vh] w-full gap-12">
+        <div className="w-screen flex flex-col mt-[7vh] items-center">
+            <div className="light-bg flex flex-col items-center justify-center px-40 h-[92vh] w-full gap-12">
                 <h1 className="text-5xl p-3 font-bold bg-gradient-to-r from-[#f093fb] to-[#f5576c] text-transparent bg-clip-text">
                     Categories
                 </h1>

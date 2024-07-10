@@ -97,7 +97,7 @@ function App() {
             </Routes> 
             {
                 navbarActive && (
-                    <div onClick={() => setNavbarActive(!navbarActive)} className="fixed inset-0 w-screen h-screen flex justify-center z-[99999] bg-richblack-200 bg-opacity-30" data-aos="zoom-in">
+                    <div onClick={() => setNavbarActive(!navbarActive)} className="fixed inset-0 w-screen h-screen flex justify-center z-[99999] bg-richblack-200 bg-opacity-30">
                         <div className='navbar-hamburger rounded-2xl w-[70vw] h-max mt-24 flex flex-col gap-8 py-5 text-xl justify-center items-center ' data-aos="fade-down-left" data-aos-easing="ease-in-out" data-aos-duration="1000">
                             {NavbarLinks.map((link, index) => {
                                 return (

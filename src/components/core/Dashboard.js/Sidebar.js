@@ -23,7 +23,7 @@ const Sidebar = () => {
 
     return (
         <div className='flex flex-col'>
-            <div className='sidebar flex items-center fixed w-[12vw] sm:w-[24vw] mt-[9vh] flex-col left-0 top-0 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100'> 
+            <div className='sidebar flex items-center fixed w-[12vw] sm:w-[24vw] sm:px-0 mt-[9vh] flex-col left-0 top-0 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100'> 
                 <div className='w-full mt-8'>
                     {
                         sidebarLinks.map( (link) => {

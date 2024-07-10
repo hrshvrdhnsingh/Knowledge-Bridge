@@ -9,7 +9,7 @@ const Cart = () => {
     return (
         <div className="w-screen h-screen flex justify-center">
             <Sidebar />
-            <div className="mt-[13vh] w-10/12 ml-48 flex flex-col gap-6 h-max">
+            <div className="mt-[13vh] w-7/12 ml-36 sm:ml-24 sm:w-[72vw] flex flex-col gap-6 sm:gap-2 h-max mb-8">
                 <h2 className="font-bold text-4xl p-3 text-white">My Wishlist</h2>
                 {/* Show the total catalog of the wishlist*/}
                 <p className="text-2xl font-bold text-zinc-500 p-1">{totalItems} courses in Cart</p>
