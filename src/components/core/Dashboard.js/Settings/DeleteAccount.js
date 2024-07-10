@@ -17,13 +17,13 @@ const DeleteAccount = () => {
         }
     }
     return (
-        <div className="flex bg-red-600 bg-opacity-60 p-4 px-6 gap-4 rounded-2xl">
-            <div className="w-[10%] flex justify-center items-center">
+        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1800" className="flex bg-red-600 bg-opacity-60 p-4 px-6 sm:px-2 gap-4 sm:gap-0 rounded-2xl">
+            <div className="w-[10%] flex justify-center items-center sm:items-start sm:w-[25%]">
                 <div className="bg-red-500 bg-opacity-80 rounded-full flex justify-center items-center p-4">
                     <RiDeleteBin6Line className="text-red-800 text-4xl" />
                 </div>
             </div>
-            <div className="w-[50%] flex flex-col gap-2">
+            <div className="w-[50%] flex flex-col gap-2 sm:w-[74%]">
                 <h2 className="text-2xl font-bold p-1 overflow-hidden text-white">
                     Delete Account
                 </h2>
@@ -35,7 +35,7 @@ const DeleteAccount = () => {
                     </p>
                 </div>
                 <span
-                    className="italic text-xl cursor-pointer text-rose-500"
+                    className="italic text-xl sm:text-base cursor-pointer text-rose-500"
                     onClick={handleDeleteAccount}
                 >
                     I want to delete my account

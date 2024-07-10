@@ -51,20 +51,20 @@ const ChangeProfilePicture = () => {
     }, [imageFile]);
 
     return (
-        <div className="flex bg-richblack-600 p-2 px-6 rounded-2xl justify-between items-center">
-            <div className="flex w-5/12 gap-4 items-center">
+        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" className="flex bg-richblack-600 p-2 px-6 sm:px-2 rounded-2xl justify-between items-center">
+            <div className="flex w-5/12 gap-4 sm:gap-0 items-center sm:w-full">
                 <div className="w-[83px] h-[83px] overflow-hidden rounded-full border-zinc-800 flex items-center justify-center">
                     <img
                         src={previewSource || user?.image}
                         alt={`profile-${user?.firstName}`}
-                        className="object-cover"
+                        className="object-cover sm:rounded-full"
                     />
                 </div>
                 <div className="flex flex-col">
                     <h4 className="text-xl font-bold p-1 overflow-hidden text-white">
                         Change Profile Picture
                     </h4>
-                    <div className="flex gap-4 h-[60%]">
+                    <div className="flex gap-4 sm:gap-2 h-[60%]">
                         <input
                             type="file"
                             ref={fileInputRef}

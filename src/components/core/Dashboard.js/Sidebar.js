@@ -23,7 +23,7 @@ const Sidebar = () => {
 
     return (
         <div className='flex flex-col'>
-            <div className='sidebar flex items-center fixed w-[12vw] mt-[9vh] flex-col left-0 top-0 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100'> 
+            <div className='sidebar flex items-center fixed w-[12vw] sm:w-[24vw] mt-[9vh] flex-col left-0 top-0 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100'> 
                 <div className='w-full mt-8'>
                     {
                         sidebarLinks.map( (link) => {
@@ -43,8 +43,8 @@ const Sidebar = () => {
                         btn2Handler: () => setConfirmationModal(null),
                     })} className='cursor-pointer'>
 
-                        <div className='ml-3 flex items-center gap-6 text-lg font-medium text-zinc-500'>
-                            <VscSignOut /> <span>Logout</span>
+                        <div className='ml-3 sm:ml-2 flex items-center gap-6 sm:gap-2 text-lg sm:text-sm font-medium text-zinc-500'>
+                            <VscSignOut className='sm:text-2xl'/> <span>Logout</span>
                         </div>
                     </button>
                 </div>

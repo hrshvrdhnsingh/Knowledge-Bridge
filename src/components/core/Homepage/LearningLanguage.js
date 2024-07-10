@@ -18,10 +18,10 @@ const LearningLanguageSection = () => {
                     />
                 </div>
                 <div className='text-center sm:text-base text-lg text-richblack-200 w-11/12 h-full sm:mt-4'>Making learning multiple languages easy, with 20+ languagess, realistic voice-over, progress-tracking, custom schedule and more.</div>
-                <div className='flex sm:h-[20vh] flex-row items-center gap-1 w-full mt-8'>
-                    <img src={Progress} alt='Know your Progress' className='sm:overflow-visible object-contain w-11/12 sm:w-[43%] sm:h-full translate-x-32 sm:translate-x-8' />
+                <div className='flex sm:h-[20vh] flex-row items-center gap-1 w-full mt-8' data-aos="zoom-out-up" data-aos-easing="ease-in-out">
+                    <img src={Progress} alt='Know your Progress' className='sm:overflow-visible object-contain w-11/12 sm:w-[43%] sm:h-full translate-x-32 sm:translate-x-8'/>
                     <img src={Compare} alt='Know your Progress' className='object-contain sm:overflow-visible w-11/12 sm:w-[43%] translate-x-8' />
-                    <img src={Lesson} alt='Know your Progress' className='object-contain sm:overflow-visible w-11/12 sm:w-[45%] -translate-x-28 sm:-translate-x-52' />
+                    <img src={Lesson} alt='Know your Progress' className='object-contain sm:overflow-visible w-11/12 sm:w-[45%] -translate-x-28 sm:-translate-x-52'/>
                 </div>
                 <div className='mt-8'>
                     <CTAButton active={true} linkto={"/singup"}>

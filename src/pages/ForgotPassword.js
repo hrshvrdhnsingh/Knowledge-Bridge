@@ -20,7 +20,7 @@ const ForgotPassword = () => {
         <div className='flex justify-center items-center w-screen h-screen'>
             {
                 loading ? (<div className='spinner'></div>) : (
-                    <div className='flex flex-col items-center w-4/12 gap-4'>
+                    <div className='flex flex-col items-center w-4/12 gap-4 sm:w-11/12'>
                         <h1 className='text-4xl bg-gradient-to-l from-[#f093fb] to-[#f5576c] text-transparent bg-clip-text font-bold'>
                             {
                                 !emailSent ? "Reset your password" : "Check your email"

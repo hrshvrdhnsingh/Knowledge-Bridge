@@ -24,22 +24,22 @@ const UpdatePassword = () => {
     };
 
     return (
-        <div className="flex bg-richblack-600 p-2 px-6 flex-col rounded-2xl justify-between">
+        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1500" className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between">
             <h2 className="text-xl font-bold p-1 overflow-hidden text-white">
                 Profile Information
             </h2>
             <form onSubmit={handleSubmit(submitPasswordForm)}>
                 <div className="lg:flex-row flex-col flex w-full gap-4">
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <div className="w-full flex justify-between">
                             <label
                                 htmlFor="oldPassword"
-                                className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                                className="text-zinc-900 text-xl sm:text-base font-semibold overflow-hidden"
                             >
                                 Current Password
                             </label>
                             <span
-                                className="text-cyan-500 italic cursor-pointer"
+                                className="text-cyan-500 italic cursor-pointer sm:text-sm"
                                 onClick={() => setShowOldPassword((prev) => !prev)}
                             >
                                 Show Password
@@ -57,16 +57,16 @@ const UpdatePassword = () => {
                             <span className="text-[12px]">Please enter your current password.</span>
                         )}
                     </div>
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <div className="w-full flex justify-between">
                             <label
                                 htmlFor="newPassword"
-                                className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                                className="text-zinc-900 text-xl sm:text-base font-semibold overflow-hidden"
                             >
                                 New Password
                             </label>
                             <span
-                                className="text-cyan-500 italic cursor-pointer"
+                                className="text-cyan-500 italic cursor-pointer sm:text-sm"
                                 onClick={() => setShowNewPassword((prev) => !prev)}
                             >
                                 Show Password

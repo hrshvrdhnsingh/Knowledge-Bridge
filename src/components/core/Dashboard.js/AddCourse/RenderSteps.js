@@ -51,7 +51,7 @@ const RenderSteps = () => {
                     </div>
                 ))}
             </div>
-            <div className="relative flex w-full gap-24 justify-center">
+            <div className="sm:hidden relative flex w-full gap-24 justify-center">
                 {steps.map((item) => (
                     <div key={item.id}>
                         <div className="">

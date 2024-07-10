@@ -43,8 +43,8 @@ const Instructor = () => {
     return (
         <div className="w-screen h-screen flex justify-center">
             <Sidebar />
-            <div className="mt-[13vh] w-7/12 ml-36 flex flex-col gap-6 h-max">
-                <div className="py-3 overflow-hidden">
+            <div className="mt-[13vh] w-7/12 ml-36 sm:ml-24 sm:w-[72vw] flex flex-col gap-6 sm:gap-2 h-max mb-8">
+                <div className="py-3 overflow-hidden sm:px-2">
                     <h1 className="font-bold text-4xl py-3 text-white">
                         <HighLightText text={`Hi ${user?.firstName} 👋`}></HighLightText>
                     </h1>
@@ -54,9 +54,12 @@ const Instructor = () => {
                     <div className="spinner"></div>
                 ) : courses?.length > 0 ? (
                     <div>
-                        <div className="flex my-4 text-white h-max gap-4 justify-evenly">
+                        <div className="flex my-4 text-white h-max gap-4 sm:flex-col justify-evenly">
                             {totalAmount > 0 || totalStudents > 0 ? (
-                                <InstructorChart courses={instructorData} className="border" />
+                                <InstructorChart 
+                                    courses={instructorData}
+                                    className="border sm:w-full"
+                                />
                             ) : (
                                 <div className="">
                                     <p className="font-bold">Visualize</p>
@@ -66,31 +69,31 @@ const Instructor = () => {
                                 </div>
                             )}
                             {/**total statistics */}
-                            <div className="flex flex-col rounded-2xl w-4/12">
-                                <p className="text-lg font-bold">Statistics</p>
+                            <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1300" className="flex flex-col rounded-2xl w-4/12 sm:w-11/12 sm:px-4">
+                                <p className="text-2xl font-bold">Statistics</p>
                                 <div className="mt-4">
-                                    <div>
+                                    <div className="sm:flex sm:gap-4 sm:items-center">
                                         <p className="text-lg">Total Courses</p>
-                                        <p className="text-2xl font-semibold p-1">
+                                        <p className="text-2xl sm:text-xl font-semibold p-1">
                                             {courses?.length}
                                         </p>
                                     </div>
-                                    <div>
+                                    <div className="sm:flex sm:gap-4 sm:items-center">
                                         <p className="text-lg">Total students</p>
-                                        <p className="text-2xl font-semibold p-1">
+                                        <p className="text-2xl sm:text-xl font-semibold p-1">
                                             {totalStudents}
                                         </p>
                                     </div>
-                                    <div>
+                                    <div className="sm:flex sm:gap-4 sm:items-center">
                                         <p className="text-lg">Your income</p>
-                                        <p className="text-2xl font-semibold p-1">
-                                            Rs. {totalAmount}
+                                        <p className="text-2xl sm:text-xl font-semibold p-1">
+                                            ₹ {totalAmount}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="rounded-2xl bg-zinc-700">
+                        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1500" className="rounded-2xl bg-zinc-700">
                             {/* Render 3 courses */}
                             <div className="flex items-center justify-between px-3">
                                 <p className="flex items-center justify-between text-white text-2xl font-semibold p-1">
@@ -100,13 +103,13 @@ const Instructor = () => {
                                     <p className="font-medium text-lg text-white">View all</p>
                                 </Link>
                             </div>
-                            <div className="flex gap-4 p-4">
+                            <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1800" className="flex gap-4 p-4 sm:flex-col sm:p-1 justify-center items-center">
                                 {courses?.slice(0, 3).map((course) => (
                                     <div
                                         key={course._id}
-                                        className="w-[32%] flex flex-col h-[32vh] items-center justify-center bg-zinc-600 rounded-2xl"
+                                        className="w-[32%] sm:w-[95%] flex flex-col h-[32vh] sm:h-max items-center justify-center bg-zinc-600 rounded-2xl"
                                     >
-                                        <div className="h-[80%] w-full">
+                                        <div className="h-[80%] sm:h-[60%] w-full">
                                             <img
                                                 src={course.thumbnail}
                                                 alt={course.courseName}

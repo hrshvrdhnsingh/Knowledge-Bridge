@@ -147,12 +147,12 @@ const CourseInformationForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 mt-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="sm:ml-2 flex flex-col gap-3 mt-8">
             {/* Course Title */}
             <div className="flex flex-col">
                 <label
                     htmlFor="courseTitle"
-                    className="flex flex-col gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
+                    className="flex flex-col sm:text-base gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
                 >
                     Course Title <sup className="text-pink-500">*</sup>
                 </label>
@@ -160,7 +160,7 @@ const CourseInformationForm = () => {
                     id="courseTitle"
                     placeholder="Enter course title"
                     {...register("courseTitle", { required: true })}
-                    className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                    className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
                 {errors.courseTitle && <span className="">Course Title is required</span>}
             </div>
@@ -168,7 +168,7 @@ const CourseInformationForm = () => {
             <div className="flex flex-col">
                 <label
                     htmlFor="courseShortDesc"
-                    className="flex flex-col gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
+                    className="flex flex-col  sm:text-base gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
                 >
                     Course Short Description <sup className="text-pink-500">*</sup>
                 </label>
@@ -176,7 +176,7 @@ const CourseInformationForm = () => {
                     id="courseShortDesc"
                     placeholder="Enter descritpion"
                     {...register("courseShortDesc", { required: true })}
-                    className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                    className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
                 {errors.courseShortDesc && <span className="">Course Description is required</span>}
             </div>
@@ -184,7 +184,7 @@ const CourseInformationForm = () => {
             <div className="flex flex-col">
                 <label
                     htmlFor="coursePrice"
-                    className="flex flex-col gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
+                    className="flex flex-col sm:text-base  gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
                 >
                     Course Price <sup className="text-pink-500">*</sup>
                 </label>
@@ -197,7 +197,7 @@ const CourseInformationForm = () => {
                             valueAsNumber: true,
                             pattern: { value: /^(0|[1-9]\d*)(\.\d{1,2})?$/ },
                         })}
-                        className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                        className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                     />
                     <HiOutlineCurrencyRupee className="absolute right-3 top-1/2 inline-block -translate-y-1/2 text-3xl text-zinc-800" />
                 </div>
@@ -207,7 +207,7 @@ const CourseInformationForm = () => {
             <div className="flex flex-col">
                 <label
                     htmlFor="courseCategory"
-                    className="flex flex-col gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
+                    className="flex flex-col  sm:text-base gap-2 h-[35%] text-zinc-400 text-xl font-semibold"
                 >
                     Course Category <sup className="text-pink-500">*</sup>
                 </label>
@@ -215,7 +215,7 @@ const CourseInformationForm = () => {
                     id="courseCategory"
                     {...register("courseCategory", { required: true })}
                     defaultValue=""
-                    className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                    className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 >
                     <option value="" disabled>
                         Choose a category
@@ -252,7 +252,7 @@ const CourseInformationForm = () => {
             <div className="flex flex-col">
                 <label
                     htmlFor="courseBenefits"
-                    className="h-[35%] text-zinc-400 text-xl font-semibold"
+                    className="h-[35%] sm:text-base  text-zinc-400 text-xl font-semibold"
                 >
                     Benefits of the course <sup className="text-pink-500">*</sup>
                 </label>
@@ -260,7 +260,7 @@ const CourseInformationForm = () => {
                     id="courseBenefits"
                     placeholder="Enter benefits of the course"
                     {...register("courseBenefits", { required: true })}
-                    className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                    className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
                 {errors.courseBenefits && <span className="">Course Benefits is required</span>}
             </div>

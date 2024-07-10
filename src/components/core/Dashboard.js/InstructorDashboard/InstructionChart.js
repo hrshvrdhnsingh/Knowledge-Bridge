@@ -47,16 +47,16 @@ const InstructorChart = ({courses}) => {
     maintainAspectRatio: false,
   }
     return (
-        <div className="w-10/12 h-full flex flex-col gap-3">
+        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" className="w-10/12 sm:w-full h-full flex flex-col gap-3 sm:px-2">
             <p className="text-2xl font-bold py-1">Visualise</p>
-            <div className="flex gap-4">
+            <div className="flex gap-4 sm:w-full justify-center">
                 {/* Button to switch to the "students" chart */}
                 <button onClick={() => setCurrChart("students")} className={`cursor-pointer p-2 rounded-xl ${currChart === "students" ? "bg-richblack-700 text-yellow-400" : "text-yellow-300"}`}>Students</button>
                 {/* Button to switch to the "income" chart */}
                 <button onClick={() => setCurrChart("income")} className={`cursor-pointer p-2 rounded-xl ${currChart === "income" ? "bg-richblack-700 text-yellow-400" : "text-yellow-300"}`}>Income</button>
             </div>
             <div className="">
-                <Pie data={currChart === "students" ? chartDataStudents : chartIncomeData} options={options} className="h-[40vh] text-lg"/>
+                <Pie data={currChart === "students" ? chartDataStudents : chartIncomeData} options={options} className="h-[40vh] sm:h-[45vh] text-lg sm:text-base"/>
             </div>
         </div>
     )

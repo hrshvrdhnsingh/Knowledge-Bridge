@@ -7,7 +7,7 @@ const InstructorSection = () => {
     return (
         <div className="w-full py-12 flex flex-row gap-8 sm:flex-col">
             <div className="w-[54%] h-full sm:w-full">
-                <div className="w-[100%] h-9/12 flex justify-center items-center bg-slate-500 bg-opacity-70 rounded-3xl">
+                <div data-aos="zoom-in" data-aos-easing="ease-in-out" className="w-[100%] h-9/12 flex justify-center items-center bg-slate-500 bg-opacity-70 rounded-3xl">
                     <img
                         src={Instructor}
                         alt="Sweet-Instructor"
@@ -16,7 +16,7 @@ const InstructorSection = () => {
                 </div>
             </div>
             <div className="flex flex-col justify-center items-center w-[45%] sm:w-full gap-1">
-                <div className="font-bold text-white text-4xl p-3">
+                <div data-aos="zoom-in-right" data-aos-easing="ease-in-out" className="font-bold text-white text-4xl p-3">
                     Become an <HighLightText text="Instructor" />
                 </div>
                 <div className="text-richblack-200 text-lg sm:text-base">

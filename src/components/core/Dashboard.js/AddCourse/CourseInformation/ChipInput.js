@@ -49,7 +49,7 @@ const ChipInput = ({ name, label, placeholder, register, errors, setValue, getVa
 
     return (
         <div className="flex flex-col">
-            <label className="text-zinc-400 text-xl font-semibold" htmlFor={name}>
+            <label className="text-zinc-400 text-xl sm:text-base font-semibold" htmlFor={name}>
                 {label} <sup className="text-pink-500">*</sup>
             </label>
             <div className="flex w-full flex-wrap gap-2">
@@ -57,7 +57,7 @@ const ChipInput = ({ name, label, placeholder, register, errors, setValue, getVa
                 {chips?.map((chip, index) => (
                     <div
                         key={index}
-                        className="flex items-center gap-2 text-white text-base bg-richblack-500 rounded-xl p-1"
+                        className="flex items-center gap-2 text-white sm:text-sm text-base bg-richblack-500 rounded-xl p-1"
                     >
                         {chip}
                         <button
@@ -75,7 +75,7 @@ const ChipInput = ({ name, label, placeholder, register, errors, setValue, getVa
                     type="text"
                     placeholder={placeholder}
                     onKeyDown={handleKeyDown}
-                    className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                    className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
             </div>
             {errors[name] && <span className="">{label} is required.</span>}

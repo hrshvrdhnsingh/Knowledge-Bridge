@@ -113,10 +113,10 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
 
     return (
         <div className="w-screen fixed left-0 top-0 h-screen z-[999999] bg-richblack-200 bg-opacity-50 flex justify-center items-center">
-            <div className="modal w-[40vw] h-max flex flex-col rounded-3xl border-slate-300 border-[2px] gap-3 p-3 bg-richblack-700 justify-center">
+            <div className="modal w-[40vw] sm:w-[80vw] h-max flex flex-col rounded-3xl border-slate-300 border-[2px] gap-3 p-3 bg-richblack-700 justify-center">
                 {/* Modal Header */}
                 <div className="w-full flex justify-between">
-                    <p className="text-xl font-semibold text-zinc-300">
+                    <p className="text-xl sm:text-lg font-semibold text-zinc-300">
                         {view && "Viewing"} {add && "Adding"} {edit && "Editing"}
                     </p>
                     <button onClick={() => (!loading ? setModalData(null) : null)}>
@@ -140,7 +140,7 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                     <div className="flex flex-col">
                         <label
                             htmlFor="lectureTitle"
-                            className="flex gap-2 h-[37%] text-zinc-400 text-xl font-semibold"
+                            className="flex gap-2 sm:text-base h-[37%] text-zinc-400 text-xl font-semibold"
                         >
                             Lecture Title {!view && <span className="text-pink-500">*</span>}
                         </label>
@@ -149,7 +149,7 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                             id="lectureTitle"
                             placeholder="Enter lecture title"
                             {...register("lectureTitle", { required: true })}
-                            className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                            className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         />
                         {errors.lectureTitle && <span className="">Lecture Title is required</span>}
                     </div>
@@ -157,7 +157,7 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                     <div className="flex flex-col">
                         <label
                             htmlFor="lectureDesc"
-                            className="flex gap-1 h-[35%] text-zinc-400 text-xl font-semibold"
+                            className="flex gap-1 sm:text-base h-[35%] text-zinc-400 text-xl font-semibold"
                         >
                             Lecture Description {!view && <span className="text-pink-500">*</span>}
                         </label>
@@ -166,7 +166,7 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                             id="lectureDesc"
                             placeholder="Enter lecture description"
                             {...register("lectureDesc", { required: true })}
-                            className="w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
+                            className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         />
                         {errors.lectureDesc && (
                             <span className="">Lecture Description is required</span>

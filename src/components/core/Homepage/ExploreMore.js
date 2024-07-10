@@ -19,7 +19,7 @@ const ExploreMore = () => {
 
     return (
         <div className='flex flex-col w-full sm:text-base justify-center items-center mt-20 gap-2'>
-            <div className='font-bold text-5xl p-3 text-white'>Unlock the <HighLightText text={"Power of Code"} /></div>
+            <div className='font-bold text-5xl p-3 text-white' data-aos="fade-up" data-aos-easing="ease-in-out">Unlock the <HighLightText text={"Power of Code"} /></div>
             <div className='sm:text-base text-xl text-richblack-200 text-center'>Learn to build anything you can imagine.</div>
             <div className='flex flex-row bg-richblack-600 text-richblack-200 p-1 gap-2 sm:gap-1 rounded-full mt-6 sm:text-base'>
                 {

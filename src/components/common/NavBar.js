@@ -9,6 +9,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import ProfileDropDown from "../core/Authorisation/ProfileDropDown";
 import { apiConnector } from "../../services/apiConnector";
 import { categories } from "../../services/apis";
+import { IoMenu } from "react-icons/io5";
 
 /* const subLinks = [
     {
@@ -31,7 +32,7 @@ const NavBar = () => {
     const RouteMatch = (route) => {
         return (route ? matchPath({ path: route }, location.pathname) : false)
     };
-
+    const [navbarActive, setNavbarActive] = useState(false);
     const [subLinks, setSubLinks] = useState([]);
     const [loading, setLoading] = useState();
 
@@ -51,13 +52,13 @@ const NavBar = () => {
     }, []);
 
     return (
-        <div className="relative w-full h-[9vh] flex justify-evenly items-center navbar border-b-2 border-richblack-700">
-            <div className="w-3/12 h-full overflow-hidden">
+        <div className="w-full h-[9vh] sm:h-[7vh] flex justify-evenly sm:justify-between sm:px-4 items-center navbar border-b-2 border-richblack-700">
+            <div className="w-3/12 sm:w-5/12 h-full overflow-hidden sm:flex sm:justify-center sm:items-center">
                 <Link to="/">
                     <img className="object-cover" src={Logo} alt="Logo" />
                 </Link>
             </div>
-            <nav>
+            <nav className="sm:hidden">
                 <ul className="flex gap-4 text-slate-200 font-base text-lg">
                     {NavbarLinks.map((link, index) => {
                         return (
@@ -109,7 +110,15 @@ const NavBar = () => {
                 )}
                 {/* Profile picture shown in the dashbard.*/}
                 {token !== null && <ProfileDropDown />}
+                <span onClick={() => setNavbarActive(!navbarActive)}><IoMenu className="sm:visible lg:hidden text-3xl"/></span>
             </div>
+            {
+                navbarActive && (
+                    <div className="fixed inset-0 w-screen h-screen z-[99999] bg-black bg-opacity-50">
+
+                    </div>
+                )
+            }
         </div>
     );
 };

@@ -68,21 +68,21 @@ const Catalog = () => {
     return (
         <div className="w-screen flex flex-col mt-[9vh] items-center gap-12">
             <div className="light-bg flex flex-col justify-center sm:px-4 sm:gap-4 px-40 h-[35vh] w-full gap-8">
-                <p className="text-zinc-500 italic text-base sm:w-full">
+                <p data-aos="fade-right" data-aos-easing="ease-in-out" className="text-zinc-500 italic text-base sm:w-full">
                     {`Home / Catalog / `}
                     <span className="font-semibold underline">
                         {catalogPageData?.selectedCategory?.name}
                     </span>
                 </p>
-                <p className="text-4xl font-bold py-2 text-zinc-400">
+                <p data-aos="fade-right" data-aos-easing="ease-in-out" className="text-4xl font-bold py-2 text-zinc-400">
                     {catalogPageData?.selectedCategory?.name}
                 </p>
-                <p className="text-xl text-zinc-100 sm:text-base">
+                <p data-aos="fade-right" data-aos-easing="ease-in-out" className="text-xl text-zinc-100 sm:text-base">
                     {catalogPageData?.selectedCategory?.description}
                 </p>
             </div>
             {/* Section 1 -> Courses*/}
-            <div className="w-9/12 flex flex-col sm:w-11/12">
+            <div className="w-9/12 flex flex-col sm:w-11/12" data-aos="fade-up" data-aos-easing="ease-in-out">
                 <h1 className="text-white text-3xl font-bold py-2">Courses to get you started</h1>
                 {/* <div className="flex gap-4 text-white text-xl">
                     <p>Most Popular</p>
@@ -94,7 +94,7 @@ const Catalog = () => {
             </div>
             {/* Section 2 -> top Courses*/}
             <div className="w-9/12 flex flex-col sm:w-11/12">
-                <p className="text-white text-3xl font-bold py-2">
+                <p className="text-white text-3xl font-bold py-2" data-aos="fade-up" data-aos-easing="ease-in-out">
                     Top Courses in {catalogPageData?.differentCategories?.name}
                 </p>
                 <div className="w-full h-max">
@@ -103,7 +103,7 @@ const Catalog = () => {
             </div>
             {/* Section 3 -> Frequently bought*/}
             <div className="w-9/12 flex flex-col sm:w-11/12">
-                <p className="text-white text-3xl font-bold py-2">Frequently bought together</p>
+                <p className="text-white text-3xl font-bold py-2" data-aos="fade-up" data-aos-easing="ease-in-out">Frequently bought together</p>
                 <div className="flex w-full flex-wrap gap-4 sm:flex-col">
                     {catalogPageData?.mostSellingCourses?.slice(0, 4).map((course, index) => (
                         <CourseCard course={course} key={index} Height={""} />

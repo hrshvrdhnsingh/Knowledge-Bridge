@@ -91,23 +91,23 @@ const SignUpForm = () => {
     return (
         <div className="flex flex-col gap-4 w-full h-max overflow-hidden" >
             <Tab tabData={tabData} field={accountType} setField={setAccountType} />
-            <form className='flex flex-col gap-2 overflow-hidden' onSubmit={submitHandler}>
+            <form className='flex flex-col gap-4 sm:h-max h-max overflow-hidden mb-8 sm:gap-4' onSubmit={submitHandler}>
                 <div className="flex gap-2 w-[96%]">
                     <label className="flex flex-col w-[50%] gap-2">
                         <p className="text-richblack-400 text-xl p-1 flex items-center font-semibold overflow-hidden">First Name</p>
                         <input onChange={changeHandler} required type="text" value={firstName} name="firstName" placeholder="Enter your first name"  className="border cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"/>
                     </label>
                     <label className="flex flex-col w-[50%] gap-2">
-                        <p className="text-richblack-400 text-xl font-semibold overflow-hidden">Last Name</p>
+                        <p className="text-richblack-400 text-xl p-1 flex items-center font-semibold overflow-hidden">Last Name</p>
                         <input onChange={changeHandler} required type="text" value={lastName} name="lastName" placeholder="Enter your last name"  className="border cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"/>
                     </label>
                 </div>
-                <label className="h-[25%]">
+                <label className="h-[25%] flex flex-col gap-2">
                     <p className="text-richblack-400 text-xl font-semibold">Enter Email Address</p>
                     <input onChange={changeHandler} required type="text" value={email} name="email" placeholder="Enter your email"  className="border cursor-text h-[35%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"/>
                 </label>
-                <div className="h-[48%] flex flex-col w-full p-1">
-                    <label className="overflow-hidden">
+                <div className="h-max gap-4 sm:h-max flex flex-col w-full py-1 sm:gap-4">
+                    <label className="overflow-hidden ">
                         <div className="text-richblack-400 text-xl font-semibold flex justify-between items-center">
                             <p>Create Password <sup className="text-pink-600">*</sup></p>
                             <span onClick={() => setShowPassword((prev) => !prev)} className='cursor-pointer text-cyan-500 font-normal italic text-base'>Show Password</span>
@@ -122,7 +122,7 @@ const SignUpForm = () => {
                         <input onChange={changeHandler} required type={showConfirmPassword ? "text" : "password"} value={confirmPassword} name="confirmPassword" placeholder="Confirm Password"  className="border cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"/>
                     </label>
                 </div>
-                <button type="submit" className="border h-[12%] w-[95%] rounded-xl text-2xl bg-yellow-300 text-black flex items-center justify-center font-medium hover:scale-95 cursor-pointer hover:bg-yellow-400 duration-300">Sign up</button>
+                <button type="submit" className="border h-[12%] sm:py-2 py-2 sm:w-full w-[95%] rounded-xl text-2xl bg-yellow-300 text-black flex items-center justify-center font-medium hover:scale-95 cursor-pointer hover:bg-yellow-400 duration-300">Sign up</button>
             </form>
         </div>
     )

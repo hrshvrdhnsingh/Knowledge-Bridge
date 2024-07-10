@@ -29,9 +29,9 @@ const Intro = () => {
                 <h1 className="text-5xl p-3 font-bold bg-gradient-to-r from-[#f093fb] to-[#f5576c] text-transparent bg-clip-text">
                     Categories
                 </h1>
-                <div className="code-section h-max w-max p-4 flex flex-col gap-4 ">
+                <div className="code-section h-max w-max p-4 flex flex-col gap-4" data-aos="zoom-in-up" data-aos-easing="ease-in-out" data-aos-duration="1200">
                     {subLinks?.map((subLink, i) => (
-                        <Link
+                        <Link data-aos="zoom-in-right" data-aos-easing="ease-in" data-aos-duration="1000"
                             key={i}
                             to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}`}
                             className="text-white text-2xl p-2 px-20 cursor-pointer hover:text-zinc-500"

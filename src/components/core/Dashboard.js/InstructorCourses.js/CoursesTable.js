@@ -29,10 +29,10 @@ const CoursesTable = ({courses, setCourses}) => {
         setLoading(false)
     }
     return (
-        <div>
-            <Table className="">
-                <Thead >
-                    <Tr className=''>
+        <div >
+            <Table className="" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" >
+                <Thead className="sm:hidden">
+                    <Tr className='sm:hidden'>
                         <Th className='flex-1 text-left text-sm font-medium uppercase text-richblack-50'>Courses</Th>
                         <Th className="text-left w-[12%] text-sm font-medium uppercase text-richblack-50">Duration</Th>
                         <Th className="text-left text-sm  font-medium uppercase text-richblack-50">Price</Th>
@@ -43,18 +43,18 @@ const CoursesTable = ({courses, setCourses}) => {
                     {
                         courses?.length === 0 ? (
                             <Tr>
-                            <Td className="py-10 text-center text-2xl font-medium text-richblack-100">
-                                No courses found
-                                {/* TODO: Need to change this state */}
-                            </Td>
+                                <Td className="py-10 text-center text-2xl font-medium text-richblack-100">
+                                    No courses found
+                                    {/* TODO: Need to change this state */}
+                                </Td>
                             </Tr>
                         ): (
                             courses.map((course) => (
-                                <Tr key={course._id} className='bg-richblack-500 h-[200px] border-b-2 border-slate-500'>
-                                    <Td className='flex w-12/12 p-4 gap-4'>
-                                        <div className="w-4/12 h-[150px]"><img src={course?.thumbnail} alt={course?.courseName} className="object-fit rounded-lg w-full h-full" /></div>
-                                        <div className="text-white w-8/12 flex flex-col justify-evenly">
-                                            <p className="text-slate-200 text-xl">{course?.courseName}</p>
+                                <Tr data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" key={course._id} className='bg-richblack-500 h-[200px] border-b-2 border-slate-500'>
+                                    <Td className='flex w-full p-4 sm:p-2 gap-4'>
+                                        <div data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="1400" className="w-4/12 h-[150px] sm:w-full"><img src={course?.thumbnail} alt={course?.courseName} className="object-fit rounded-lg w-full h-full" /></div>
+                                        <div className="text-white w-8/12 flex flex-col justify-evenly sm:w-full">
+                                            <p className="text-slate-200 text-xl ">{course?.courseName}</p>
                                             <p className="text-richblack-50 text-sm">
                                                 {
                                                     course.courseDescription.split(" ").length > TRUNCATE_LENGTH 
@@ -81,9 +81,9 @@ const CoursesTable = ({courses, setCourses}) => {
                                             </div>
                                         </div>
                                     </Td>
-                                    <Td className="text-md font-medium text-richblack-100 w-1/12">2hr 30min</Td>
-                                    <Td className="text-md font-medium text-richblack-100 w-1/12">$ {course.price}</Td>
-                                    <Td className="text-md font-medium text-richblack-100 w-1/12">
+                                    <Td className="text-md font-medium text-richblack-100 w-1/12 sm:w-full">2hr 30min</Td>
+                                    <Td className="text-md font-medium text-richblack-100 w-1/12 sm:w-full">₹ {course.price}</Td>
+                                    <Td className="text-md font-medium text-richblack-100 w-1/12 sm:w-full">
                                         <button onClick={() => {navigate(`/dashboard/edit-course/${course._id}`)}}><MdEdit className="text-xl cursor-pointer"/></button>
                                         <button disabled={loading} title="Delete" className="ml-2 cursor-pointer"
                                             onClick={() => {

@@ -29,12 +29,20 @@ import Intro from './components/core/Catalog/intro'
 import CourseDetails from './pages/CourseDetails';
 import ViewCourse from './pages/ViewCourse';
 import VideoDetails from './components/core/ViewCourse/VideoDetails';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
     const { user } = useSelector((state) => state.profile) 
 
+    useEffect(() => {
+        AOS.init({
+            duration:600,
+        })
+    }, [])
     return ( 
-        <div className="flex flex-col items-center w-screen min-h-screen bg-richblack-900">
+        <div className="relative flex flex-col items-center w-screen min-h-screen bg-richblack-900">
             <NavBar />
             <Routes>
                 <Route path="/" element={<Home />} />

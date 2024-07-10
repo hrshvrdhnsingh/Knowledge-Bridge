@@ -15,7 +15,7 @@ const CourseCard = ({ course, Height }) => {
     }, [course.ratingAndReviews]);
 
     return (
-        <Link
+        <Link data-aos="zoom-in-down" data-aos-easing="ease-in-out"
             to={`/courses/${course._id}`}
             className={`w-[49%] sm:w-[100%] sm:h-max bg-richblack-700 bg-opacity-35 rounded-2xl ${
                 Height ? Height : "h-[70vh]"

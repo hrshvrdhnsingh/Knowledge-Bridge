@@ -36,7 +36,7 @@ const TimelineSection = () => {
                 {
                     TimeLine.map((ele, i) => {
                         return (
-                            <div className="flex flex-row gap-5 items-center" key={i}>
+                            <div className="flex flex-row gap-5 items-center" key={i} data-aos="zoom-in-left">
                                 <div className='w-[30px] h-[30px] flex items-center'>
                                     <img src={ele.Logo} alt={ele.Logo} className='w-full h-full'/>
                                 </div>
@@ -49,7 +49,7 @@ const TimelineSection = () => {
                     })
                 }
             </div>
-            <div className='relative w-[50%] h-full sm:w-full'>
+            <div className='relative w-[50%] h-full sm:w-full' data-aos="zoom-in" data-aos-easing="ease-in-out"> 
                 <div className='w-[100%] h-9/12 flex justify-center items-center bg-slate-500 bg-opacity-70 rounded-3xl'>
                     <img src={TimelineImage} alt='sitting-lady' className='w-10/12 h-11/12 rounded-2xl'/>
                 </div>

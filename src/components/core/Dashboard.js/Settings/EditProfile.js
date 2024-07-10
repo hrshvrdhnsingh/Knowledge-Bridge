@@ -25,19 +25,19 @@ const EditProfile = () => {
     };
 
     return (
-        <div className="flex bg-richblack-600 p-2 px-6 flex-col rounded-2xl justify-between">
+        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1200" className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between">
             <h2 className="text-xl font-bold p-1 overflow-hidden text-white">
                 Profile Information
             </h2>
             <form
                 onSubmit={handleSubmit(submitProfileForm)}
-                className="flex w-full flex-col  justify-center items-center gap-3"
+                className="flex w-full flex-col justify-center items-center gap-3"
             >
-                <div className="lg:flex-row flex-col flex w-11/12  justify-between">
-                    <div className="flex flex-col w-[50%]">
+                <div className="lg:flex-row flex-col flex w-11/12 justify-between">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <label
                             htmlFor="firstName"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             First Name
                         </label>
@@ -46,7 +46,7 @@ const EditProfile = () => {
                             id="firstName"
                             name="firstName"
                             placeholder="Enter first name"
-                            className=" cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className=" cursor-text h-[40%] sm:text-base w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("firstName", { required: true })}
                         />
                         {errors.firstName && (
@@ -55,10 +55,10 @@ const EditProfile = () => {
                             </span>
                         )}
                     </div>
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <label
                             htmlFor="lastName"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             Last Name
                         </label>
@@ -67,7 +67,7 @@ const EditProfile = () => {
                             id="lastName"
                             name="lastName"
                             placeholder="Enter last name"
-                            className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className="cursor-text h-[40%] sm:text-base w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("lastName", { required: true })}
                         />
                         {errors.lastName && (
@@ -78,10 +78,10 @@ const EditProfile = () => {
                     </div>
                 </div>
                 <div className="lg:flex-row flex-col flex w-11/12">
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <label
                             htmlFor="dateOfBirth"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             Date of Birth
                         </label>
@@ -90,7 +90,7 @@ const EditProfile = () => {
                             id="dateOfBirth"
                             name="dateOfBirth"
                             placeholder=""
-                            className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className="cursor-text h-[40%] sm:text-base w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("dateOfBirth", {
                                 required: {
                                     value: true,
@@ -109,10 +109,10 @@ const EditProfile = () => {
                             </span>
                         )}
                     </div>
-                    <div className="flex flex-col h-max w-[48%]">
+                    <div className="flex flex-col h-max w-[48%] sm:w-[98%]">
                         <label
                             htmlFor="gender"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             Gender
                         </label>
@@ -121,7 +121,7 @@ const EditProfile = () => {
                             id="gender"
                             name="gender"
                             placeholder=""
-                            className="cursor-pointer h-[40%] w-[100%] rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className="cursor-pointer h-[40%] sm:text-base w-[100%] rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("gender", { required: true })}
                             defaultValue={user?.additionalDetails?.gender}
                         >
@@ -141,10 +141,10 @@ const EditProfile = () => {
                     </div>
                 </div>
                 <div className="lg:flex-row flex-col flex w-11/12 justify-between">
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <label
                             htmlFor="contactNumber"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             Contact Number
                         </label>
@@ -153,7 +153,7 @@ const EditProfile = () => {
                             id="contactNumber"
                             name="contactNumber"
                             placeholder="Enter Contact Number"
-                            className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-00 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className="cursor-text h-[40%] sm:text-base w-11/12 rounded-md border-richblack-00 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("contactNumber", {
                                 required: {
                                     value: true,
@@ -170,10 +170,10 @@ const EditProfile = () => {
                             </span>
                         )}
                     </div>
-                    <div className="flex flex-col w-[50%]">
+                    <div className="flex flex-col w-[50%] sm:w-full">
                         <label
                             htmlFor="about"
-                            className="text-zinc-900 text-xl font-semibold overflow-hidden"
+                            className="text-zinc-900 text-xl sm:text-lg font-semibold overflow-hidden"
                         >
                             About
                         </label>
@@ -182,7 +182,7 @@ const EditProfile = () => {
                             id="about"
                             name="about"
                             placeholder="Enter bio details"
-                            className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
+                            className="cursor-text h-[40%] sm:text-base w-11/12 rounded-md border-richblack-300 bg-richblack-700 text-zinc-200 text-lg p-2"
                             {...register("about", { required: true })}
                             defaultValue={user?.additionalDetails?.about}
                         />
@@ -198,13 +198,13 @@ const EditProfile = () => {
                         onClick={() => {
                             navigate("/dashboard/my-profile");
                         }}
-                        className="px-3 py-1 bg-richblack-700 rounded-xl text-xl font-semibold text-richblack-200 hover:scale-95 duration-200"
+                        className="px-3 sm:text-lg py-1 bg-richblack-700 rounded-xl text-xl font-semibold text-richblack-200 hover:scale-95 duration-200"
                     >
                         Cancel
                     </button>
                     <button
                         type="submit"
-                        className="text-black flex bg-yellow-400 bg-opacity-75 rounded-xl px-2 items-center font-semibold text-xl hover:scale-95 duration-200"
+                        className="text-black flex bg-yellow-400 bg-opacity-75 sm:text-lg rounded-xl px-2 items-center font-semibold text-xl hover:scale-95 duration-200"
                     >
                         Save
                     </button>

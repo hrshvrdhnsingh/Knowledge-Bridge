@@ -34,7 +34,7 @@ const CodeBlocks = ({
                 </div>
             </div>
             {/* Code Section*/}
-            <div className="code overflow-visible relative w-[50%] sm:w-[100%] sm:p-0 p-5 flex justify-center items-center rounded-sm">
+            <div className="code overflow-visible relative w-[50%] sm:w-[100%] sm:p-0 p-5 flex justify-center items-center rounded-sm" data-aos="fade-up-left" data-aos-eassing="ease-in-sine">
                 <div className={`circle absolute ${backgroundGradient}`}></div>
                 <div className={`circle absolute ${backgroundGradient}`}></div>
                 <div className="flex flex-row w-full p-2 sm:p-1 code-section mx-3">

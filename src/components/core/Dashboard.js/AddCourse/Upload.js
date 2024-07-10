@@ -57,13 +57,13 @@ const Upload = ({
 
     return (
         <div className="flex flex-col">
-            <label className="h-[35%] text-zinc-400 text-xl font-semibold">
+            <label className="h-[35%] text-zinc-400 text-xl sm:text-base font-semibold">
                 {label} {!viewData && <sup className="text-pink-500">*</sup>}
             </label>
             <div
                 className={`${
                     isDragActive ? "bg-richblack-700" : "bg-richblack-500"
-                } rounded-2xl flex flex-col items-center justify-center`}
+                } rounded-2xl flex flex-col items-center justify-center sm:w-[95%]`}
                 {...getRootProps()}
             >
                 <input {...getInputProps()} ref={inputRef} />
@@ -114,7 +114,7 @@ const Upload = ({
                         <div className="rounded-full place-items-center flex items-center justify-center">
                             <FiUploadCloud className="text-4xl" />
                         </div>
-                        <p className="">
+                        <p className="sm:pl-4">
                             Drag and drop an {!video ? "image" : "video"}, or click to
                             <span className="font-normal text-yellow-300 cursor-pointer">
                                 {" "}
@@ -122,7 +122,7 @@ const Upload = ({
                             </span>{" "}
                             a file.
                         </p>
-                        <ul className="flex justify-between gap-8 text-richblack-300">
+                        <ul className="flex justify-between gap-8 sm:text-sm sm:pl-4 text-richblack-300">
                             <li>Aspect Ratio 16:9</li>
                             <li>Recommended size 1024x576</li>
                         </ul>

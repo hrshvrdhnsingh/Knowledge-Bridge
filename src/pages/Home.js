@@ -16,17 +16,17 @@ const Home = () => {
     return (
         <div className="flex flex-col w-10/12 sm:w-full justify-center items-center mx-auto p-1 overflow-x-visible">
             {/**********************************  Section 1 ************************************************/}
-            <div className="flex flex-col w-11/12 justify-between items-center section-1 mt-28 p-1 sm:p-0">
-                <Link to="/signup">
-                    <div className="instructor-btn flex items-center justify-center gap-2 text-slate-500 text-xl sm:text-base font-bold mx-auto p-3  transition-all duration-200 bg-richblack-700">
+            <div className="flex flex-col w-11/12 justify-between items-center section-1 mt-28 sm:mt-20 p-1 sm:p-0">
+                <Link to="/signup" data-aos="zoom-in">
+                    <div className="instructor-btn flex items-center justify-center gap-2 text-slate-500 text-xl sm:text-base font-bold mx-auto p-3 transition-all duration-200 bg-richblack-700">
                         <p className="bg-gradient-to-r from-[#f093fb] to-[#f5576c] text-transparent bg-clip-text ">
                             Become an Instructor{" "}
                         </p>
                         <FaArrowRight />
                     </div>
                 </Link>
-                <div className="p-2 flex flex-col w-11/12 sm:w-full justify-between items-center text-4xl text-white font-bold mx-auto min-h-max mt-5">
-                    <p className="p-2">
+                <div className="p-2 sm:p-0 flex flex-col w-11/12 sm:w-full justify-between items-center text-4xl text-white font-bold mx-auto min-h-max mt-5 sm:mt-3">
+                    <p className="p-2 sm:py-2 sm:px-0">
                         Empower your future with <HighLightText text={"Coding Skills"} />{" "}
                     </p>
                 </div>
@@ -43,12 +43,12 @@ const Home = () => {
                         Book a Demo
                     </CTAButton>
                 </div>
-                <div className="w-10/12 sm:w-full sm:h-[50vw] h-[32vw] bg-richblack-700 mt-12 p-2 flex justify-center items-center rounded-2xl">
+                <div data-aos="zoom-out-up" className="w-10/12 sm:w-full sm:h-[55vw] h-[32vw] bg-richblack-700 mt-12 p-2 flex justify-center items-center rounded-2xl">
                     <video muted autoPlay loop controls className="h-full rounded-2xl">
                         <source type="video/mp4" src={Banner} />
                     </video>
                 </div>
-                <div className="w-11/12 sm:w-full">
+                <div className="w-11/12 sm:w-full sm:mt-4" data-aos="fade-up" data-aos-easing="ease-in">
                     <CodeBlocks
                         position={"lg:flex-row sm:flex-col"}
                         heading={
@@ -76,7 +76,7 @@ const Home = () => {
                         backgroundGradient={"bg-gradient-to-r from-[#f093fb] to-[#f5576c]"}
                     />
                 </div>
-                <div className="w-11/12 sm:w-full">
+                <div className="w-11/12 sm:w-full"  data-aos="fade-up" data-aos-easing="ease-in">
                     <CodeBlocks
                         position={"lg:flex-row-reverse sm:flex-col"}
                         heading={
@@ -121,9 +121,9 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex flex-col justify-center items-center mb-20 sm:mb-8">
+                <div className="w-full flex flex-col justify-center items-center mb-20">
                     <div className="flex flex-row sm:flex-col gap-8 justify-center p-2 items-center">
-                        <div className="font-bold text-white text-4xl w-[45%] sm:w-full overflow-hidden">
+                        <div className="font-bold text-white text-4xl w-[45%] sm:w-full overflow-hidden" data-aos="fade-up" data-aos-easing="ease-in-out">
                             Get the skills you need for a{" "}
                             <HighLightText text="job that is in demand." />
                         </div>

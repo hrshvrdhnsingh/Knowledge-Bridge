@@ -87,14 +87,14 @@ export const addCourseDetails = async (data, token) => {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
-        //     console.log("CREATE COURSE API RESPONSE............", response);
+        console.log("CREATE COURSE API RESPONSE............", response);
         if (!response?.data?.success) {
             throw new Error("Could Not Add Course Details");
         }
         toast.success("Course Details Added Successfully");
         result = response?.data?.data;
     } catch (error) {
-        //     console.log("CREATE COURSE API ERROR............", error);
+        console.log("CREATE COURSE API ERROR............", error);
         toast.error(error.message);
     }
     toast.dismiss(toastId);

@@ -122,7 +122,7 @@ const CourseDetails = () => {
     }
     return (
         <div className="flex flex-col w-screen min-h-screen items-center gap-8">
-            <div className="light-bg sm:h-max sm:flex-col-reverse mt-[9vh] sm:mt-[10vh] relative flex justify-start flex-col items-start px-40 sm:px-1 h-[70vh] w-full gap-8 overflow-visible">
+            <div className="light-bg sm:h-max sm:flex-col-reverse mt-[9vh] sm:py-4 relative flex justify-start flex-col items-start px-40 sm:px-1 h-[70vh] w-full gap-8 overflow-visible">
                 <div className="w-full h-full flex flex-col sm:w-[100%] gap-8 justify-center sm:px-2 sm:gap-4">
                     <h1 className="text-5xl py-3 w-7/12 sm:w-full sm:text-4xl">
                         <HighLightText text={courseName} />
@@ -167,16 +167,16 @@ const CourseDetails = () => {
                 </div>
             </div>
             {/**Course-content section */}
-            <div className="w-9/12">
-                <div className="place-self-start w-7/12 flex flex-col gap-4">
+            <div className="w-9/12 sm:w-11/12">
+                <div className="place-self-start w-7/12 sm:w-full flex flex-col gap-4">
                     <p className="text-4xl font-bold py-3 text-white">Course Content</p>
                     <div className="flex flex-wrap gap-2 justify-between text-base text-zinc-400">
-                        <div className="flex gap-4">
+                        <div className="flex gap-4 sm:gap-8">
                             <span>{courseContent?.length} section(s)</span>
                             <span>{totalNoOfLectures} lectures</span>
                             <span>{response?.data?.totalDuration} total length</span>
                         </div>
-                        <div>
+                        <div className="place-self-end flex sm:text-sm">
                             <button className="text-yellow-300 " onClick={() => setIsActive([])}>
                                 Collapse all sections
                             </button>
@@ -195,11 +195,11 @@ const CourseDetails = () => {
                 </div>
             </div>
             {/**Author part */}
-            <div className="w-9/12">
-                <div className="place-self-start w-7/12 flex flex-col gap-4">
+            <div className="w-9/12 sm:w-11/12">
+                <div className="place-self-start w-7/12 sm:w-full flex flex-col gap-4">
                     <p className="text-4xl font-bold py-3 text-white">Author</p>
-                    <div className="flex gap-2 w-full justify-between text-base text-zinc-400">
-                        <div className="w-3/12 rounded-full">
+                    <div className="flex gap-2 w-full sm:flex-col justify-between text-base text-zinc-400">
+                        <div className="w-3/12 sm:w-8/12 place-self-center rounded-full">
                             <img
                                 src={
                                     instructor?.image
@@ -210,7 +210,7 @@ const CourseDetails = () => {
                                 className="object-cover h-full w-full "
                             />
                         </div>
-                        <div className="w-9/12">
+                        <div className="w-9/12 sm:w-full">
                             <p className="font-medium text-zinc-400 text-xl">{`${instructor.firstName} ${instructor.lastName}`}</p>
                             <p className="text-zinc-600">{instructor?.additionalDetails?.about}</p>
                         </div>
