@@ -44,7 +44,7 @@ const CourseViewModal = ({ setReviewModal }) => {
 
     return (
         <div className="w-screen fixed left-0 top-0 h-screen z-[999999] bg-richblack-200 bg-opacity-50 flex justify-center items-center">
-            <div className="modal w-[40vw] h-max flex flex-col rounded-3xl border-slate-300 border-[2px] gap-3 p-3 bg-richblack-700 justify-center">
+            <div className="modal sm:w-[80vw] w-[40vw] h-max flex flex-col rounded-3xl border-slate-300 border-[2px] gap-3 p-3 bg-richblack-700 justify-center">
                 {/**Modal Header */}
                 <div className="px-2 text-xl flex justify-between text-slate-300">
                     <p>Add Review</p>
@@ -84,7 +84,7 @@ const CourseViewModal = ({ setReviewModal }) => {
                             halfIcon={<FaStarHalf />}
                             fullIcon={<FaStar />}
                         />
-                        <div className="flex flex-col w-9/12">
+                        <div className="flex flex-col w-9/12 sm:w-full">
                             <label
                                 className="flex gap-1 h-[35%] text-zinc-400 text-lg font-medium"
                                 htmlFor="courseExperience"

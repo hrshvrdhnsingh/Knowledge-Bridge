@@ -55,7 +55,7 @@ const EnrolledCourses = () => {
                                                 );
                                             }}
                                         >
-                                            <div className="flex flex-col sm:w-full w-6/12 gap-4 items-center p-1">
+                                            <div className="flex sm:flex-col sm:w-full w-6/12 gap-4 items-center p-1">
                                                 <div className="sm:w-full w-8/12 h-[150px]">
                                                     <img
                                                         className="h-full w-full object-cover rounded-2xl"

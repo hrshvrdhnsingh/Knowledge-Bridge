@@ -10,6 +10,7 @@ import { updateCompletedLectures } from "../../../slices/viewCourse";
 
 const VideoDetails = () => {
     const { courseId, sectionId, subSectionId } = useParams();
+    console.log(courseId, sectionId, subSectionId)
     const navigate = useNavigate();
     const location = useLocation();
     const playerRef = useRef(null);
@@ -172,7 +173,7 @@ const VideoDetails = () => {
                                     <button
                                         disabled={loading}
                                         onClick={() => handleLectureCompletion()}
-                                        className="p-2 rounded-xl bg-yellow-400 text-black text-xl cursor-pointer"
+                                        className="p-2 rounded-xl bg-yellow-400 text-black sm:text-lg text-xl cursor-pointer"
                                     >
                                         {!loading ? "Mark as completed" : "Loading ..."}
                                     </button>
@@ -187,7 +188,7 @@ const VideoDetails = () => {
                                 >
                                     <button
                                         disabled={loading}
-                                        className="cursor-pointer p-2 rounded-xl text-xl bg-slate-400 px-4 bg-opacity-70"
+                                        className="cursor-pointer p-2 rounded-xl sm:text-lg sm:px-2 text-xl bg-slate-400 px-4 bg-opacity-70"
                                     >
                                         Rewatch
                                     </button>
@@ -198,7 +199,7 @@ const VideoDetails = () => {
                                     <button
                                         disabled={loading}
                                         onClick={goToPrevVideo}
-                                        className="cursor-pointer p-2 px-4 rounded-xl text-xl bg-slate-400 bg-opacity-70"
+                                        className="cursor-pointer p-2 px-4 sm:px-2 rounded-xl sm:text-lg text-xl bg-slate-400 bg-opacity-70"
                                     >
                                         Previous
                                     </button>
@@ -207,7 +208,7 @@ const VideoDetails = () => {
                                     <button
                                         disabled={loading}
                                         onClick={goToNextVideo}
-                                        className="cursor-pointer p-2 px-4 rounded-xl text-xl bg-slate-400 bg-opacity-70"
+                                        className="cursor-pointer p-2 px-4 rounded-xl sm:text-lg text-xl bg-slate-400 bg-opacity-70"
                                     >
                                         Next
                                     </button>
@@ -218,8 +219,8 @@ const VideoDetails = () => {
                 </Player>
             )}
             <div className="flex flex-col">
-                <h1 className="text-2xl py-2 font-semibold text-zinc-400">{videoData?.title}</h1>
-                <p className="text-xl font-medium text-zinc-600">{videoData?.description}</p>
+                <h1 className="text-2xl sm:place-self-end py-2 font-semibold text-zinc-400">{videoData?.title}</h1>
+                <p className="text-xl sm:place-self-end font-medium text-zinc-600">{videoData?.description}</p>
             </div>
         </div>
     );

@@ -4,7 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-const VideoDetailsSidebar = ({ setReviewModal }) => {
+const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) => {
     const [activeStatus, setActiveStatus] = useState("");
     const [videoBarActive, setVideoBarActive] = useState("");
     const navigate = useNavigate();
@@ -33,20 +33,20 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
     }, [courseSectionData, courseEntireData, location.pathname]);
 
     return (
-        <div className="flex flex-col">
-            <div className=" gap-6 sidebar text-white flex items-center fixed w-[18vw] mt-[9vh] flex-col left-0 top-0 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100">
+        <div className={`flex flex-col ${navbarActive ? "" : "sm:hidden"}`}>
+            <div className="gap-6 sidebar text-white flex items-center fixed w-[18vw] mt-[9vh] sm:mt-[7vh] sm:w-[35vw] flex-col left-0 top-0 sm:py-1 border-richblack-700 border-r-[2px] h-[91vh] py-3 bg-richblack-100">
                 {/**Add Review and back button */}
                 <div className="flex flex-col w-full gap-1">
-                    <div className="flex justify-between w-full p-2">
+                    <div className="flex sm:flex-col sm:gap-4 justify-between w-full p-2 sm:p-1">
                         <div
                             onClick={() => navigate(`/dashboard/enrolled-courses`)}
-                            className="p-2 rounded-full bg-richblack-500 flex justify-center items-center cursor-pointer"
+                            className="p-2 rounded-full bg-richblack-500  sm:w-max flex text-2xl sm:text-lg sm:p-1 justify-center items-center cursor-pointer"
                         >
-                            <IoIosArrowBack size={24} />
+                            <IoIosArrowBack />
                         </div>
                         <button
                             onClick={() => setReviewModal(true)}
-                            className="cursor-pointer bg-yellow-400 px-2 text-black font-medium rounded-xl"
+                            className="cursor-pointer sm:text-center sm:w-max bg-yellow-400 px-2 sm:text-sm sm:px-2 sm:p-2 text-black font-medium rounded-xl"
                         >
                             Add Review
                         </button>
@@ -58,7 +58,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                         </p>
                     </div>
                 </div>
-                <h1 className="text-zinc-500 text-xl place-self-start px-2 font-medium">
+                <h1 className="text-zinc-500 text-xl sm:text-base place-self-start px-2 font-medium">
                     {courseEntireData[0]?.courseName}
                 </h1>
                 <div className="w-full">
@@ -69,7 +69,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             onClick={() => setActiveStatus(course?._id)}
                         >
                             {/**Section */}
-                            <div className="flex cursor-default justify-between py-2 px-3 text-zinc-400">
+                            <div className="flex sm:text-sm sm:px-2 cursor-default justify-between py-2 px-3 text-zinc-400">
                                 <p>{course?.sectionName}</p>
                                 <div className="flex items-center">
                                     <span
@@ -83,7 +83,7 @@ const VideoDetailsSidebar = ({ setReviewModal }) => {
                             </div>
                             {/**Sub-Sections */}
                             {activeStatus === course?._id && (
-                                <div className="w-10/12 place-self-end mr-4 rounded-md transition-[height] duration-500 ease-in-out bg-richblack-700 bg-opacity-40">
+                                <div className="w-10/12 sm:w-11/12 sm:mr-0  place-self-end mr-4 rounded-md transition-[height] duration-500 ease-in-out bg-richblack-700 bg-opacity-40">
                                     {course?.subSection?.map((topic, index) => (
                                         <div
                                             className={`cursor-pointer flex rounded-md items-center gap-2 px-2 py-1 font-medium ${
