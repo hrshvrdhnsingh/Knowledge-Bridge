@@ -23,7 +23,7 @@ import { IoMenu } from "react-icons/io5";
 
 ] */
 
-const NavBar = () => {
+const NavBar = ({navbarActive, setNavbarActive}) => {
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
     const { totalItems } = useSelector((state) => state.cart);
@@ -32,7 +32,7 @@ const NavBar = () => {
     const RouteMatch = (route) => {
         return (route ? matchPath({ path: route }, location.pathname) : false)
     };
-    const [navbarActive, setNavbarActive] = useState(false);
+
     const [subLinks, setSubLinks] = useState([]);
     const [loading, setLoading] = useState();
 
@@ -80,7 +80,7 @@ const NavBar = () => {
                 </ul>
             </nav>
             {/*  Login/ Sign-up/ Dashboard */}
-            <div className="flex flex-row justify-center items-center gap-6 text-slate-200">
+            <div className="flex flex-row justify-center items-center gap-6 sm:gap-3 text-slate-200">
                 {/* For logged-in student */}
                 {user && user?.accountType !== "Instructor" && (
                     <Link to="/dashboard/cart" className="relative p-2">
@@ -103,7 +103,7 @@ const NavBar = () => {
                 )}
                 {token === null && (
                     <Link to="/signup">
-                        <div className="p-2 px-3 bg-richblack-500 font-semibold rounded-xl hover:scale-95 duration-300">
+                        <div className="p-2 px-3 sm:px-1 bg-richblack-500 font-semibold rounded-xl hover:scale-95 duration-300">
                             Sign up
                         </div>
                     </Link>
@@ -112,13 +112,7 @@ const NavBar = () => {
                 {token !== null && <ProfileDropDown />}
                 <span onClick={() => setNavbarActive(!navbarActive)}><IoMenu className="sm:visible lg:hidden text-3xl"/></span>
             </div>
-            {
-                navbarActive && (
-                    <div className="fixed inset-0 w-screen h-screen z-[99999] bg-black bg-opacity-50">
-
-                    </div>
-                )
-            }
+            
         </div>
     );
 };

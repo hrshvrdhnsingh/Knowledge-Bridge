@@ -39,7 +39,7 @@ const ContactUsForm = ({ heading, description }) => {
     }, [reset, isSubmitSuccessful]);
 
     return (
-        <div className="w-6/12 flex gap-4 sm:w-11/12 flex-col justify-center items-center mt-48">
+        <div className="w-6/12 flex gap-4 sm:w-11/12 flex-col justify-center items-center mt-48" data-aos="zoom-in" data-aos-easing="ease-in-out">
             <h1 className="text-4xl p-2 font-bold text-white">{heading}</h1>
             <p className="text-zinc-500 text-lg">{description}</p>
             <form

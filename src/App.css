@@ -62,3 +62,10 @@ input {
 textarea {
   all: unset;
 }
+.navbar-hamburger{
+  background: rgba(255, 245, 245, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.9px);
+  -webkit-backdrop-filter: blur(6.4px);
+  border: 1px solid rgba(255, 245, 245, 0.69);
+}

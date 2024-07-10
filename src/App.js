@@ -1,6 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Link, matchPath, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import NavBar from './components/common/NavBar';
 import Login from './pages/Login';
@@ -29,12 +29,18 @@ import Intro from './components/core/Catalog/intro'
 import CourseDetails from './pages/CourseDetails';
 import ViewCourse from './pages/ViewCourse';
 import VideoDetails from './components/core/ViewCourse/VideoDetails';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { NavbarLinks } from "../src/data/navbar-links";
 
 function App() {
     const { user } = useSelector((state) => state.profile) 
+    const [navbarActive, setNavbarActive] = useState(false);
+    const location = useLocation();
+    const RouteMatch = (route) => {
+        return (route ? matchPath({ path: route }, location.pathname) : false)
+    };
 
     useEffect(() => {
         AOS.init({
@@ -43,7 +49,7 @@ function App() {
     }, [])
     return ( 
         <div className="relative flex flex-col items-center w-screen min-h-screen bg-richblack-900">
-            <NavBar />
+            <NavBar navbarActive={navbarActive} setNavbarActive={setNavbarActive}/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<OpenRoute> <Login /></OpenRoute>} />
@@ -88,7 +94,32 @@ function App() {
                     )}
                 </Route>
                 <Route path="*" element={<Error />} />
-            </Routes>   
+            </Routes> 
+            {
+                navbarActive && (
+                    <div onClick={() => setNavbarActive(!navbarActive)} className="fixed inset-0 w-screen h-screen flex justify-center z-[99999] bg-richblack-200 bg-opacity-30" data-aos="zoom-in">
+                        <div className='navbar-hamburger rounded-2xl w-[70vw] h-max mt-24 flex flex-col gap-8 py-5 text-xl justify-center items-center ' data-aos="fade-down-left" data-aos-easing="ease-in-out" data-aos-duration="1000">
+                            {NavbarLinks.map((link, index) => {
+                                return (
+                                    <span key={index} className="w-full text-center py-1">
+                                        <Link to={link?.path}>
+                                            <p
+                                                className={` ${
+                                                    RouteMatch(link?.path)
+                                                        ? "text-cyan-300"
+                                                        : "text-zinc-800"
+                                                }`}
+                                            >
+                                                {link.title}
+                                            </p>
+                                        </Link>
+                                    </span>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )
+            }  
         </div>
     );
 }
