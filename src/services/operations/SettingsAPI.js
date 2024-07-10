@@ -59,6 +59,7 @@ export function updateProfile(token, formData) {
 
 export async function changePassword(token, formData) {
     const toastId = toast.loading("Loading...");
+    console.log(formData)
     try {
         const response = await apiConnector("POST", CHANGE_PASSWORD_API, formData, {
             Authorization: `Bearer ${token}`,

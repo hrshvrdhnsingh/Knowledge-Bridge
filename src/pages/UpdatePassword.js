@@ -31,7 +31,7 @@ const UpdatePassword = () => {
         dispatch(resetPassword(password, confirmPassword, token))
     }
     return (
-        <div className='flex justify-center items-center w-screen h-screen'>
+        <div className='flex justify-center items-center w-screen h-screen sm:w-11/12'>
             {
                 loading ? (<div className='spinner'></div>) : (
                     <div className='flex flex-col justify-center gap-1'> 

@@ -12,7 +12,7 @@ const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) 
     const { sectionId, subSectionId } = useParams(); // From the url
     const { courseSectionData, courseEntireData, totalNoOfLectures, completedLectures } =
         useSelector((state) => state.viewCourse);
-
+    console.log(courseEntireData)
     useEffect(() => {
         (() => {
             // To highlight the subsection we are currently watching.
@@ -94,7 +94,7 @@ const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) 
                                             key={index}
                                             onClick={() => {
                                                 navigate(
-                                                    `/view-course/${courseEntireData?._id}/section/${course?._id}/sub-section/${topic?._id}`
+                                                    `/view-course/${courseEntireData[0]?._id}/section/${course?._id}/sub-section/${topic?._id}`
                                                 );
                                                 setVideoBarActive(topic._id);
                                             }}

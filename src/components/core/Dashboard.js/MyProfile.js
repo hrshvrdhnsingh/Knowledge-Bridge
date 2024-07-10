@@ -14,7 +14,7 @@ const MyProfile = () => {
             <div className="mt-[13vh] w-7/12 ml-36 sm:ml-24 sm:w-[72vw] flex flex-col gap-6 h-max">
                 <h2 className="font-bold text-4xl p-3 text-white">My Profile</h2>
                 <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" className="flex bg-richblack-600 p-2 px-6 sm:px-2 rounded-2xl justify-between items-center">
-                    <div className="flex w-[50%] gap-4 sm:gap-2 sm:w-[70%] justify-center items-center">
+                    <div className="flex w-[40%] gap-4 sm:gap-2 sm:w-[70%] justify-center items-center">
                         <div className="w-[60px] sm:w-[100px] h-[60px] rounded-full flex items-center border-zinc-300 sm:border-0 border-[2px]">
                             <img
                                 src={user?.image}
