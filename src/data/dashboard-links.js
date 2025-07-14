@@ -1,5 +1,6 @@
 import { ACCOUNT_TYPE } from "../utils/constants"
 
+// Stores the link details about the sidebar on the profile page.
 export const sidebarLinks = [
   {
     id: 1,

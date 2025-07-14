@@ -10,12 +10,15 @@ import { categories } from "../services/apis";
 import { getCatalogPageData } from "../services/operations/pageAndComponentData";
 import Footer from "../components/common/Footer";
 
+// Getting the catalog page based on category selected which also includes the courses of that category,
+// one-other different category and the best-selling courses.
 const Catalog = () => {
     const { loading } = useSelector((state) => state.profile);
     const { catalogName } = useParams();
     const [active, setActive] = useState(1);
     const [catalogPageData, setCatalogPageData] = useState(null);
     const [categoryId, setCategoryId] = useState("");
+
     // Fetch All Categories
     useEffect(() => {
         (async () => {
@@ -37,10 +40,11 @@ const Catalog = () => {
         })();
     }, [catalogName]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         //     console.log("Updated categoryId -> ", categoryId);
-    }, [categoryId]);
+    }, [categoryId]); */
 
+    // Getting the courses of the selected courses via the middleware
     useEffect(() => {
         const getCategoryDetails = async () => {
             try {

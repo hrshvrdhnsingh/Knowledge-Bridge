@@ -5,15 +5,15 @@ const AddCourse = () => {
     return (
         <div>
             <Sidebar />
-            <div className="mt-[13vh] w-7/12 ml-36 sm:ml-24 sm:w-[72vw] flex flex-col sm:flex-col-reverse gap-6 sm:gap-2 h-max mb-8">
-                <div className="w-7/12 sm:w-full">
+            <div className="mt-[13vh] w-8/12 ml-36 sm:ml-24 sm:w-[72vw] flex flex-col sm:flex-col-reverse gap-6 sm:gap-2 h-max mb-8">
+                <div className="w-full sm:w-full">
                     <h1 className="text-2xl font-bold text-white p-2">Add Course</h1>
                     <div>
                         <RenderSteps />
                     </div>
                 </div>
                 {/* Course Upload Tips */}
-                <div className="w-5/12 sm:w-full">
+                <div className="w-full sm:w-full">
                     <div className="flex items-start bg-zinc-500 flex-col rounded-2xl p-2 gap-3">
                         <p className="text-xl sm:text-base font-medium">⚡ Course Upload Tips</p>
                         <ul className="text-richblack-900 sm:text-sm">

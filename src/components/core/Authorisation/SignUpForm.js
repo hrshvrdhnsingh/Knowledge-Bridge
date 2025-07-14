@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-//import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import Tab from "../../common/Tab"
@@ -32,8 +31,7 @@ const SignUpForm = () => {
     // Handle input fields, when some value changes
     const changeHandler = (e) => {
         setFormData((prevData) => ({
-        ...prevData,
-        [e.target.name]: e.target.value,
+            ...prevData, [e.target.name]: e.target.value,
         }));
         /* if(e.target.name === "password" && e.target.value.length<8) {
             toast.error("Password must be of length 8")
@@ -43,7 +41,6 @@ const SignUpForm = () => {
     // Handle Form Submission
     const submitHandler = (e) => {
         e.preventDefault()
-        //const password = {password};
         if(password.length < 8){
             toast.error("Password must be of length 8")
             return
@@ -53,44 +50,37 @@ const SignUpForm = () => {
             toast.error("Passwords Do Not Match")
             return
         }
+        // Preparing the signup payload with the accountType
         const signupData = {
-            ...formData,
-            accountType,
+            ...formData, accountType,
         }
 
-        // Setting signup data to state
-        // To be used after otp verification
+        // Dispatch a sync-Redux action to stash the signup-data for persistence which shall be used 
+        // after the OTP has been verified by the registering user.
         dispatch(setSignupData(signupData))
-        // Send OTP to user for verification
         dispatch(sendOtp(formData.email, navigate))
-        //navigate("/login")
-        // Reset
+        
         setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
         })
         setAccountType(ACCOUNT_TYPE.STUDENT)
     }
 
-    // data to pass to Tab component
     const tabData = [
         {
-        id: 1,
-        tabName: "Student",
-        type: ACCOUNT_TYPE.STUDENT,
+            id: 1, tabName: "Student", type: ACCOUNT_TYPE.STUDENT,
         },
         {
-        id: 2,
-        tabName: "Instructor",
-        type: ACCOUNT_TYPE.INSTRUCTOR,
+            id: 2, tabName: "Instructor", type: ACCOUNT_TYPE.INSTRUCTOR,
         },
     ]
     return (
         <div className="flex flex-col gap-4 w-full h-max overflow-hidden" >
-            <Tab tabData={tabData} field={accountType} setField={setAccountType} />
+            <Tab tabData={tabData} field={accountType} setField={setAccountType} /> {/* For choosing between Student and Instructor */}
             <form className='flex flex-col gap-4 sm:h-max h-max overflow-hidden mb-8 sm:gap-4' onSubmit={submitHandler}>
                 <div className="flex gap-2 w-[96%]">
                     <label className="flex flex-col w-[50%] gap-2">

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {toast} from "react-hot-toast";
 
+// The domain of the Redux store => cart
 const initialState =  {
     totalItems: localStorage.getItem("totalItems") ? JSON.parse(localStorage.getItem("totalItems")) : 0,
     cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],

@@ -6,7 +6,8 @@ function OpenRoute({ children }) {
     //Only allow un-registered users to get here.
     if (token === null) {
         return children
-    } else {
+    } 
+    else {
         return <Navigate to="/dashboard/my-profile" />
     }
 }

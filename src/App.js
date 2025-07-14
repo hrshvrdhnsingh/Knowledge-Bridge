@@ -95,6 +95,8 @@ function App() {
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes> 
+            
+            {/* Getting the hamburger-icon for mobile users */}
             {
                 navbarActive && (
                     <div onClick={() => setNavbarActive(!navbarActive)} className="fixed inset-0 w-screen h-screen flex justify-center z-[99999] bg-richblack-200 bg-opacity-30">

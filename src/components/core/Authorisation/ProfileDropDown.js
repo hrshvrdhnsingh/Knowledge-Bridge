@@ -10,7 +10,13 @@ const ProfileDropDown = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
-    const ref = useRef(null);
+    const ref = useRef(null); // Get a handle on a particular element, so as to interact with it urgently.
+    
+    // Using a ref for the dropdown handler part ensures the component is contained and we dont have to resort
+    // to CSS hacks like click option on outside div with z-index to make the dropdown disappear. The overlay
+    // approach may collide with other modals and needs extra work.
+    
+    // And the arrow function(the handler) is to tell the ref what to do if an outside click is detected.
     useOnClickOutside(ref, () => setOpen(false));
 
     if (!user) return null;

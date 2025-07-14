@@ -11,7 +11,7 @@ const VerifyEmail = () => {
     const [otp, setOtp] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {signupData, loading} = useSelector( (state) => state.auth)
+    const {signupData, loading} = useSelector((state) => state.auth)
      
     //if the signupData is not available
     useEffect( () => {
@@ -23,8 +23,8 @@ const VerifyEmail = () => {
     }, [])
      
     const submitHandler = (e) => {
-        e.preventDefault(); //After the OTp has been sent, we need to signup now and for that we need the 
-        // sign-up dta which has been passed to us via signupData by authSlice.
+        e.preventDefault(); // After the OTp has been sent, we need to signup now and for that we need the 
+        // sign-up data which has been passed to us via signupData by authSlice.
         const {accountType, firstName, lastName, email, password, confirmPassword} = signupData;
         dispatch(signUp(accountType, firstName, lastName, email, password, confirmPassword, otp, navigate))
     }

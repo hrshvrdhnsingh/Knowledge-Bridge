@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    step: 1,
+    step: 1, // Which step we are on of creating a new course
     course: null,
-    editCourse: false,
-    paymentLoading: false,
+    editCourse: false, // Are we in edit mode
+    paymentLoading: false, // Loading during the payment operation like verifyingPayment
 }
 
 const courseSlice = createSlice({
@@ -31,12 +31,5 @@ const courseSlice = createSlice({
     },
 })
 
-export const {
-  setStep,
-  setCourse,
-  setEditCourse,
-  setPaymentLoading,
-  resetCourseState,
-} = courseSlice.actions
-
-export default courseSlice.reducer
+export const { setStep, setCourse, setEditCourse, setPaymentLoading, resetCourseState } = courseSlice.actions;
+export default courseSlice.reducer;
