@@ -127,6 +127,7 @@ const CourseInformationForm = () => {
             return;
         }
 
+        console.log(data.courseImage);
         const formData = new FormData();
         formData.append("courseName", data.courseTitle);
         formData.append("courseDescription", data.courseShortDesc);

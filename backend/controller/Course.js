@@ -11,35 +11,26 @@ const CourseProgress = require("../model/CourseProgressModel");
 //**************************************To create a new Course******************************************************
 exports.createCourse = async (req, res) => {
     try {
-        //the id lies in the payload part of decode which was inserted into the db itself.
+        // the id lies in the payload part of decode which was inserted into the db itself.
+        console.log(req);
         const userID = req.user.id;
-        let {
-            courseName,
-            courseDescription,
-            whatYouWillLearn,
-            price,
-            category,
-            tag: _tag,
-            status,
-            instructions: _instructions,
-        } = req.body;
+        let { courseName, courseDescription, whatYouWillLearn, price,
+            category, tag: _tag, status, instructions: _instructions } = req.body;
         let thumbnail;
         try {
             thumbnail = req.files.thumbnailImage;
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err.message);
         }
+        console.log(">>> REQ.BODY:", req.body);
+        console.log(">>> REQ.FILES:", req.files);
+
         try {
             if (
-                !courseName ||
-                !courseDescription ||
-                !whatYouWillLearn ||
-                !price ||
-                !_tag.length ||
-                !thumbnail ||
-                !thumbnail ||
-                !_instructions.length
-            ) {
+                !courseName || !courseDescription || !whatYouWillLearn || !price || !_tag.length ||
+                !thumbnail || !thumbnail || !_instructions.length)
+            {
                 return res.status(404).json({
                     success: false,
                     message: "All are mandatory fields.",
