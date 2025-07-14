@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
-import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
-import { useSelector } from "react-redux";
 import "video-react/dist/video-react.css";
 import { Player } from "video-react";
 
@@ -16,28 +13,19 @@ const Upload = ({
     viewData = null,
     editData = null,
 }) => {
-    const { course } = useSelector((state) => state.course);
     const [selectedFile, setSelectedFile] = useState(null);
-    const [previewSource, setPreviewSource] = useState(
-        viewData ? viewData : editData ? editData : ""
-    );
+    const [previewSource, setPreviewSource] = useState(viewData || editData || "");
     const inputRef = useRef(null);
 
-    const onDrop = (acceptedFiles) => {
-        const file = acceptedFiles[0];
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
         if (file) {
-            previewFile(file);
             setSelectedFile(file);
+            previewFile(file);
         }
     };
 
-    const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
-        accept: !video ? { "image/*": [".jpeg", ".jpg", ".png"] } : { "video/*": [".mp4"] },
-        onDrop,
-    });
-
     const previewFile = (file) => {
-        // console.log(file)
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -47,49 +35,53 @@ const Upload = ({
 
     useEffect(() => {
         register(name, { required: true });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [register, name]);
 
     useEffect(() => {
         setValue(name, selectedFile);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFile, setValue, name]);
 
     return (
-        <div className="flex flex-col">
-            <label className="h-[35%] text-zinc-400 text-xl sm:text-base font-semibold">
+        <div className="flex flex-col w-full border rounded-2xl overflow-hidden">
+            <label className="px-4 py-2 text-zinc-400 text-xl sm:text-base font-semibold">
                 {label} {!viewData && <sup className="text-pink-500">*</sup>}
             </label>
+            <input
+                type="file"
+                accept={!video ? ".jpeg,.jpg,.png" : ".mp4"}
+                ref={inputRef}
+                onChange={handleFileChange}
+                className="hidden"
+            />
             <div
-                className={`${
-                    isDragActive ? "bg-richblack-700" : "bg-richblack-500"
-                } rounded-2xl flex flex-col items-center justify-center sm:w-[95%]`}
-                {...getRootProps()}
+                className={`flex flex-col items-center justify-center bg-richblack-500 p-4 cursor-pointer h-60 sm:w-[95%]`}
+                onClick={() => inputRef.current && inputRef.current.click()}
             >
-                <input {...getInputProps()} ref={inputRef} />
                 {previewSource ? (
-                    <div className="flex w-full flex-col">
-                        {!video ? (
-                            <div>
-                                <img
+                    <>
+                        {video ? (
+                            <div className="w-full aspect-video relative overflow-hidden rounded-2xl">
+                                <Player
+                                    playsInline
                                     src={previewSource}
-                                    alt="Preview"
-                                    className="h-full w-full rounded-xl"
+                                    className="absolute inset-0 w-full h-full object-cover"
                                 />
                             </div>
                         ) : (
-                            <Player
-                                RiAspectRatio="16:9"
-                                playsInLine
-                                src={previewSource}
-                                className="rounded-2xl"
-                            />
+                            <div className="w-full aspect-video relative overflow-hidden rounded-xl">
+                                <img
+                                    src={previewSource}
+                                    alt="Preview"
+                                    className="absolute inset-0 w-full h-full object-cover"
+                                />
+                            </div>
                         )}
                         {!viewData && (
                             <button
                                 type="button"
-                                className="h-max max-w-min hover:scale-95 transition-200 mt-4 p-2 bg-yellow-400 rounded-xl"
-                                onClick={() => {
+                                className="mt-4 p-2 bg-yellow-400 rounded-xl hover:scale-95 transition-transform"
+                                onClick={(e) => {
+                                    e.stopPropagation();
                                     setPreviewSource("");
                                     setSelectedFile(null);
                                     setValue(name, null);
@@ -98,38 +90,24 @@ const Upload = ({
                                 Cancel
                             </button>
                         )}
-                    </div>
+                    </>
                 ) : (
-                    <div
-                        className="flex justify-center flex-col items-center"
-                        {...getRootProps({ className: "dropzone" })}
-                    >
-                        <input
-                            {...getInputProps()}
-                            ref={inputRef}
-                            className=""
-                            type="file"
-                            onClick={open}
-                        />
-                        <div className="rounded-full place-items-center flex items-center justify-center">
-                            <FiUploadCloud className="text-4xl" />
+                    <>
+                        <div className="rounded-full p-4 bg-richblack-400">
+                            <FiUploadCloud className="text-4xl text-richblack-200" />
                         </div>
-                        <p className="sm:pl-4">
-                            Drag and drop an {!video ? "image" : "video"}, or click to
-                            <span className="font-normal text-yellow-300 cursor-pointer">
-                                {" "}
-                                Browse
-                            </span>{" "}
-                            a file.
+                        <p className="mt-2 text-richblack-200 text-center">
+                            Drag and drop or click to select an
+                            {video ? " video" : " image"}.
                         </p>
-                        <ul className="flex justify-between gap-8 sm:text-sm sm:pl-4 text-richblack-300">
+                        <ul className="flex justify-between gap-8 sm:text-sm text-richblack-300 mt-2">
                             <li>Aspect Ratio 16:9</li>
                             <li>Recommended size 1024x576</li>
                         </ul>
-                    </div>
+                    </>
                 )}
             </div>
-            {errors[name] & <span className="text-pink-500">{label} is required</span>}
+            {errors[name] && <span className="px-4 py-2 text-pink-500">{label} is required</span>}
         </div>
     );
 };
