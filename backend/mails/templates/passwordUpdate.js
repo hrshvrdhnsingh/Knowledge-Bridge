@@ -66,7 +66,7 @@ exports.passwordUpdated = (email, name) => {
             </div>
             <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
                 at
-                <a href="mailto:info@Knowledge Bridge.com">info@knowledge-bridge.com</a>. We are here to help!
+                <a href="mailto:info@knowledgebridge.com">info@KnowledgeBridge.com</a>. We are here to help!
             </div>
         </div>
     </body>
