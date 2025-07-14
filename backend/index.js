@@ -26,14 +26,6 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(
-    //To entertain the requests from frontend
-    cors({
-        origin: "*",
-        credentials: true,
-    })
-);
-
 const whitelist = ["https://knowledge-bridge.vercel.app", "http://localhost:3000"];
 
 const corsOptions = {
