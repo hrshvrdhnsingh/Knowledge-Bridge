@@ -68,7 +68,7 @@ exports.contactUsEmail = (email, firstname, lastname, message, phoneNo, countryc
     <body>
         <div class="container">
             <a href="https://knowledge-bridge.vercel.app"><img class="logo"
-                    src="../../../src/assets/Logo/Wisdombridgecrop.svg" alt="StudyNotion Logo"></a>
+                    src="../../../src/assets/Logo/Wisdombridgecrop.svg" alt="Knowledge Bridge Logo"></a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear ${firstname} ${lastname},</p>
@@ -82,7 +82,7 @@ exports.contactUsEmail = (email, firstname, lastname, message, phoneNo, countryc
                 <p>We appreciate your interest and will get back to you shortly. </p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-                out to us at <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
+                out to us at <a href="mailto:info@Knowledge Bridge.com">info@Knowledge Bridge.com</a>. We are here to help!</div>
         </div>
     </body>
     

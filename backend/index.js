@@ -32,6 +32,7 @@ app.use(
         origin: "*",
     })
 );
+app.options("*", cors({ origin: "*" }));
 
 app.use(
     fileUpload({

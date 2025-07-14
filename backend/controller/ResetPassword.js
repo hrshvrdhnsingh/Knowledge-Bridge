@@ -32,9 +32,9 @@ exports.resetPasswordToken = async (req, res) => {
         //     console.log(url);
         await mailsender(
             email,
-            "Password Reset - Studynotion",
+            "Password Reset - Knowledge Bridge",
             `The gateway to update your password linked to your
-                                            StudyNotion account lies here : ${url}`
+                                            Knowledge Bridge account lies here : ${url}`
         );
         return res.status(200).json({
             success: true,
