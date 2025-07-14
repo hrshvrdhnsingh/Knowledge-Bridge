@@ -7,54 +7,48 @@ import { studentEndpoints } from "../apis";
 
 const { COURSE_PAYMENT_API, COURSE_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
 
-// Load the Razorpay SDK from the CDN
-// the script is loaded from the razorpay response
+// Load the Razorpay SDK dynamically
 function loadScript(src) {
     return new Promise((resolve) => {
-        // Calling only when succesful, otherwise not
         const script = document.createElement("script");
         script.src = src;
-        script.onload = () => {
-            resolve(true);
-        };
-        script.onerror = () => {
-            resolve(false);
-        };
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
         document.body.appendChild(script);
     });
 }
 
-// Buy the Course
+// Buy the Course (courses)
 export async function BuyCourse(token, courses, user_details, navigate, dispatch) {
     const toastId = toast.loading("Loading...");
     try {
-        // Loading the script of Razorpay SDK
+        // 1) Load Razorpay checkout script
         const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
-
         if (!res) {
             toast.error("Razorpay failed to load. Check your Internet Connection.");
             return;
         }
 
-        // Initiating the Order in Backend
+        // 2) Initiate order on backend
         const orderResponse = await apiConnector(
             "POST",
             COURSE_PAYMENT_API,
             { courses },
             { Authorization: `Bearer ${token}` }
         );
-
         if (!orderResponse.data.success) {
             throw new Error(orderResponse.data.message);
         }
-        //     console.log("PAYMENT RESPONSE orderResponse ->", orderResponse);
 
-        // Opening the Razorpay SDK
+        const orderData = orderResponse.data.data;
+        console.log("PAYMENT RESPONSE orderResponse ->", orderResponse);
+
+        // 3) Configure Razorpay options
         const options = {
-            key: process.env.RAZORPAY_KEY,
+            key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: "INR",
-            amount: `${orderResponse.data.data.amount}`,
-            order_id: orderResponse.data.data.id,
+            amount: `${orderData.amount}`,
+            order_id: orderData.id,
             name: "Knowledge Bridge",
             description: "Thank you for purchasing the course.",
             image: rzpLogo,
@@ -63,50 +57,69 @@ export async function BuyCourse(token, courses, user_details, navigate, dispatch
                 email: user_details.email,
             },
             handler: function (response) {
-                sendPaymentSuccessEmail(response, orderResponse.data.data.amount, token);
-                verifyPayment({ ...response, courses }, token, navigate, dispatch);
+                // 4a) Fire-and-forget email notification
+                sendPaymentSuccessEmail(response, orderData.amount, token);
+                // 4b) Verify payment with proper payload
+                verifyPayment(
+                    {
+                        orderId: response.razorpay_order_id,
+                        paymentId: response.razorpay_payment_id,
+                        signature: response.razorpay_signature,
+                        amount: orderData.amount,
+                        courses,
+                    },
+                    token,
+                    navigate,
+                    dispatch
+                );
             },
         };
-        const paymentObject = new window.Razorpay(options);
 
+        // 5) Open Razorpay checkout
+        const paymentObject = new window.Razorpay(options);
         paymentObject.open();
         paymentObject.on("payment.failed", function (response) {
             toast.error("Oops! Payment Failed.");
-            //     console.log(response.error);
+            console.log(response.error);
         });
-    } 
-    catch (error) {
-        //     console.log("PAYMENT API ERROR............", error);
-        toast.error(error.response.data.message);
+    } catch (error) {
+        console.log("PAYMENT API ERROR............", error);
+        toast.error(error.response?.data?.message || error.message);
+    } finally {
+        toast.dismiss(toastId);
     }
-    toast.dismiss(toastId);
 }
 
 // Verify the Payment
-async function verifyPayment(bodyData, token, navigate, dispatch) {
+async function verifyPayment(
+    { orderId, paymentId, signature, amount, courses },
+    token,
+    navigate,
+    dispatch
+) {
     const toastId = toast.loading("Verifying Payment...");
     dispatch(setPaymentLoading(true));
     try {
-        const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, {
-            Authorization: `Bearer ${token}`,
-        });
-
-        //     console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response);
-
+        const response = await apiConnector(
+            "POST",
+            COURSE_VERIFY_API,
+            { orderId, paymentId, signature, amount, courses },
+            { Authorization: `Bearer ${token}` }
+        );
+        console.log("VERIFY PAYMENT RESPONSE FROM BACKEND............", response);
         if (!response.data.success) {
             throw new Error(response.data.message);
         }
-
         toast.success("Payment Successful. You are Added to the course ");
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
-    } 
-    catch (error) {
+    } catch (error) {
         console.log("PAYMENT VERIFY ERROR............", error);
-        toast.error("Could Not verify payment.");
+        toast.error(error.response?.data?.message || "Could Not verify payment.");
+    } finally {
+        toast.dismiss(toastId);
+        dispatch(setPaymentLoading(false));
     }
-    toast.dismiss(toastId);
-    dispatch(setPaymentLoading(false));
 }
 
 // Send the Payment Success Email
@@ -122,8 +135,7 @@ async function sendPaymentSuccessEmail(response, amount, token) {
             },
             { Authorization: `Bearer ${token}` }
         );
-    } 
-    catch (error) {
-        //     console.log("PAYMENT SUCCESS EMAIL ERROR............", error);
+    } catch (error) {
+        // Silent fail for email
     }
 }
