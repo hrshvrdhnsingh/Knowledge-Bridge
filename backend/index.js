@@ -30,7 +30,6 @@ app.use(
     //To entertain the requests from frontend
     cors({
         origin: "*",
-        credentials: true,
     })
 );
 
