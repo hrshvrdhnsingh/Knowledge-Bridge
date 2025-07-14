@@ -84,7 +84,6 @@ export const addCourseDetails = async (data, token) => {
     console.log("Data recieved for new course ->", data);
     try {
         const response = await apiConnector("POST", CREATE_COURSE_API, data, {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
         });
         console.log("CREATE COURSE API RESPONSE............", response);

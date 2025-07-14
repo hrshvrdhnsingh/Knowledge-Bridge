@@ -30,16 +30,30 @@ app.use(
     //To entertain the requests from frontend
     cors({
         origin: "*",
+        credentials: true,
     })
 );
-app.options("*", cors({ origin: "*" }));
 
-app.use(
-    fileUpload({
-        useTempFiles: true,
-        tempFileDir: "/hoohaa/",
-    })
-);
+const whitelist = ["https://knowledge-bridge.vercel.app", "http://localhost:3000"];
+
+const corsOptions = {
+    origin(origin, callback) {
+        // allow requests with no origin (e.g. mobile apps or curl)
+        if (!origin) return callback(null, true);
+
+        if (whitelist.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    // credentials: false   // leave false if only using Bearer tokens
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use("/api/v1/auth", userRoutes);
 app.use("/api/v1/profile", profileRoutes);
