@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Tab = ({tabData, field, setField}) => {
+    // This lets you choose between the ENUM types of Student or Instructor in the SignUp Form.
     return ( 
         <div className='w-[50%] flex justify-center text-xl font-medium rounded-2xl duration-300'>
             {

@@ -1,13 +1,12 @@
 import { toast } from "react-hot-toast";
-
 import { setLoading, setUser } from "../../slices/profileSlice";
 import { apiConnector } from "../apiConnector";
 import { profileEndpoints } from "../apis";
 import { logout } from "./authAPI";
 
-const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API } =
-    profileEndpoints;
+const { GET_USER_DETAILS_API, GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API } = profileEndpoints;
 
+// Finds the profile via the id -> Populates the additionalDetails field
 export function getUserDetails(token, navigate) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -25,7 +24,8 @@ export function getUserDetails(token, navigate) {
                 ? response.data.data.image
                 : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.data.firstName} ${response.data.data.lastName}`;
             dispatch(setUser({ ...response.data.data, image: userImage }));
-        } catch (error) {
+        } 
+        catch (error) {
             dispatch(logout(navigate));
             //     console.log("GET_USER_DETAILS API ERROR............", error);
             toast.error("Could Not Get User Details");
@@ -35,6 +35,8 @@ export function getUserDetails(token, navigate) {
     };
 }
 
+// use the user_id -> get all the courses via populating the courseContent(section) and then the subsections.
+// Also get the total duration of the course and the percentage of the course completed.
 export async function getUserEnrolledCourses(token) {
     const toastId = toast.loading("Loading...");
     let result = [];
@@ -49,7 +51,8 @@ export async function getUserEnrolledCourses(token) {
         }
         //     console.log("User Enrolled ->", response);
         result = response.data.data;
-    } catch (error) {
+    } 
+    catch (error) {
         //     console.log("GET_USER_ENROLLED_COURSES_API API ERROR............", error);
         toast.error("Could Not Get Enrolled Courses");
     }
@@ -66,7 +69,8 @@ export async function getInstructorData(token) {
         });
         //     console.log("GET_INSTRUCTOR_DATA_API API RESPONSE............", response);
         result = response?.data?.courses;
-    } catch (error) {
+    } 
+    catch (error) {
         //     console.log("GET_INSTRUCTOR_DATA_API API ERROR............", error);
         toast.error("Could Not Get Instructor Data");
     }

@@ -72,7 +72,8 @@ exports.categoryPageDetails = async (req, res) => {
                 path: "course",
                 populate: { path: "ratingAndReviews" },
             })
-            .exec();
+            .exec(); // Without this the result is still an query object. using exec() makes sure to send the
+            // query to the MongoDB and get back a promise and get more predictable behaviour like instant querying.
 
         if (!selectedCategory) {
             return res.status(400).json({
@@ -82,29 +83,28 @@ exports.categoryPageDetails = async (req, res) => {
             });
         }
 
-        //When there are no courses
+        // When there are no courses
         if (selectedCategory?.course?.length === 0) {
             return res.status(404).json({
                 success: false,
                 message: "No courses found for the selected category. ",
             });
         }
-        //Get courses for other categories
+        // Get courses for other categories
         const categoriesExceptSelected = await Category.find({
             _id: { $ne: categoryId },
         });
-        //Get courses for different categories
+        // Get courses for one different category and populate it's instructor and reviews
         const differentCategories = await Category.findOne(
             categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]._id
-        )
-            .populate({
-                path: "course",
-                match: { status: "Published" },
-                populate: { path: "ratingAndReviews" },
-            })
-            .exec();
+        ).populate({
+            path: "course",
+            match: { status: "Published" },
+            populate: { path: "ratingAndReviews" },
+        })
+        .exec();
 
-        //Get top-selling courses
+        // Get top-selling courses across all categories
         const allCategories = await Category.find()
             .populate({
                 path: "course",
@@ -112,10 +112,9 @@ exports.categoryPageDetails = async (req, res) => {
                 populate: [{ path: "instructor" }, { path: "ratingAndReviews" }],
             })
             .exec();
-        const allCourses = allCategories.flatMap((category) => category.course);
-        const sortedCourses = allCourses.sort((a, b) => b.sold - a.sold);
-        const mostSellingCourses = sortedCourses.slice(0, 10);
-
+        const allCourses = allCategories.flatMap((category) => category.course); // Combining all the courses
+        const sortedCourses = allCourses.sort((a, b) => b.sold - a.sold); // Sorts all the courses based on time sold.
+        const mostSellingCourses = sortedCourses.slice(0, 10); // Tehn taking the top-10
 
         return res.status(200).json({
             success: true,
@@ -123,7 +122,8 @@ exports.categoryPageDetails = async (req, res) => {
             differentCategories,
             mostSellingCourses,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({
             success: false,
             message: "Something went wrong while trying to fetch the category page.",

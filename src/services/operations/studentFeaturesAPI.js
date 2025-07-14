@@ -74,7 +74,8 @@ export async function BuyCourse(token, courses, user_details, navigate, dispatch
             toast.error("Oops! Payment Failed.");
             //     console.log(response.error);
         });
-    } catch (error) {
+    } 
+    catch (error) {
         //     console.log("PAYMENT API ERROR............", error);
         toast.error(error.response.data.message);
     }
@@ -99,7 +100,8 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
         toast.success("Payment Successful. You are Added to the course ");
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
-    } catch (error) {
+    } 
+    catch (error) {
         console.log("PAYMENT VERIFY ERROR............", error);
         toast.error("Could Not verify payment.");
     }
@@ -120,7 +122,8 @@ async function sendPaymentSuccessEmail(response, amount, token) {
             },
             { Authorization: `Bearer ${token}` }
         );
-    } catch (error) {
+    } 
+    catch (error) {
         //     console.log("PAYMENT SUCCESS EMAIL ERROR............", error);
     }
 }

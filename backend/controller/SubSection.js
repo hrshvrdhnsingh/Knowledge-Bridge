@@ -85,7 +85,7 @@ exports.updateSubSection = async (req, res) => {
             subSection.timeDuration = `${uploadDetails.duration}`;
             await subSection.save();
         }
-        //Update the name od the section
+        //Update the name of the section
         const updatedSection = await SubSection.findById(sectionId);
         //     console.log("Updated Section : ", updatedSection);
 

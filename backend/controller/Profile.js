@@ -4,8 +4,8 @@ const Course = require("../model/CourseModel");
 const CourseProgress = require("../model/CourseProgressModel");
 const { convertSecondsToDuration } = require("../utils/secToDuration");
 const { uploadImageToCloudinary } = require("../utils/imageUpload");
-//Since a profile object is already there in the schema, that was created during signup. So we need not create a
-//profile, just updating the existing one would do.
+// Since a profile object is already there in the schema, that was created during signup. So we need not create a
+// profile, just updating the existing one would do.
 
 //*******************************************To update a profile**************************************************
 exports.updateProfile = async (req, res) => {
@@ -18,7 +18,8 @@ exports.updateProfile = async (req, res) => {
             contactNumber = "",
             gender = "",
         } = req.body;
-        //Getting the userID from the user(decode) part that er put in the token part.
+
+        // Getting the userID from the user(decode) part that er put in the token part.
         const userID = req.user.id;
         if (!userID) {
             return res.status(400).json({
@@ -32,16 +33,16 @@ exports.updateProfile = async (req, res) => {
         userDetails.lastName = lastName;
         await userDetails.save();
         //     console.log("User Details : ", userDetails);
-        //Finding the profile and updating the additional details
+
+        // Finding the user's profile and updating the additional details
         const profileID = userDetails.additionalDetails;
         const profileDetails = await Profile.findById(profileID);
-        //Updating the profile
         profileDetails.gender = gender;
         profileDetails.about = about;
         profileDetails.contactNumber = contactNumber;
         profileDetails.dateOfBirth = dateOfBirth;
-        //Saving the profike
         await profileDetails.save();
+
         const updatedUserDetails = await User.findById(userID).populate("additionalDetails").exec();
         //     console.log("Updated User Details : ", updatedUserDetails);
 
@@ -50,7 +51,8 @@ exports.updateProfile = async (req, res) => {
             message: "Profile updation was succesful.",
             updatedUserDetails,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Profile Updation was unsuccessful",
@@ -70,17 +72,18 @@ exports.deleteProfile = async (req, res) => {
                 message: "Unable to fetch user.",
             });
         }
-        //first we remove the profile linked to the user, then we delete the user.
-        //The profile is stored in teh additonal details part of Profile schema
+        // first we remove the profile linked to the user, then we delete the user.
+        // The profile is stored in the additional details part of User schema
         await Profile.findByIdAndDelete({ _id: userDetails.additionalDetails });
-        //Deletig the user
+        // Deleting the user
         await User.findByIdAndDelete({ _id: id });
 
         return res.status(200).json({
             success: true,
             message: "Deletion of user was successful. ",
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Profile Deletion was undsuccesful",
@@ -119,22 +122,24 @@ exports.updateDisplayPicture = async (req, res) => {
             1000,
             1000
         );
-        //     console.log("Image : ", image);
+        
         try {
-            const updatedProfile = await User.findByIdAndUpdate(
+            const updatedProfile = await User.findByIdAndUpdate( // Update the profile part of the user.
                 { _id: userId },
                 { image: image.secure_url },
                 { new: true }
             );
-        } catch (err) {
+        } 
+        catch (err) {
             console.log(err);
         }
         return res.status(200).json({
             success: true,
             message: "Image updated successfully.",
-            //data : updatedProfile
+            // data : updatedProfile
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: err.message,
@@ -158,40 +163,44 @@ exports.getEnrolledCourses = async (req, res) => {
                 },
             })
             .exec();
-        userDetails = userDetails.toObject();
+
+        userDetails = userDetails.toObject(); // Mongoose document to regular JS object
+
         if (!userDetails) {
             return res.status(400).json({
                 success: false,
                 message: `Could not find user with id: ${userId}`,
             });
         }
-        const SubsectionLength = 0;
+
         for (const course of userDetails.courses) {
             let totalDurationInSeconds = 0;
             let subsectionLength = 0;
 
+            // Get the total duration over all the courses to be displayed on the enrolled courses for each course
             for (const courseContent of course.courseContent) {
                 totalDurationInSeconds += courseContent.subSection.reduce(
-                    (acc, curr) => acc + parseInt(curr.timeDuration),
-                    0
+                    (acc, curr) => acc + parseInt(curr.timeDuration), 0
                 );
                 course.totalDuration = convertSecondsToDuration(totalDurationInSeconds);
                 subsectionLength += courseContent.subSection?.length;
             }
 
+            // Now we get the amount of lectures that have been completed by the user.
             let courseProgressCount = await CourseProgress.findOne({
                 courseID: course._id,
                 userId: userId,
             });
             courseProgressCount = courseProgressCount?.completedVideos?.length;
 
+            // Now representing the course progress in terms of percentage to display the progress bar
             if (subsectionLength === 0) {
                 course.progressPercentage = 100;
-            } else {
+            } 
+            else {
                 const multiplier = Math.pow(10, 2);
                 course.progressPercentage =
-                    Math.round((courseProgressCount / subsectionLength) * 100 * multiplier) /
-                    multiplier;
+                    Math.round((courseProgressCount / subsectionLength) * 100 * multiplier) / multiplier;
             }
         }
 
@@ -199,7 +208,8 @@ exports.getEnrolledCourses = async (req, res) => {
             success: true,
             data: userDetails.courses,
         });
-    } catch (error) {
+    } 
+    catch (error) {
         return res.status(500).json({
             success: false,
             message: error.message,
@@ -211,7 +221,8 @@ exports.getEnrolledCourses = async (req, res) => {
 exports.instructorDashboard = async (req, res) => {
     try {
         const courseDetails = await Course.find({ instructor: req.user.id });
-        //     console.log("Course Detials at instructor dashboard-> ", courseDetails);
+        
+        // Compute the statistics for every course of that instructor.
         const courseData = courseDetails.map((course) => {
             const totalStudentsEnrolled = course.studentsEnrolled.length;
             const totalAmountGenerated = totalStudentsEnrolled * course.price;
@@ -221,7 +232,6 @@ exports.instructorDashboard = async (req, res) => {
                 _id: course._id,
                 courseName: course.courseName,
                 courseDescription: course.courseDescription,
-                // Include other course properties as needed
                 totalStudentsEnrolled,
                 totalAmountGenerated,
             };
@@ -230,11 +240,12 @@ exports.instructorDashboard = async (req, res) => {
         });
 
         res.status(200).json({ courses: courseData });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         res.status(500).json({
             success: false,
-            message: "err.message",
+            message: error.message,
         });
     }
 };

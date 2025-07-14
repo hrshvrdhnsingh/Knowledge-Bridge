@@ -8,6 +8,7 @@ import { logout } from "./authAPI";
 const { UPDATE_DISPLAY_PICTURE_API, UPDATE_PROFILE_API, CHANGE_PASSWORD_API, DELETE_PROFILE_API } =
     settingsEndpoints;
 
+// Take picture argument -> upload on cloudinary -> attach the llink url in the user profile
 export function updateDisplayPicture(token, formData) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -16,15 +17,14 @@ export function updateDisplayPicture(token, formData) {
                 "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${token}`,
             });
-            //     console.log("Request headers : ", response);
-            //     console.log("UPDATE_DISPLAY_PICTURE_API API RESPONSE............", response);
 
             if (!response.data.success) {
                 throw new Error(response.data.message);
             }
             toast.success("Display Picture Updated Successfully");
             dispatch(setUser(response.data.data));
-        } catch (error) {
+        } 
+        catch (error) {
             //     console.log("UPDATE_DISPLAY_PICTURE_API API ERROR............", error);
             toast.error("Could Not Update Display Picture");
         }
@@ -32,6 +32,7 @@ export function updateDisplayPicture(token, formData) {
     };
 }
 
+// Get the user_id -> update the field -> get the profile_id -> update the profile of the user
 export function updateProfile(token, formData) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -57,6 +58,8 @@ export function updateProfile(token, formData) {
     };
 }
 
+// Get the user details -> match the password and old password parameter -> if matched update the password with
+// new hashed one.
 export async function changePassword(token, formData) {
     const toastId = toast.loading("Loading...");
     console.log(formData)
@@ -70,13 +73,15 @@ export async function changePassword(token, formData) {
             throw new Error(response.data.message);
         }
         toast.success("Password Changed Successfully");
-    } catch (error) {
+    } 
+    catch (error) {
         //     console.log("CHANGE_PASSWORD_API API ERROR............", error);
         toast.error(error.response.data.message);
     }
     toast.dismiss(toastId);
 }
 
+// Find the user -> delete the user and profile
 export function deleteProfile(token, navigate) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
@@ -91,7 +96,8 @@ export function deleteProfile(token, navigate) {
             }
             toast.success("Profile Deleted Successfully");
             dispatch(logout(navigate));
-        } catch (error) {
+        } 
+        catch (error) {
             //     console.log("DELETE_PROFILE_API API ERROR............", error);
             toast.error("Could Not Delete Profile");
         }

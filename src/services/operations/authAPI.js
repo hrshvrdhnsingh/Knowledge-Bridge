@@ -7,10 +7,12 @@ import { endpoints } from "../apis";
 
 const { SENDOTP_API, SIGNUP_API, LOGIN_API, RESETPASSTOKEN_API, RESETPASSWORD_API } = endpoints;
 
+// React reducers must stay pure/asynchronous. By using dispatch() we can use the async apiConnector 
+// and dispatch actions around them.
 export function sendOtp(email, navigate) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
-        dispatch(setLoading(true)); //used to set the value of loading
+        dispatch(setLoading(true)); // used to set the value of loading from the authSlice
         try {
             const response = await apiConnector("POST", SENDOTP_API, {
                 email,
@@ -21,28 +23,21 @@ export function sendOtp(email, navigate) {
             if (response.status === 200) {
                 toast.success("OTP Sent Successfully");
                 navigate("/verify-email");
-            } else {
+            } 
+            else {
                 throw new Error("Failed to send OTP");
             }
-        } catch (error) {
+        } 
+        catch (error) {
             //     console.log("SENDOTP API ERROR............", error);
             toast.error("Could Not Send OTP");
         }
         dispatch(setLoading(false));
-        toast.dismiss(toastId);
+        toast.dismiss(toastId); // Dismisses the loading toast when done
     };
 }
 
-export function signUp(
-    accountType,
-    firstName,
-    lastName,
-    email,
-    password,
-    confirmPassword,
-    otp,
-    navigate
-) {
+export function signUp( accountType, firstName, lastName, email, password, confirmPassword, otp, navigate) {
     return async (dispatch) => {
         const toastId = toast.loading("Loading...");
         dispatch(setLoading(true));
@@ -83,7 +78,6 @@ export function login(email, password, navigate) {
 
         try {
             const response = await apiConnector("POST", LOGIN_API, { email, password });
-
             //     console.log("LOGIN API RESPONSE............", response);
 
             if (!response.data.success) {
@@ -118,7 +112,6 @@ export function getPasswordResetToken(email, setEmailSent) {
         dispatch(setLoading(true));
         try {
             const response = await apiConnector("POST", RESETPASSTOKEN_API, { email });
-
             //     console.log("RESETPASSTOKEN RESPONSE............", response);
 
             if (!response.data.success) {
@@ -146,7 +139,6 @@ export function resetPassword(password, confirmPassword, token, navigate) {
                 confirmPassword,
                 token,
             });
-
             //     console.log("RESETPASSWORD RESPONSE............", response);
 
             if (!response.data.success) {
@@ -175,7 +167,7 @@ export function logout(navigate) {
             toast.success("Logged Out");
             navigate("/");
         } catch (err) {
-            //     console.log(err);
+            console.log(err);
         }
     };
 }

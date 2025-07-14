@@ -1,22 +1,24 @@
 import axios from "axios";
 const axiosRetry = require("axios-retry").default;
 
+// axiosInstance allows us to configure defaults such as timeout, baseURL and retries
 export const axiosInstance = axios.create({
-    timeout: 20000, // Set a timeout of 10 seconds
+    timeout: 20000, // timeout of 10 seconds
 });
 
 axiosRetry(axiosInstance, {
-    retries: 5, // Number of retries
+    retries: 5, 
     retryDelay: (retryCount) => {
         console.log(`Retry attempt: ${retryCount}`);
         return retryCount * 1000; // Delay before retrying
     },
     retryCondition: (error) => {
-        // Retry on network errors or 5xx status codes
+        // Retry only on network errors or 5xx status codes(network down)
         return error.code === "ECONNABORTED" || axiosRetry.isNetworkOrIdempotentRequestError(error);
     },
 });
 
+// A single, consistent way to call any HTTP endpoint in the app
 export const apiConnector = async (method, url, bodyData = null, headers = {}, params = null) => {
     try {
         const response = await axiosInstance({

@@ -50,7 +50,7 @@ const NestedView = ({ handleChangeEditSectionName }) => {
         }
         setConfirmationModal(null);
     };
-    console.log("Course map ->", course);
+    // console.log("Course map ->", course);
     return (
         <>
             <div className="rounded-xl bg-richblack-500 h-max w-full" id="nestedViewContainer">

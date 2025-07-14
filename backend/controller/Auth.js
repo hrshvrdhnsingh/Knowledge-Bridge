@@ -198,7 +198,6 @@ exports.changePassword = async (req, res) => {
         // Validate old password
         const isPasswordMatch = await bcrypt.compare(oldPassword, userDetails.password);
         if (!isPasswordMatch) {
-            // If old password does not match, return a 401 (Unauthorized) error
             return res.status(401).json({
                 success: false,
                 message: "The password is incorrect",
@@ -206,7 +205,7 @@ exports.changePassword = async (req, res) => {
         }
 
         // Update password
-        const encryptedPassword = await bcrypt.hash(newPassword, 10);
+        const encryptedPassword = await bcrypt.hash(newPassword, 10); // Salt rounds = 10; Bcrypt algo runs = 2^saltRounds
         const updatedUserDetails = await User.findByIdAndUpdate(
             req.user.id,
             { password: encryptedPassword },
@@ -223,8 +222,8 @@ exports.changePassword = async (req, res) => {
                     `Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
                 )
             );
-        } catch (error) {
-            // If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
+        } 
+        catch (error) {
             console.error("Error occurred while sending email:", error);
             return res.status(500).json({
                 success: false,
@@ -233,13 +232,12 @@ exports.changePassword = async (req, res) => {
             });
         }
 
-        // Return success response
         return res.status(200).json({
             success: true,
             message: "Password updated successfully",
         });
-    } catch (error) {
-        // If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
+    } 
+    catch (error) {
         console.error("Error occurred while updating password:", error);
         return res.status(500).json({
             success: false,

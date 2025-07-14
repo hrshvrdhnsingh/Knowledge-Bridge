@@ -8,6 +8,7 @@ function RatingStars({ Review_Count, Star_Size }) {
         empty: 0,
     })
 
+    // Getting the number of each of the stars ie; full, half-empty OR empty
     useEffect(() => {
         const wholeStars = Math.floor(Review_Count) || 0
         SetStarCount({

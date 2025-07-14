@@ -63,7 +63,7 @@ exports.updateSection = async (req, res) => {
                 message: "Fields are missing.",
             });
         }
-        //Update the name od the section
+        //Update the name of the section
         const updatedSection = await Section.findByIdAndUpdate(
             sectionID,
             { sectionName },
@@ -95,7 +95,7 @@ exports.updateSection = async (req, res) => {
 exports.deleteSection = async (req, res) => {
     try {
         const { sectionID, courseId } = req.body;
-        //Removing section from the Courses List
+        // Removing section from the Courses List
         await Course.findByIdAndUpdate(courseId, {
             $pull: { courseContent: sectionID },
         });
