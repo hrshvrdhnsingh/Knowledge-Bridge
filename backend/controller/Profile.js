@@ -10,16 +10,11 @@ const { uploadImageToCloudinary } = require("../utils/imageUpload");
 //*******************************************To update a profile**************************************************
 exports.updateProfile = async (req, res) => {
     try {
-        const {
-            firstName = "",
-            lastName = "",
-            dateOfBirth = "",
-            about = "",
-            contactNumber = "",
-            gender = "",
-        } = req.body;
-
-        // Getting the userID from the user(decode) part that er put in the token part.
+        const { firstName = "", lastName = "", dateOfBirth = "", about = "",
+            contactNumber = "", gender = "",} = req.body;
+        
+        // console.log(req);
+        // Getting the userID from the user(decode) part that user put in the token part.
         const userID = req.user.id;
         if (!userID) {
             return res.status(400).json({
@@ -27,7 +22,7 @@ exports.updateProfile = async (req, res) => {
                 message: "User ID not found.",
             });
         }
-        //Finding the user and updating the first name and last name
+        // Finding the user and updating the first name and last name
         const userDetails = await User.findById(userID);
         userDetails.firstName = firstName;
         userDetails.lastName = lastName;
@@ -102,10 +97,11 @@ exports.getAllUserDetails = async (req, res) => {
             message: "Getting all user details was succesful. ",
             userDetails,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
-            message: "Attempt to get all the user details was undsuccesful",
+            message: "Attempt to get all the user details was unsuccesful",
             description: err.message,
         });
     }
@@ -118,13 +114,11 @@ exports.updateDisplayPicture = async (req, res) => {
         const userId = req.user.id;
         const image = await uploadImageToCloudinary(
             displayPicture,
-            process.env.FOLDER_NAME,
-            1000,
-            1000
+            process.env.FOLDER_NAME, 1000, 1000
         );
-        
+
         try {
-            const updatedProfile = await User.findByIdAndUpdate( // Update the profile part of the user.
+            const updatedProfile = await User.findByIdAndUpdate(
                 { _id: userId },
                 { image: image.secure_url },
                 { new: true }
@@ -136,7 +130,6 @@ exports.updateDisplayPicture = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "Image updated successfully.",
-            // data : updatedProfile
         });
     } 
     catch (err) {
@@ -177,10 +170,11 @@ exports.getEnrolledCourses = async (req, res) => {
             let totalDurationInSeconds = 0;
             let subsectionLength = 0;
 
-            // Get the total duration over all the courses to be displayed on the enrolled courses for each course
+            // Get the total duration over all the section to be displayed on the enrolled courses for each course
             for (const courseContent of course.courseContent) {
                 totalDurationInSeconds += courseContent.subSection.reduce(
-                    (acc, curr) => acc + parseInt(curr.timeDuration), 0
+                    (acc, curr) => acc + parseInt(curr.timeDuration),
+                    0
                 );
                 course.totalDuration = convertSecondsToDuration(totalDurationInSeconds);
                 subsectionLength += courseContent.subSection?.length;
@@ -200,7 +194,8 @@ exports.getEnrolledCourses = async (req, res) => {
             else {
                 const multiplier = Math.pow(10, 2);
                 course.progressPercentage =
-                    Math.round((courseProgressCount / subsectionLength) * 100 * multiplier) / multiplier;
+                    Math.round((courseProgressCount / subsectionLength) * 100 * multiplier) /
+                    multiplier;
             }
         }
 
@@ -221,7 +216,7 @@ exports.getEnrolledCourses = async (req, res) => {
 exports.instructorDashboard = async (req, res) => {
     try {
         const courseDetails = await Course.find({ instructor: req.user.id });
-        
+
         // Compute the statistics for every course of that instructor.
         const courseData = courseDetails.map((course) => {
             const totalStudentsEnrolled = course.studentsEnrolled.length;

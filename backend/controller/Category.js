@@ -19,7 +19,7 @@ exports.createCategory = async (req, res) => {
                 message: "Course already Exists in our database.",
             });
         }
-        //creating entry in the database
+        // creating entry in the database
         const categoryDetails = await Category.create({
             name: name,
             description: description,
@@ -29,7 +29,8 @@ exports.createCategory = async (req, res) => {
             success: true,
             message: "Category created succesfully.",
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({
             success: false,
             message: "Something went wrong while trying to create a tag.",
@@ -49,7 +50,8 @@ exports.getAllCategories = async (req, res) => {
             allCategories,
         });
         
-    } catch (err) {
+    } 
+    catch (err) {
         console.error(err);
         return res.status(500).json({
             success: false,

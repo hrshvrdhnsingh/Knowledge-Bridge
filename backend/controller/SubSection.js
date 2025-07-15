@@ -3,15 +3,15 @@ const Section = require("../model/SectionModel");
 const { uploadImageToCloudinary } = require("../utils/imageUpload");
 
 //****************************************Create Sub-Section*******************************************************
+// uplaod the file -> Create the subsection -> push the subsection into the section's 
 exports.createSubSection = async (req, res) => {
     try {
-        //     console.log("Re.body ->", req.body);
         const { sectionID, title, description } = req.body;
         let video;
         try {
             video = req.files.video;
-            //     console.log("Video", video);
-        } catch (err) {
+        }
+        catch (err) {
             return res.json({
                 message: err.message,
             });
@@ -23,25 +23,28 @@ exports.createSubSection = async (req, res) => {
             });
         }
 
-        //uploading the file
+        // uploading the file
         let fileupload;
         try {
             fileupload = await uploadImageToCloudinary(video, process.env.CLOUD_FOLDER);
-        } catch (uploadError) {
+        } 
+        catch (uploadError) {
             return res.status(500).json({
                 success: false,
                 message: "Failed to upload video.",
                 description: uploadError.message,
             });
         }
-        //creating a subsection
+
+        // creating a subsection
         const SubSectionDetails = await SubSection.create({
             title: title,
             timeDuration: `${fileupload.duration}`,
             description: description,
             videoUrl: fileupload.secure_url,
         });
-        //Updating the section with teh sub-section attached to teh schema
+
+        //Updating the section with the sub-section attached to the schema
         const updatedSection = await Section.findByIdAndUpdate(
             { _id: sectionID },
             {
@@ -49,12 +52,14 @@ exports.createSubSection = async (req, res) => {
             },
             { new: true }
         ).populate("subSection");
+
         return res.status(200).json({
             success: true,
             message: "Sub-Section added succesfully. ",
             updatedSection,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         //     console.log("eRROR: ", err.message);
         return res.status(400).json({
             success: false,
@@ -75,9 +80,10 @@ exports.updateSubSection = async (req, res) => {
                 message: "Fields are missing.",
             });
         }
+
+        // Over-writing the data
         if (title !== undefined) subSection.title = title;
         if (description !== undefined) subSection.description = description;
-
         if (req.files && req.files.video !== undefined) {
             const video = req.files.video;
             const uploadDetails = await uploadImageToCloudinary(video, process.env.FOLDER_NAME);
@@ -85,16 +91,17 @@ exports.updateSubSection = async (req, res) => {
             subSection.timeDuration = `${uploadDetails.duration}`;
             await subSection.save();
         }
-        //Update the name of the section
+
+        // Return the updated section (whose subsection just underwent an update)
         const updatedSection = await SubSection.findById(sectionId);
-        //     console.log("Updated Section : ", updatedSection);
 
         return res.status(200).json({
             success: true,
             message: "SubSection updated succesfully. ",
             date: updatedSection,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Failed to update section. Try again.",
@@ -128,7 +135,8 @@ exports.deleteSubSection = async (req, res) => {
             message: "SubSection deleted succesfully. ",
             data: updateSection,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Failed to delete sub-section. Try again.",

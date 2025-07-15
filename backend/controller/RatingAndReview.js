@@ -7,8 +7,8 @@ exports.createRating = async (req, res) => {
     try {
         const userId = req.user.id;
         const { rating, review, courseId } = req.body;
-        //     console.log("req.body ->", req.body);
-        //Getting the corresponding courseDeails to check whether the user is alrady enrolled or not
+
+        // Getting the corresponding courseDetails to check whether the user is alrady enrolled or not
         const courseDetails = await Course.findOne({
             _id: courseId,
             studentsEnrolled: { $elemMatch: { $eq: userId } },
@@ -19,7 +19,8 @@ exports.createRating = async (req, res) => {
                 message: "User is not enrolled in the specified course. ",
             });
         }
-        //Check if user already reviewed the course
+
+        // Check if user already reviewed the course
         const alreadyReviewed = await RatingAndReview.findOne({
             user: userId,
             course: courseId,
@@ -31,7 +32,7 @@ exports.createRating = async (req, res) => {
             });
         }
 
-        //Create a new rating and review
+        // Create a new rating and review
         const ratingReview = await RatingAndReview.create({
             rating,
             review,
@@ -40,7 +41,7 @@ exports.createRating = async (req, res) => {
         });
         //     console.log("Created Rating ->", ratingReview);
         //     console.log(typeof courseId);
-        //Update the course with the rating
+        // Update the course with the rating
         const updatedCourseDetails = await Course.findByIdAndUpdate(
             courseId,
             {
@@ -49,13 +50,14 @@ exports.createRating = async (req, res) => {
             { new: true }
         ).populate("ratingAndReviews");
         //     console.log("Updated Course Details :-----------------> ", updatedCourseDetails);
-        //Return success response
+        
         return res.status(200).json({
             success: true,
             message: "Rating and Review successfully created",
             ratingReview,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Something went wrong while trying to create a Review.",
@@ -70,11 +72,11 @@ exports.getAverageRating = async (req, res) => {
         const courseId = req.body.courseId;
         //Get the average rating
         const result = await RatingAndReview.aggregate([
-            //Returns an array
             {
-                //Find that entry in rating and review wherein course has the courseId
-                $match: { course: new mongoose.Types.ObjectId(courseId) }, //Converting to object
+                // Gets only the documetns with courseId
+                $match: { course: new mongoose.Types.ObjectId(courseId) }, // Converting to object
             },
+            // And then group them, and get the average rating
             {
                 $group: { _id: null, averageRating: { $avg: "$rating" } }, //group by no specific id and average out rating
             },
@@ -93,7 +95,8 @@ exports.getAverageRating = async (req, res) => {
             message: "Fetch of average rating was succesful.",
             averageRating: result[0].averageRating,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Something went wrong while trying to get average Rating.",
@@ -103,6 +106,7 @@ exports.getAverageRating = async (req, res) => {
 };
 
 //*************************************Get all rating****************************************************************/
+// Gets all the reviews ordered in descending order with the user details populated, as well as the courseName.
 exports.getAllRating = async (req, res) => {
     try {
         const allReviews = await RatingAndReview.find({})
@@ -112,7 +116,7 @@ exports.getAllRating = async (req, res) => {
                 select: "firstName lastname email image",
             })
             .populate({
-                path: "User",
+                path: "course",
                 select: "courseName",
             })
             .exec();
@@ -123,7 +127,8 @@ exports.getAllRating = async (req, res) => {
             message: "Fetching of all the reviews of a course was succesful. ",
             date: allReviews,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
             message: "Something went wrong while trying to get all Rating.",

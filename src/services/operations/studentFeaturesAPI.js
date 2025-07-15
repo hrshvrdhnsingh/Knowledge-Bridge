@@ -19,6 +19,9 @@ function loadScript(src) {
 }
 
 // Buy the Course
+// Details -> capturePayment in backend -> order is created in the backend -> Razorpay is called for that order
+// -> on payment completion the email is sent -> verification of the payment is done in the backend -> 
+// using the razropay_signature matching with the expected signature according to Razorpay documentation
 export async function BuyCourse(token, courses, user_details, navigate, dispatch) {
     const toastId = toast.loading("Loading...");
     try {

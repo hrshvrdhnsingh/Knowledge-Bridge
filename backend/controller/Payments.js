@@ -9,10 +9,11 @@ const { paymentSuccessEmail } = require("../mails/templates/paymentSuccessEmail"
 const CourseProgress = require("../model/CourseProgressModel");
 
 /*****************************Capture payment and initialise Razorpay order***************************************/
+// Initailising the razorpay order in the backend with order_id & payment_id
 exports.capturePayment = async (req, res) => {
     const { courses } = req.body;
     const userID = req.user.body;
-    //Checking if it's a valid course id
+    // Checking if it's a valid course id
     if (courses.length === 0) {
         return res.status(404).json({
             success: false,
@@ -40,7 +41,8 @@ exports.capturePayment = async (req, res) => {
                 });
             }
             total_amount += course.price;
-        } catch (err) {
+        } 
+        catch (err) {
             return res.status(400).json({
                 success: false,
                 message: "Something went wrong while verifying the course details",
@@ -58,14 +60,15 @@ exports.capturePayment = async (req, res) => {
         },
     };
     try {
-        //Initiate response from razorpay
+        // Initiate response from razorpay
         const paymentResponse = await instance.orders.create(options);
         //     console.log("Payment response -> ", paymentResponse);
         return res.status(200).json({
             success: true,
             data: paymentResponse,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error occured while creating razorpay order",
@@ -155,6 +158,7 @@ exports.verifyPayment = async (req, res) => {
     const razorpay_signature = req.body?.razorpay_signature;
     const courses = req.body?.courses;
     const userId = req.user.id;
+
     // If the signature from razorpay and the signature that we created matches, then we confirm the payment.
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !courses || !userId) {
         return res.status(401).json({
@@ -208,7 +212,8 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
                 paymentId
             )
         );
-    } catch (err) {
+    } 
+    catch (err) {
         //     console.log("Error in sending mail");
         return res.status(400).json({
             success: false,
@@ -218,6 +223,8 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 };
 
 //********************************************Enroll students in the courses************************************************ */
+// Find the course and add the student into the studentsEnrolled -> Create a courseProgress for the current 
+// user and course -> Find the user and push the courseId in courses and the courseProgress -> send mail
 const enrollStudents = async (courses, userId, res) => {
     if (!courses || !userId) {
         return res.status(400).json({
@@ -272,7 +279,8 @@ const enrollStudents = async (courses, userId, res) => {
             );
 
             //     console.log("Email sent successfully: ", emailResponse.response);
-        } catch (error) {
+        } 
+        catch (error) {
             return res.status(400).json({
                 success: false,
                 error: error.message,

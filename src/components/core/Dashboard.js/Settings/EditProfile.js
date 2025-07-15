@@ -19,7 +19,8 @@ const EditProfile = () => {
     const submitProfileForm = async (data) => {
         try {
             dispatch(updateProfile(token, data));
-        } catch (err) {
+        } 
+        catch (err) {
             console.log("Profile Updata Error : ", err.message);
         }
     };

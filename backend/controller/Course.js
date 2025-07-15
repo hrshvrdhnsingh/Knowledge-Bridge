@@ -9,9 +9,12 @@ const SubSection = require("../model/SubSectionModel");
 const CourseProgress = require("../model/CourseProgressModel");
 
 //**************************************To create a new Course******************************************************
+// Get the id and thumbnail from req -> stringify the tags and the requirements -> get the instructor -> 
+// get the category details -> Create the course entry -> oush the course in the instructor schema -> push the
+// course in the category schema
 exports.createCourse = async (req, res) => {
     try {
-        // the id lies in the payload part of decode which was inserted into the db itself.
+        // the id lies in the payload part of decode in the auth middleware.
         console.log(req);
         const userID = req.user.id;
         let { courseName, courseDescription, whatYouWillLearn, price,
@@ -23,8 +26,8 @@ exports.createCourse = async (req, res) => {
         catch (err) {
             console.log(err.message);
         }
-        console.log(">>> REQ.BODY:", req.body);
-        console.log(">>> REQ.FILES:", req.files);
+        // console.log(">>> REQ.BODY:", req.body);
+        // console.log(">>> REQ.FILES:", req.files);
 
         try {
             if (
@@ -36,7 +39,8 @@ exports.createCourse = async (req, res) => {
                     message: "All are mandatory fields.",
                 });
             }
-        } catch (err) {
+        } 
+        catch (err) {
             console.log("try", err.message);
         }
 
@@ -53,7 +57,7 @@ exports.createCourse = async (req, res) => {
 
         if (!status || status === undefined) status = "Draft";
 
-        //Get the instructor details
+        // Get the instructor details
         const instructorDetails = await User.findById(userID, {
             accountType: "Instructor",
         });
@@ -64,17 +68,17 @@ exports.createCourse = async (req, res) => {
             });
         }
 
-        //Get the category details
+        // Get the category details
         const categoryDetails = await Category.findById(category);
         if (!categoryDetails) {
             return res.status(400).json({
                 success: false,
-                message: "Could not find the tag details.",
+                message: "Could not find the category details.",
             });
         }
-        //Uploading image to the cloud
+        // Uploading image to the cloud
         const thumbnailImage = await uploadImageToCloudinary(thumbnail, process.env.FOLDER_NAME);
-        //Now, create a new course entry in the database
+        // Now, create a new course entry in the database
         const newCourse = await Course.create({
             courseName,
             courseDescription,
@@ -88,7 +92,7 @@ exports.createCourse = async (req, res) => {
             thumbnail: thumbnailImage.secure_url,
         });
 
-        //Add this new course to the instructor schema
+        // Add this new course to the instructor schema
         await User.findByIdAndUpdate(
             { _id: instructorDetails._id },
             {
@@ -97,7 +101,7 @@ exports.createCourse = async (req, res) => {
             { new: true }
         );
 
-        //Add the new course to the categories
+        // Add the new course to the categories
         const categoryDetails2 = await Category.findByIdAndUpdate(
             { _id: category },
             {
@@ -110,10 +114,11 @@ exports.createCourse = async (req, res) => {
             message: "Course created succesfully.",
             data: newCourse,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(400).json({
             success: false,
-            message: "Somethiung occured while creating course. Try again.",
+            message: "Something occured while creating course. Try again.",
             description: err.message,
         });
     }
@@ -141,7 +146,8 @@ exports.showAllCourses = async (req, res) => {
             message: "Fetching of all courses was done succesfully.",
             data: allCourses,
         });
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error in getting all courses.",
@@ -151,6 +157,8 @@ exports.showAllCourses = async (req, res) => {
 };
 
 /**********************************************To edit a course*****************************************************/
+// Get the course -> If thumbnail, cahnge it -> only change the parameters that have been changed -> save the 
+// course -> Return the populated course
 exports.editCourse = async (req, res) => {
     try {
         const { courseId } = req.body;
@@ -174,9 +182,10 @@ exports.editCourse = async (req, res) => {
         for (const key in updates) {
             if (updates.hasOwnProperty(key)) {
                 if (key === "tag" || key === "instructions") {
-                    course[key] = JSON.parse(updates[key]);
-                } else {
-                    course[key] = updates[key];
+                    course[key] = JSON.parse(updates[key]); // parse and then assign
+                } 
+                else {
+                    course[key] = updates[key]; // Direct assignment
                 }
             }
         }
@@ -205,7 +214,8 @@ exports.editCourse = async (req, res) => {
             message: "Course updated successfully",
             data: updatedCourse,
         });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         res.status(500).json({
             success: false,
@@ -239,7 +249,8 @@ exports.getCourseDetails = async (req, res) => {
                     },
                 })
                 .exec();
-        } catch (err) {
+        } 
+        catch (err) {
             return res.status(400).json({
                 message: err.message,
             });
@@ -251,17 +262,6 @@ exports.getCourseDetails = async (req, res) => {
                 message: `Could not find course with id: ${courseId}`,
             });
         }
-        //TODO: The course content fied is not getting populated hance the the total duration cant' be done
-        /* console.log('Course Content : ', courseDetails.courseContent);
-        let totalDurationInSeconds = 0
-        courseDetails.courseContent.forEach((content) => {
-            content.subSection.forEach((subSection) => {
-                const timeDurationInSeconds = parseInt(subSection.timeDuration)
-                totalDurationInSeconds += timeDurationInSeconds
-            })
-        })
-    
-        const totalDuration = convertSecondsToDuration(totalDurationInSeconds) */
 
         return res.status(200).json({
             success: true,
@@ -269,7 +269,8 @@ exports.getCourseDetails = async (req, res) => {
                 courseDetails,
             },
         });
-    } catch (error) {
+    } 
+    catch (error) {
         return res.status(500).json({
             success: false,
             message: error.message,
@@ -307,6 +308,7 @@ exports.getFullCourseDetails = async (req, res) => {
                 message: `Accessing a draft course is forbidden`,
             });
         }
+        // Fetch the user's progress
         let courseProgressCount = await CourseProgress.findOne({
             courseID: courseId,
             userId: userId,
@@ -319,6 +321,7 @@ exports.getFullCourseDetails = async (req, res) => {
             });
         }
 
+        // Total course duration
         let totalDurationInSeconds = 0;
         courseDetails?.courseContent?.forEach((content) => {
             content?.subSection?.forEach((subSection) => {
@@ -339,7 +342,8 @@ exports.getFullCourseDetails = async (req, res) => {
                     : [],
             },
         });
-    } catch (error) {
+    } 
+    catch (error) {
         return res.status(500).json({
             success: false,
             message: error.message,
@@ -363,7 +367,8 @@ exports.getInstructorCourses = async (req, res) => {
             success: true,
             data: instructorCourses,
         });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         res.status(500).json({
             success: false,

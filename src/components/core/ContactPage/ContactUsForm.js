@@ -20,7 +20,8 @@ const ContactUsForm = ({ heading, description }) => {
             const res = await apiConnector("POST", contactusEndpoint.CONTACT_US_API, data);
             console.log("email res : ", res);
             setLoading(false);
-        } catch (err) {
+        } 
+        catch (err) {
             console.log("Contact Error Message : ", err.message);
             setLoading(false);
         }

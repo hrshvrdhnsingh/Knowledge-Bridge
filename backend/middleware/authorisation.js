@@ -20,15 +20,17 @@ exports.auth = async (req, res, next) => {
         try {
             const decode = jwt.verify(token, process.env.JWT_SECRET);
             req.user = decode;
-        } catch (err) {
+        } 
+        catch (err) {
             return res.status(401).json({
                 success: false,
                 message: "Invalid token found.",
                 description: err.message,
             });
         }
-        next(); //On to the next middleware
-    } catch (err) {
+        next(); // On to the next middleware
+    } 
+    catch (err) {
         return res.status(401).json({
             success: false,
             message: "Something went wrong while verifying the token.",
@@ -70,7 +72,8 @@ exports.isInstructor = async (req, res, next) => {
             });
         }
         next();
-    } catch (err) {
+    } 
+    catch (err) {
         return res.status(500).json({
             success: false,
             message: "Unable to perform the user validation. Try again later",
