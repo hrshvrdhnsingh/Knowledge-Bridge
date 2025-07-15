@@ -18,7 +18,7 @@ const CourseSlider = ({Courses}) => {
                         {
                             Courses.map((course, index) => (
                                 <SwiperSlide key={index} className="swiper-slide-custom">
-                                    <CourseCard course={course} className="" Height={"h-[600px]"}/>
+                                    <CourseCard course={course} className=""/>
                                 </SwiperSlide>
                             ))
                         }

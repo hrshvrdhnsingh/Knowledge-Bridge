@@ -12,7 +12,8 @@ const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) 
     const { sectionId, subSectionId } = useParams(); // From the url
     const { courseSectionData, courseEntireData, totalNoOfLectures, completedLectures } =
         useSelector((state) => state.viewCourse);
-    console.log(courseEntireData)
+    console.log(courseEntireData);
+
     useEffect(() => {
         (() => {
             // To highlight the subsection we are currently watching.
@@ -58,7 +59,7 @@ const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) 
                         </p>
                     </div>
                 </div>
-                <h1 className="text-zinc-500 text-xl sm:text-base place-self-start px-2 font-medium">
+                <h1 className="text-zinc-500 text-xl sm:text-base place-self-start px-2 font-bold">
                     {courseEntireData[0]?.courseName}
                 </h1>
                 <div className="w-full">
@@ -99,7 +100,7 @@ const VideoDetailsSidebar = ({ setReviewModal, navbarActive, setNavbarActive }) 
                                                 setVideoBarActive(topic._id);
                                             }}
                                         >
-                                            {/**Checked input if the video is rpesent in completed Lectures but do nothing of it's presses without completing the lecture*/}
+                                            {/**Checked input if the video is present in completed Lectures but do nothing of it's pressed without completing the lecture*/}
                                             <input
                                                 type="checkbox"
                                                 checked={completedLectures.includes(topic?._id)}

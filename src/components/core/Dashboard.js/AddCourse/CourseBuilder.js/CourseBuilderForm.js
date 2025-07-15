@@ -100,7 +100,11 @@ export default function CourseBuilderForm() {
                         {...register("sectionName", { required: true })}
                         className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                     />
-                    {errors.sectionName && <span className="">Section Name is required</span>}
+                    {errors.sectionName && (
+                        <span className="px-1 py-1 text-pink-500 text-sm">
+                            Section Name is required
+                        </span>
+                    )}
                 </div>
                 <div className="flex p-2">
                     <button

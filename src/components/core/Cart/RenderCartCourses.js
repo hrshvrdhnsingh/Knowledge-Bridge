@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa6";
 import ReactStars from "react-rating-stars-component";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { removeFromCart } from "../../../slices/cartSlice";
@@ -21,6 +22,9 @@ const RenderCartCourses = () => {
     return (
         <div className="w-full flex-col flex gap-8">
             {cart?.map((course, i) => {
+                const avgRating = GetAvgRating(course.ratingAndReviews) || 0;
+                const ratingCount = course.ratingAndReviews?.length || 0;
+
                 return (
                     <div
                         key={i}
@@ -36,17 +40,18 @@ const RenderCartCourses = () => {
                         <div className="w-5/12 sm:w-full justify-center gap-3 flex-col flex">
                             <p className="text-xl text-zinc-400">{course?.courseName}</p>
                             <p className="text-xl sm:text-lg">Category - {course?.category?.name}</p>
-                            <div className="flex gap-2 items-center sm:text-lg">
-                                <span>4.3</span>
+                            <div className="flex items-center gap-2 sm:text-lg">
+                                <span>{avgRating.toFixed(1)}</span>
                                 <ReactStars
                                     count={5}
                                     size={20}
+                                    value={avgRating}
                                     edit={false}
                                     activeColor="#ffd700"
-                                    emptyIcon={<FaStar />}
+                                    emptyIcon={<FaRegStar />}
                                     fullIcon={<FaStar />}
                                 />
-                                <span>{course?.ratingAndReviews?.length} Ratings</span>
+                                <span>{ratingCount} rating{ratingCount !== 1 && "s"}</span>
                             </div>
                         </div>
                         <div className="flex w-2/12 sm:w-full sm:justify-between justify-center items-center gap-8">

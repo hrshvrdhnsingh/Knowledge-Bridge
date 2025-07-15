@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { addToCart } from "../../../slices/cartSlice"
 import { ACCOUNT_TYPE } from "../../../utils/constants"
 
+// Shows the card on the right on clicking any course, with the image and payment option and add to cart
 const CourseDetailsCard = ({course, setConfirmationModal, handleBuyCourse}) => {
     const { user } = useSelector((state) => state.profile)
     const { token } = useSelector((state) => state.auth)

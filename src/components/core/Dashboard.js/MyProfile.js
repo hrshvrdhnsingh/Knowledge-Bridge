@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import ProfileBtn from "./ProfileBtn";
 import { useNavigate } from "react-router-dom";
 
+// The Profile page that also allows for editing of the fields
 const MyProfile = () => {
     const { user } = useSelector((state) => state.profile);
     const navigate = useNavigate();

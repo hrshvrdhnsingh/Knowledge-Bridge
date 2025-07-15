@@ -22,11 +22,11 @@ const CourseCard = ({ course, Height }) => {
             }`}
         >
             <div className="w-full h-full flex flex-col gap-2 p-2 ">
-                <div className="w-full sm:h-[50%] h-[80%]">
+                <div className="w-full sm:h-[50%] h-9/12 overflow-hidden">
                     <img
                         src={course?.thumbnail}
                         alt="course thumbnail"
-                        className={`w-full h-full object-cover rounded-2xl`}
+                        className={`w-full h-full object-cover object-center rounded-2xl`}
                     />
                 </div>
                 <div className="flex flex-col w-full gap-1 sm:gap-0 mt-auto">

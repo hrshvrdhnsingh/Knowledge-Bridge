@@ -5,10 +5,7 @@ import { FaPlus } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { RxDropdownMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    deleteSection,
-    deleteSubSection,
-} from "../../../../../services/operations/courseDetailsAPI";
+import { deleteSection, deleteSubSection,} from "../../../../../services/operations/courseDetailsAPI";
 import { setCourse } from "../../../../../slices/courseSlice";
 import ConfirmationModal from "../../../../common/ConfirmationModal";
 import SubSectionModal from "./SubSectionModal";

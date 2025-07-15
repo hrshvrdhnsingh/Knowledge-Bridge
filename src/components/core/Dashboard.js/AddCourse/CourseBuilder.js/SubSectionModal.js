@@ -10,6 +10,7 @@ import {
 import { setCourse } from "../../../../../slices/courseSlice";
 import Upload from "../Upload";
 
+// Brings up the subsection modal which allows us to add subsection with video and description
 const SubSectionModal = ({ modalData, setModalData, add = false, view = false, edit = false }) => {
     const {
         register,
@@ -25,7 +26,6 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
 
     useEffect(() => {
         if (view || edit) {
-            // console.log("modalData", modalData)
             setValue("lectureTitle", modalData.title);
             setValue("lectureDesc", modalData.description);
             setValue("lectureVideo", modalData.videoUrl);
@@ -151,7 +151,11 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                             {...register("lectureTitle", { required: true })}
                             className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         />
-                        {errors.lectureTitle && <span className="">Lecture Title is required</span>}
+                        {errors.lectureTitle && (
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Lecture Title is required
+                            </span>
+                        )}
                     </div>
                     {/* Lecture Description */}
                     <div className="flex flex-col">
@@ -169,7 +173,9 @@ const SubSectionModal = ({ modalData, setModalData, add = false, view = false, e
                             className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         />
                         {errors.lectureDesc && (
-                            <span className="">Lecture Description is required</span>
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Lecture Description is required
+                            </span>
                         )}
                     </div>
                     {!view && (

@@ -5,6 +5,7 @@ import { getUserEnrolledCourses } from "../../../services/operations/profileAPI"
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useNavigate } from "react-router-dom";
 
+// Getting the Enrolled Courses page for a student only, with progress bar and total duration for every course
 const EnrolledCourses = () => {
     const { token } = useSelector((state) => state.auth);
     const [enrolledCourses, setEnrolledCourses] = useState(null);

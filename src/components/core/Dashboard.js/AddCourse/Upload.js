@@ -107,7 +107,9 @@ const Upload = ({
                     </>
                 )}
             </div>
-            {errors[name] && <span className="px-4 py-2 text-pink-500">{label} is required</span>}
+            {errors[name] && (
+                <span className="px-1 py-1 text-pink-500 text-sm">{label} is required</span>
+            )}
         </div>
     );
 };

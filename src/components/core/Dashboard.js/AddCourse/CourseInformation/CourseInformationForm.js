@@ -40,7 +40,6 @@ const CourseInformationForm = () => {
         };
         // if form is in edit mode
         if (editCourse) {
-            // console.log("data populated", editCourse)
             setValue("courseTitle", course.courseName);
             setValue("courseShortDesc", course.courseDescription);
             setValue("coursePrice", course.price);
@@ -51,13 +50,10 @@ const CourseInformationForm = () => {
             setValue("courseImage", course.thumbnail);
         }
         getCategories();
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const isFormUpdated = () => {
         const currentValues = getValues();
-        // console.log("changes after editing form values:", currentValues)
         if (
             currentValues.courseTitle !== course.courseName ||
             currentValues.courseShortDesc !== course.courseDescription ||
@@ -75,13 +71,7 @@ const CourseInformationForm = () => {
 
     //   handle next button click
     const onSubmit = async (data) => {
-        // console.log(data)
-
         if (editCourse) {
-            // const currentValues = getValues()
-            // console.log("changes after editing form values:", currentValues)
-            // console.log("now course:", course)
-            // console.log("Has Form Changed:", isFormUpdated())
             if (isFormUpdated()) {
                 const currentValues = getValues();
                 const formData = new FormData();
@@ -127,7 +117,7 @@ const CourseInformationForm = () => {
             return;
         }
 
-        console.log(data.courseImage);
+        // console.log(data.courseImage);
         const formData = new FormData();
         formData.append("courseName", data.courseTitle);
         formData.append("courseDescription", data.courseShortDesc);
@@ -163,7 +153,11 @@ const CourseInformationForm = () => {
                     {...register("courseTitle", { required: true })}
                     className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
-                {errors.courseTitle && <span className="">Course Title is required</span>}
+                {errors.courseTitle && (
+                    <span className="px-1 py-1 text-pink-500 text-sm">
+                        Course Title is required
+                    </span>
+                )}
             </div>
             {/* Course Short Description */}
             <div className="flex flex-col">
@@ -179,7 +173,11 @@ const CourseInformationForm = () => {
                     {...register("courseShortDesc", { required: true })}
                     className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
-                {errors.courseShortDesc && <span className="">Course Description is required</span>}
+                {errors.courseShortDesc && (
+                    <span className="px-1 py-1 text-pink-500 text-sm">
+                        Course Description is required
+                    </span>
+                )}
             </div>
             {/* Course Price */}
             <div className="flex flex-col">
@@ -202,7 +200,11 @@ const CourseInformationForm = () => {
                     />
                     <HiOutlineCurrencyRupee className="absolute right-3 top-1/2 inline-block -translate-y-1/2 text-3xl text-zinc-800" />
                 </div>
-                {errors.courseShortDesc && <span className="">Course Description is required</span>}
+                {errors.courseShortDesc && (
+                    <span className="px-1 py-1 text-pink-500 text-sm">
+                        Course Description is required
+                    </span>
+                )}
             </div>
             {/* Course Category */}
             <div className="flex flex-col">
@@ -228,7 +230,11 @@ const CourseInformationForm = () => {
                             </option>
                         ))}
                 </select>
-                {errors.courseCategory && <span className="">Course Category is required</span>}
+                {errors.courseCategory && (
+                    <span className="px-1 py-1 text-pink-500 text-sm">
+                        Course Category is required
+                    </span>
+                )}
             </div>
             {/* Course Tags */}
             <ChipInput
@@ -263,7 +269,11 @@ const CourseInformationForm = () => {
                     {...register("courseBenefits", { required: true })}
                     className="w-full sm:w-11/12 cursor-text sm:text-base sm:p-1 h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                 />
-                {errors.courseBenefits && <span className="">Course Benefits is required</span>}
+                {errors.courseBenefits && (
+                    <span className="px-1 py-1 text-pink-500 text-sm">
+                        Course Benefits is required
+                    </span>
+                )}
             </div>
             {/* Requirements/Instructions */}
             <RequirementsField

@@ -2,18 +2,24 @@ import { useEffect, useRef, useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import CourseSubSectionAccordion from "./CourseSubSectionAccordion";
 
+// To display the overview all the sections of the course
+// In it the subsections will also be shown on clicking the particular section
+// isActive has all the section ids that are expanded and handleActive is responsible for adding & removing that.
 const CourseAccordionBar = ({ course, isActive, handleActive }) => {
-    const contentEl = useRef(null);
+    const contentEl = useRef(null); //  the ref is used to handle the DOM which in this case is the subsection
+    // list and only displays the content height when clicked on. contentEl for each section holds the DOM
+    // with it's sectionHeight and applies it via inline height.
 
-    // Accordian state
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(false); // The state of current section whether it's expanded
+    // Whenever isActive changes, the "active" is set via the setActive based on whether the section id is
+    // in isActive or not. And based on this "active" the height of the section is decided.
     useEffect(() => {
-        setActive(isActive?.includes(course._id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        setActive(isActive?.includes(course._id)); // Tracks whether the current expanded
     }, [isActive]);
+
     const [sectionHeight, setSectionHeight] = useState(0);
     useEffect(() => {
-        setSectionHeight(active ? contentEl.current.scrollHeight : 0);
+        setSectionHeight(active ? contentEl.current.scrollHeight : 0); // The ref is used to set the total subsection height.
     }, [active]);
 
     return (

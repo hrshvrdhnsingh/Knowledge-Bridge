@@ -24,7 +24,12 @@ const UpdatePassword = () => {
     };
 
     return (
-        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1500" className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between">
+        <div
+            data-aos="fade-right"
+            data-aos-easing="ease-in-out"
+            data-aos-duration="1500"
+            className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between"
+        >
             <h2 className="text-xl font-bold p-1 overflow-hidden text-white">
                 Profile Information
             </h2>
@@ -54,7 +59,9 @@ const UpdatePassword = () => {
                             {...register("oldPassword", { required: true })}
                         />
                         {errors.oldPassword && (
-                            <span className="text-[12px]">Please enter your current password.</span>
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Please enter your current password.
+                            </span>
                         )}
                     </div>
                     <div className="flex flex-col w-[50%] sm:w-full">
@@ -81,7 +88,9 @@ const UpdatePassword = () => {
                             {...register("newPassword", { required: true })}
                         />
                         {errors.oldPassword && (
-                            <span className="text-[12px]">Please enter your new password.</span>
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Please enter your new password.
+                            </span>
                         )}
                     </div>
                 </div>

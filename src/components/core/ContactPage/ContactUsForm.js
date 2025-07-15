@@ -23,7 +23,7 @@ const ContactUsForm = ({ heading, description }) => {
         } catch (err) {
             console.log("Contact Error Message : ", err.message);
             setLoading(false);
-        } 
+        }
     };
 
     useEffect(() => {
@@ -39,7 +39,11 @@ const ContactUsForm = ({ heading, description }) => {
     }, [reset, isSubmitSuccessful]);
 
     return (
-        <div className="w-6/12 flex gap-4 sm:w-11/12 flex-col justify-center items-center mt-48" data-aos="zoom-in" data-aos-easing="ease-in-out">
+        <div
+            className="w-6/12 flex gap-4 sm:w-11/12 flex-col justify-center items-center mt-48"
+            data-aos="zoom-in"
+            data-aos-easing="ease-in-out"
+        >
             <h1 className="text-4xl p-2 font-bold text-white">{heading}</h1>
             <p className="text-zinc-500 text-lg">{description}</p>
             <form
@@ -59,7 +63,11 @@ const ContactUsForm = ({ heading, description }) => {
                             className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                             {...register("firstname", { required: true })}
                         />
-                        {errors.firstname && <span className="">Please enter your name.</span>}
+                        {errors.firstname && (
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Please enter your name.
+                            </span>
+                        )}
                     </div>
                     <div className="flex flex-col w-[49%] p-2 gap-2">
                         <label htmlFor="lastname" className="text-zinc-600 text-xl font-semibold">
@@ -73,7 +81,11 @@ const ContactUsForm = ({ heading, description }) => {
                             className="cursor-text h-[40%] w-11/12 rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                             {...register("lastname", { required: true })}
                         />
-                        {errors.firstname && <span className="">Please enter your name.</span>}
+                        {errors.firstname && (
+                            <span className="px-1 py-1 text-pink-500 text-sm">
+                                Please enter your name.
+                            </span>
+                        )}
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 p-2">
@@ -88,7 +100,11 @@ const ContactUsForm = ({ heading, description }) => {
                         className="cursor-text h-[40%] w-[93%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         {...register("email", { required: true })}
                     />
-                    {errors.email && <span className="">Please enter your Email address.</span>}
+                    {errors.email && (
+                        <span className="px-1 py-1 text-pink-500 text-sm">
+                            Please enter your Email address.
+                        </span>
+                    )}
                 </div>
                 <div className="flex flex-col gap-2 p-2 w-full">
                     <label htmlFor="phonenumber" className="text-zinc-600 text-xl font-semibold">
@@ -130,7 +146,11 @@ const ContactUsForm = ({ heading, description }) => {
                             />
                         </div>
                     </div>
-                    {errors.phoneNo && <span>{errors.phoneNo.message}</span>}
+                    {errors.phoneNo && (
+                        <span className="px-1 py-1 text-pink-500 text-sm">
+                            {errors.phoneNo.message}
+                        </span>
+                    )}
                 </div>
                 <div className="flex flex-col gap-2 p-2">
                     <label htmlFor="message" className="text-zinc-600 text-xl font-semibold">
@@ -145,7 +165,11 @@ const ContactUsForm = ({ heading, description }) => {
                         className="cursor-text h-[40%] w-[97%] rounded-md -richblack-300 bg-richblack-500 text-zinc-200 text-lg p-2"
                         {...register("message", { required: true })}
                     />
-                    {errors.message && <span className="">Please enter your message</span>}
+                    {errors.message && (
+                        <span className="px-1 py-1 text-pink-500 text-sm">
+                            Please enter your message
+                        </span>
+                    )}
                 </div>
                 <button
                     disabled={loading}

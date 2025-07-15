@@ -25,7 +25,12 @@ const EditProfile = () => {
     };
 
     return (
-        <div data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1200" className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between">
+        <div
+            data-aos="fade-right"
+            data-aos-easing="ease-in-out"
+            data-aos-duration="1200"
+            className="flex bg-richblack-600 p-2 px-6 sm:px-2 flex-col rounded-2xl justify-between"
+        >
             <h2 className="text-xl font-bold p-1 overflow-hidden text-white">
                 Profile Information
             </h2>
@@ -50,7 +55,7 @@ const EditProfile = () => {
                             {...register("firstName", { required: true })}
                         />
                         {errors.firstName && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 Please enter your first name.
                             </span>
                         )}
@@ -71,7 +76,7 @@ const EditProfile = () => {
                             {...register("lastName", { required: true })}
                         />
                         {errors.lastName && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 Please enter your last name.
                             </span>
                         )}
@@ -104,7 +109,7 @@ const EditProfile = () => {
                             defaultValue={user?.additionalDetails?.dateOfBirth}
                         />
                         {errors.dateOfBirth && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 {errors.dateOfBirth.message}
                             </span>
                         )}
@@ -134,7 +139,7 @@ const EditProfile = () => {
                             })}
                         </select>
                         {errors.gender && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 Please enter your gender.
                             </span>
                         )}
@@ -165,7 +170,7 @@ const EditProfile = () => {
                             defaultValue={user?.additionalDetails?.contactNumber}
                         />
                         {errors.contactNumber && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 {errors.contactNumber.message}
                             </span>
                         )}
@@ -187,7 +192,7 @@ const EditProfile = () => {
                             defaultValue={user?.additionalDetails?.about}
                         />
                         {errors.about && (
-                            <span className="text-[12px] overflow-hidden text-slate-900">
+                            <span className="px-1 py-1 text-pink-500 text-sm">
                                 Please enter your about.
                             </span>
                         )}

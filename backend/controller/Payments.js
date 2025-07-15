@@ -23,7 +23,7 @@ exports.capturePayment = async (req, res) => {
     for (const course_id of courses) {
         let course;
         try {
-            //Checking if the courseDetail  is valid in the databse
+            //Checking if the courseDetail is valid in the databse
             course = await Course.findById(course_id);
             if (!course) {
                 return res.status(400).json({
@@ -31,8 +31,8 @@ exports.capturePayment = async (req, res) => {
                     message: "Not a valid course. ",
                 });
             }
-            //Check if user hasn't already paid for the course that is selected
-            const uid = new mongoose.Types.ObjectId(userID); //Sice it's stored as object in the database
+            // Check if user hasn't already paid for the course that is selected
+            const uid = new mongoose.Types.ObjectId(userID); // Since it's stored as object in the database
             if (course.studentsEnrolled.includes(uid)) {
                 return res.status(400).json({
                     success: false,

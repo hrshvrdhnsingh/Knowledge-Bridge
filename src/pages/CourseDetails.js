@@ -16,6 +16,7 @@ import { BuyCourse } from "../services/operations/studentFeaturesAPI";
 import GetAvgRating from "../utils/avgRating";
 import HighLightText from "../components/core/Homepage/HighLightText";
 import Footer from '../components/common/Footer'
+
 const CourseDetails = () => {
     const { user } = useSelector((state) => state.profile);
     const { token } = useSelector((state) => state.auth);
@@ -33,12 +34,12 @@ const CourseDetails = () => {
     const [confirmationModal, setConfirmationModal] = useState(null);
     useEffect(() => {
         (async () => {
-            // Calling fetchCourseDetails fucntion to fetch the details
             try {
                 const res = await fetchCourseDetails(courseId);
                 // console.log("course details res: ", res)
                 setResponse(res);
-            } catch (error) {
+            } 
+            catch (error) {
                 //     console.log("Could not fetch Course Details");
             }
         })();
@@ -54,9 +55,9 @@ const CourseDetails = () => {
         getRating();
     }, [response?.data]);
 
+    // isActive is used to store the section ids that are still expanded to show the contents
     const [isActive, setIsActive] = useState(Array(0));
     const handleActive = (id) => {
-        // console.log("called", id)
         setIsActive(
             !isActive.includes(id) ? isActive.concat([id]) : isActive.filter((e) => e !== id)
         );
@@ -79,22 +80,10 @@ const CourseDetails = () => {
             </div>
         );
     }
-    /* if (!response.success) {
-        return <Error />
-    } */
 
     const {
-        _id: course_id,
-        courseName,
-        courseDescription,
-        thumbnail,
-        price,
-        whatYouWillLearn,
-        courseContent,
-        ratingAndReviews,
-        instructor,
-        studentsEnrolled,
-        createdAt,
+        _id: course_id, courseName, courseDescription, thumbnail, price, whatYouWillLearn,
+        courseContent, ratingAndReviews, instructor, studentsEnrolled, createdAt,
     } = response?.data?.courseDetails[0];
 
     const handleBuyCourse = () => {
@@ -113,7 +102,6 @@ const CourseDetails = () => {
     };
 
     if (paymentLoading) {
-        // console.log("payment loading")
         return (
             <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
                 <div className="spinner"></div>
@@ -160,12 +148,13 @@ const CourseDetails = () => {
             <div className="w-9/12 sm:w-11/12">
                 <div className="place-self-start w-max">
                     <p className="text-4xl font-bold py-3 text-white">What you'll learn</p>
-                    <div className="text-zinc-400 text-xl px-12 w-10/12 sm:w-7/12 sm:px-2 sm:text-base">
+                    <div className="text-zinc-400 text-xl border w-full sm:w-7/12 sm:px-2 sm:text-base">
                         <ReactMarkdown />
                         {whatYouWillLearn}
                     </div>
                 </div>
             </div>
+
             {/**Course-content section */}
             <div className="w-9/12 sm:w-11/12">
                 <div className="place-self-start w-7/12 sm:w-full flex flex-col gap-4">
@@ -182,7 +171,7 @@ const CourseDetails = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 border">
                         {courseContent?.map((course, index) => (
                             <CourseAccordionBar
                                 course={course}

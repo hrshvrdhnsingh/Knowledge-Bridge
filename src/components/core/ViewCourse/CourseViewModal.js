@@ -7,6 +7,7 @@ import { createRating } from "../../../services/operations/courseDetailsAPI";
 import { FaRegStar, FaStarHalf } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 
+// To make the modal appear for submitting the review of the course
 const CourseViewModal = ({ setReviewModal }) => {
     const { user } = useSelector((state) => state.profile);
     const { token } = useSelector((state) => state.auth);
@@ -22,11 +23,9 @@ const CourseViewModal = ({ setReviewModal }) => {
     useEffect(() => {
         setValue("courseExperience", "");
         setValue("courseRating", 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const ratingChanged = (newRating) => {
-        // console.log(newRating)
         setValue("courseRating", newRating);
     };
 
@@ -98,7 +97,9 @@ const CourseViewModal = ({ setReviewModal }) => {
                                 className=" w-full cursor-text h-[40%] rounded-md border-richblack-300 bg-richblack-500 text-zinc-200 p-2"
                             />
                             {errors.courseExperience && (
-                                <span className="text-pink-200">Please add your experience</span>
+                                <span className="px-1 py-1 text-pink-500 text-sm">
+                                    Please add your experience
+                                </span>
                             )}
                         </div>
                         <div className="flex gap-4">

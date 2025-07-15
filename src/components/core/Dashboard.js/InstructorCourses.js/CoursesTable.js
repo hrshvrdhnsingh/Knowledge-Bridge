@@ -11,6 +11,7 @@ import { deleteCourse, fetchInstructorCourses,} from "../../../../services/opera
 import { COURSE_STATUS } from "../../../../utils/constants"
 import ConfirmationModal from "../../../common/ConfirmationModal"
 import { MdEdit } from "react-icons/md"
+import AOS from "aos";
 
 const CoursesTable = ({courses, setCourses}) => {
     const navigate = useNavigate()
@@ -28,8 +29,9 @@ const CoursesTable = ({courses, setCourses}) => {
         setConfirmationModal(null)
         setLoading(false)
     }
+    console.log(courses)
     return (
-        <div >
+        <div className="min-h-screen overflow-visible" onScroll={() => AOS.refresh()}>
             <Table className="" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" >
                 <Thead className="sm:hidden">
                     <Tr className='sm:hidden'>
@@ -39,7 +41,7 @@ const CoursesTable = ({courses, setCourses}) => {
                         <Th className="text-left text-sm font-medium uppercase text-richblack-50">Actions</Th>
                     </Tr>
                 </Thead>
-                <Tbody className=''>
+                <Tbody className='overflow-y-visible'>
                     {
                         courses?.length === 0 ? (
                             <Tr>
@@ -50,9 +52,9 @@ const CoursesTable = ({courses, setCourses}) => {
                             </Tr>
                         ): (
                             courses.map((course) => (
-                                <Tr data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" key={course._id} className='bg-richblack-500 h-[200px] border-b-2 border-slate-500'>
+                                <Tr data-aos-easing="ease-in-out" data-aos-duration="1000" key={course._id} className='bg-richblack-500 border-b-2 border-slate-500'>
                                     <Td className='flex w-full p-4 sm:p-2 gap-4'>
-                                        <div data-aos="zoom-in" data-aos-easing="ease-in-out" data-aos-duration="1400" className="w-4/12 h-[150px] sm:w-full"><img src={course?.thumbnail} alt={course?.courseName} className="object-fit rounded-lg w-full h-full" /></div>
+                                        <div className="w-4/12 h-[150px] sm:w-full"><img src={course?.thumbnail} alt={course?.courseName} className="object-fit rounded-lg w-full h-full" /></div>
                                         <div className="text-white w-8/12 flex flex-col justify-evenly sm:w-full">
                                             <p className="text-slate-200 text-xl ">{course?.courseName}</p>
                                             <p className="text-richblack-50 text-sm">
@@ -97,7 +99,6 @@ const CoursesTable = ({courses, setCourses}) => {
                                         ><RiDeleteBin6Line size={20} /></button>
                                     </Td>
                                 </Tr>
-                            
                             ))
                         )
                     }

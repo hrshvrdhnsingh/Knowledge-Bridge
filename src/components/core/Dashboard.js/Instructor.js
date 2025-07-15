@@ -8,6 +8,8 @@ import InstructorChart from "./InstructorDashboard/InstructionChart";
 import Sidebar from "./Sidebar";
 import HighLightText from "../Homepage/HighLightText";
 
+// Gets the dashboard for an instructor with pie charts for the number of students for each course and the total
+// earning of the instructor per course.
 const Instructor = () => {
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
@@ -107,7 +109,7 @@ const Instructor = () => {
                                 {courses?.slice(0, 3).map((course) => (
                                     <div
                                         key={course._id}
-                                        className="w-[32%] sm:w-[95%] flex flex-col h-[32vh] sm:h-max items-center justify-center bg-zinc-600 rounded-2xl"
+                                        className="w-[32%] p-1 sm:w-[95%] flex flex-col h-[32vh] sm:h-max items-center justify-center bg-zinc-600 rounded-2xl"
                                     >
                                         <div className="h-[80%] sm:h-[60%] w-full">
                                             <img
